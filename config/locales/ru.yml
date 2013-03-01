@@ -258,148 +258,17 @@ ru:
             next: "»"
             truncate: "..."
     shared:
-        title: ! 'Медицинский портал Нижнего Новгорода'
-        no_info: ! 'Нет данных для отображения.'
-        name: Название
-        articles_count: Количество статей
-        created_at: Дата создания
-        move_to_root: В корень справочника
+        result:
+            yep: Да
+            not: Нет
+            reason: Причина
+            org: Выберите медицинскую организацию
+            term:
+                header: Терминальные станции
+                plan: Количество терминальных станций, поставленных в рамках Программы модернизации здравоохранения
+                used: Укажите количество реально работающих терминальных станций
+            emk:
+                used: Ведутся ли электронные медицинские карты пациентов непосредственно с терминальных станций?
         actions:
-            edit: Редактировать
-            show: Просмотр
-            delete: 
-                simple: Удалить
-                with_icon_html: <i class="icon-trash"></i><span></span>
-            save: Сохранить
+            save: Отправить
             cancel: Отменить
-            add:
-                simple: Добавить
-                with_icon_html: <i class="icon-plus icon-white"></i> <span>Добавить</span>
-            move: Переместить
-        genders:
-            male: мужской
-            female: женский
-        messages:
-            nothing_to_add: ! 'добавлять нечего :)'
-            delete:
-                cats: ! 'Подкатегории выбранных категорий также будут удалены. Удалить выбранные категории?'
-    devise:
-        sessions:
-            new:
-                title: Вход
-        registrations:
-            new:
-                title: Регистрация
-        passwords:
-            new:
-                title: Восстановление пароля
-        actions:
-            login: Войти
-            logout: Выйти
-            sign_in: Войти
-            sign_in_with: ! 'Войти через %{provider_name}'
-            sign_up: Зарегистрироваться 
-            edit_account: Изменить параметры учетной записи
-            remember_me: Запомнить меня
-            admin_panel: Администрирование
-            return: Перейти на сайт
-        common:
-            say_hello: Здравствуйте
-            password: Пароль
-            password_confirmation: Подтверждение пароля
-            forgot_password: ! 'Забыли пароль?'
-            created_at: Зарегистрирован
-            roles:
-                admin: Администратор
-        messages:
-            did_not_receive_confirmation: ! 'Не получили инструкции для подтверждения учетной записи?'
-            did_not_receive_unblock: ! 'Не получили инструкции для разблокировки учетной записи?'
-            send_reset_password_instructions: Получить инструкцию для сброса пароля
-    healthcats:
-        index:
-            title: Справочник заболеваний
-        new:
-            title: Добавление раздела
-        edit:
-            title: Редактирование раздела
-        shared:
-            title: Справочник заболеваний
-            categories: Разделы
-            abc: Алфавитный указатель
-            tags: Тэги
-            healthcat:
-            add_new: Добавить раздел
-            name: Название раздела
-            description: Краткое описание
-            gender: Ограничение по полу
-            parent_id: Родительский раздел
-            childrens_list: Подразделы
-            bodyparts: Части тела
-    bodyparts:
-        index:
-            title: Список частей тела
-        shared:
-            title: Список частей тела
-    articles:
-        index:
-            title: Статьи
-        health:
-            title: Справочник заболеваний
-        new:
-            title: Добавление статьи
-        edit:
-            title: Редактирование статьи
-        shared:
-            title: Статьи
-            prompt_for_healthcat: Выберите категорию
-            add_new: Добавить статью
-    tags:
-        shared:
-            title: Тэги
-    organizations:
-        shared:
-            title: Организации
-    admin:
-        pages:
-            home:
-                title:
-                    Администрирование
-        healthcats:
-            index:
-                title:
-                    Справочник заболеваний
-            new:
-                title: Добавление раздела
-            edit:
-                title: Редактирование раздела
-        bodyparts:
-            index:
-                title: Список частей тела
-            new:
-                title: Добавление части тела
-            edit:
-                title: Редактирование части тела
-        articles:
-            index:
-                title: Статьи
-            new:
-                title: Добавление статьи
-            edit:
-                title: Редактирование статьи
-    activerecord:
-        attributes:
-            user:
-                password: Пароль
-            healthcat:
-                name: Название раздела
-                description: Краткое описание
-                parent_id: Родительский раздел
-                gender: Ограничение по полу
-                bodyparts: Части тела
-            bodypart:
-                name: Часть тела
-            article:
-                name: Название статьи
-                introduction: Вступительный текст
-                body: Основной текст
-                categorizable_id: Родительская категория

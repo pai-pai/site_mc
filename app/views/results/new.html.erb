@@ -1,0 +1,45 @@
+<%= form_for(@result) do |f| %>
+    <ul>
+        <% @result.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
+    </ul>
+
+    <div class="control-group">
+        <%= label_tag 'org_name', t('shared.result.org') %>
+        <%= f.collection_select :org_id, Org.all, :id, :name, :autofocus => true %>
+    </div>
+
+    <div class="control-group">
+        <%= label_tag 'used_term' %>
+        <%= f.text_field :used_term %>
+    </div>
+
+    <div class="control-group">
+        <%= label_tag t('shared.result.emk.used') %>
+        <%= label_tag t('shared.result.yep') %>
+        <%= radio_button_tag :emk_term, 1 %>
+        <%= label_tag t('shared.result.not') %>
+        <%= radio_button_tag :emk_term, 0 %>
+    </div>
+
+    <div class="control-group">
+        
+    </div>
+
+    <div class="control-group">
+    </div>
+
+    <div class="control-group">
+    </div>
+
+    <div class="control-group">
+    </div>
+
+    <div class="control-group">
+        <div class="controls">
+            <%= f.submit t('shared.actions.save'), {:class => "btn-primary btn"} %>
+            <%= submit_tag t('shared.actions.cancel'), {:name => 'cancel_button', :class => "btn"} %>
+        </div>
+    </div>
+<% end %>
