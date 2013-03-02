@@ -20,6 +20,9 @@ class ResultsController < ApplicationController
     end
 
     def get_terminals
-        val = params[:org_id]
+        val = Org.find(params[:org_id])
+        render :partial => "about_org", :locals => { :term_count => val.term,
+                                                     :infomat_count => val.infomat,
+                                                     :register_count => val.register }
     end
 end
