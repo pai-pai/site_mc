@@ -312,6 +312,7 @@ ru:
                 table:
                     yep: да
                     nope: нет
+                    none: форма не заполнена
                     has: есть
                     numb_html: ! '№<br />п/п'
                     name: Учреждение
@@ -323,13 +324,14 @@ ru:
                     emk_inet: через интернет
                     register: Запись к врачу
                     register_feb: ! 'За февраль:'
-                    through_reg: "%{reg} - через регистратуру"
-                    through_inf: "%{info} - через инфомат"
+                    through_reg: "%{reg} - через регистратуру,"
+                    through_inf: "%{info} - через инфомат,"
                     through_inet: "%{inet} - через интернет"
                     doc_reg: Запись врач-врач
-                    infomat_html: ! 'Инфомат<br />установлен и&nbsp;работает'
+                    infomat_html: ! 'Инфомат установлен и&nbsp;работает'
                     info_stand: Информационный стенд
                     comments: Комментарии учреждения
+                    read: читать...
     activerecord:
         attributes:
             result:

@@ -5,7 +5,15 @@
 
 .top-padding { padding-top: 0.4em; }
 .top-center { padding-top: 5em; }
+table.table { font-size: 0.85em; }
 table.table th { 
     text-align: center; 
     vertical-align: middle; 
+}
+table.table td.center-middle { 
+    text-align: center; 
+    vertical-align: middle;
+    font-weight: bold;
+    background-color: #f5f5f5;
+    color: #9da0a4;
 }
