@@ -9,14 +9,17 @@ class ResultsController < ApplicationController
 
     def create
         @result = Result.new(params[:result])
-        if params[:cancel_button] || @result.save
-            redirect_to pages_success_path
+        if @result.save
+            redirect_to success_path
+        elsif params[:cancel_button]
+            redirect_to root_path
         else
             render :new
         end
     end
 
     def show
+        @result = Result.find(params[:id])
     end
 
     def get_terminals

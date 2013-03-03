@@ -7,8 +7,9 @@ class Result < ActiveRecord::Base
 
     validates :used_term_reason, :presence => :true, :if => :less_term?
 
+    validates :emk_term, :presence => :true, :if => Proc.new { |a| Org.find(a.org_id).register == 1 }
     validates :mis_inet, :presence => :true, :if => Proc.new { |a| a.emk_term == 0 }
-    validates :mis_emk_reason, :presence => :true, :if => Proc.new { |a| a.mis_inet == 0 }
+    validates :mis_emk_reason, :presence => :true, :if => Proc.new { |a| a.mis_inet == 0 && a.emk_term == 0 }
 
     validates :register, :presence => :true, :if => Proc.new { |a| Org.find(a.org_id).register == 1 }
     validates :register_reason, :presence => :true, :if => Proc.new { |a| a.register == 0 }
@@ -27,7 +28,9 @@ class Result < ActiveRecord::Base
 
     def less_term?
         plan_term = Org.find(self.org_id).term
-        if used_term.blank? || plan_term > used_term
+        if used_term.blank?
+            return false
+        elsif plan_term > used_term
             return true
         else
             return false

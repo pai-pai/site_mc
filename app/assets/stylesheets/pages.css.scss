@@ -1,3 +1,11 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+
+.top-padding { padding-top: 0.4em; }
+.top-center { padding-top: 5em; }
+table.table th { 
+    text-align: center; 
+    vertical-align: middle; 
+}

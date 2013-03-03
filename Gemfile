@@ -4,7 +4,6 @@ gem "rails", "~> 3.2.12"
 gem "rails-i18n"
 gem "jquery-rails"
 gem "therubyracer"
-gem "less-rails-bootstrap"
 gem "kaminari"
 gem "devise"
 gem "oauth2"
@@ -16,7 +15,8 @@ group :production do
 end
 
 group :assets do
-  gem "sass-rails", "~> 3.2.6"
+  gem 'sass-rails', '~> 3.2'
+  gem 'bootstrap-sass', '~> 2.3.0.1'
   gem "coffee-rails", "~> 3.2.2"
   gem "uglifier", ">= 1.0.3"
 end

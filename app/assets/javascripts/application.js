@@ -24,7 +24,11 @@ $(document).ready(function(){
                 $("#about-org").html(data);
                 $("#count-of-terms").html("<strong>" + $("#org_term").attr("value") + "</strong>");
                 $(".terms-pmz").slideDown();
-                if ($("#org_infomat").val()=="1") { $(".infomat-group").slideDown(); } else { $(".infomat-group").slideUp(); };
+                if ($("#org_infomat").val()=="1") { 
+                    $(".infomat-group").slideDown(); 
+                } else { 
+                    $(".infomat-group").slideUp();
+                };
                 if ($("#org_register").val()=="1") { 
                     $(".register-group").slideDown();
                     $(".info-group").slideDown(); 
@@ -33,6 +37,13 @@ $(document).ready(function(){
                     $(".info-group").slideUp(); 
                 };
                 $(".buttons-group").slideDown();
+
+                if (parseInt($("#result_used_term").val()) < parseInt($("#org_term").val())) { $(".container-term-reason").slideDown(); };
+                if ($("#result_emk_term_0").is(":checked")) { $(".container-mis").slideDown(); };
+                if ($("#result_mis_inet_0").is(":checked")) { $(".container-emk-reason").slideDown(); };
+                if ($("#result_register_0").is(":checked")) { $(".container-register-reason").slideDown(); };
+
+                $(".field_with_errors").parent().children().each(function() { if ($(this).hasClass("head-label")) { $(this).addClass("error-label") }; });
             }
         });
     } else {   
@@ -43,9 +54,10 @@ $(document).ready(function(){
         $(".info-group").slideUp();                    
         $(".buttons-group").slideUp();
     };
+
     $("#result_org_id").change(function() {
         var url_path = '/results/get_terminals?org_id=' + $("#result_org_id").val();
-        if ($("#result_org_id").val()) {
+        if ($("#result_org_id").val()!='') {
             $.ajax({
                 url: url_path,
                 dataType: "text",
@@ -53,7 +65,12 @@ $(document).ready(function(){
                     $("#about-org").html(data);
                     $("#count-of-terms").html("<strong>" + $("#org_term").attr("value") + "</strong>");
                     $(".terms-pmz").slideDown();
-                    if ($("#org_infomat").val()=="1") { $(".infomat-group").slideDown(); } else { $(".infomat-group").slideUp(); };
+                    if ($("#org_infomat").val()=="1") { 
+                        $(".infomat-group").slideDown(); 
+                    } else { 
+                        $(".infomat-group").slideUp();
+                        $('input[name="result[used_infomat]"]').each( function() { $(this).prop('checked', false); });
+                    };
                     if ($("#org_register").val()=="1") { 
                         $(".register-group").slideDown();
                         $(".info-group").slideDown(); 
@@ -71,9 +88,78 @@ $(document).ready(function(){
             $(".register-group").slideUp();
             $(".info-group").slideUp();     
             $(".buttons-group").slideUp();            
+            $('input[name="result[used_infomat]"]').each( function() { $(this).prop('checked', false); });
         };
 
     });
     
     $(".hidden-start").each(function() { $(this).hide(); });
+
+    $("#close-button").click(function() { $(".alert-error").hide(); });
+    
+    $("#result_used_term").change(function() {
+        if (parseInt($(this).val()) < parseInt($("#org_term").val())) { 
+            $(".container-term-reason").slideDown(); 
+        } else { 
+            $(".container-term-reason").slideUp();
+            $("#result_used_term_reason").val('');
+        };
+    });
+
+    $("#result_emk_term_1").change(function() { 
+        if ($(this).is(":checked")) { 
+            $(".container-mis").slideUp(); 
+            $('input[name="result[mis_inet]"]').each( function() { $(this).prop('checked', false); });
+            $(".container-emk-reason").slideUp();
+            $("#result_mis_emk_reason").val('');
+        };
+    });
+    $("#result_emk_term_0").change(function() { if ($(this).is(":checked")) { $(".container-mis").slideDown(); }; }); 
+
+    $("#result_mis_inet_1").change(function() { 
+        if ($(this).is(":checked")) { 
+            $(".container-emk-reason").slideUp(); 
+            $("#result_mis_emk_reason").val('');
+        };
+    });
+    $("#result_mis_inet_0").change(function() { if ($(this).is(":checked")) { $(".container-emk-reason").slideDown(); }; });
+
+    $("#result_register_1").change(function() { 
+        if ($(this).is(":checked")) { 
+            $(".container-register-reason").slideUp(); 
+            $("#result_register_reason").val('');
+            $(".container-register-details").slideDown();
+        };
+    });
+    $("#result_register_0").change(function() { if ($(this).is(":checked")) { 
+        $(".container-register-reason").slideDown(); 
+        $(".container-register-details").slideUp();
+        $("#result_records_reg").val('');
+        $("#result_records_infomat").val('');
+        $("#result_record_inet").val('');
+    }; });
+
+    $("#result_doc_reg_1").change(function() { 
+        if ($(this).is(":checked")) { 
+            $(".container-doc-reason").slideUp(); 
+            $("#result_doc_reg_reason").val('');
+        };
+    });
+    $("#result_doc_reg_0").change(function() { if ($(this).is(":checked")) { $(".container-doc-reason").slideDown(); }; });
+
+    $("#result_used_infomat_1").change(function() { 
+        if ($(this).is(":checked")) { 
+            $(".container-infomat-reason").slideUp(); 
+            $("#result_used_infomat_reason").val('');
+        };
+    });
+    $("#result_used_infomat_0").change(function() { if ($(this).is(":checked")) { $(".container-infomat-reason").slideDown(); }; });
+
+    $("#result_info_pat_1").change(function() { 
+        if ($(this).is(":checked")) { 
+            $(".container-info-reason").slideUp(); 
+            $("#result_info_pat_reason").val('');
+        };
+    });
+    $("#result_info_pat_0").change(function() { if ($(this).is(":checked")) { $(".container-info-reason").slideDown(); }; });
 });

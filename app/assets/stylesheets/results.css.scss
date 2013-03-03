@@ -1,3 +1,11 @@
 // Place all the styles related to the results controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+
+label, .field_with_errors { display: inline; }
+select, textarea { width: 100%; }
+.control-group { padding-bottom: 0.4em; }
+.underliner { border-bottom: 1px solid #ddd; }
+.buttons-group { border: none; } 
+.error-label { color: #b94a48; }
