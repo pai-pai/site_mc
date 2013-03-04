@@ -12,6 +12,12 @@
         </div>
     <% end %>
 
+    <div align="right" id="manual-link"><span><%= t('shared.manualink') %></span></div>
+    <div class="manual alert alert-info hidden-start">
+        <button type="button" class="close" data-dismiss="alert" id="close-manual-button">×</button>
+        <%= t("shared.manual_html") %>
+    </div>
+
     <div class="control-group">
         <%= label_tag 'org-name', t('shared.result.org'), { :class => "head-label" } %><br />
         <%= f.collection_select :org_id, Org.all, :id, :name, { :include_blank => true }, :autofocus => true %>

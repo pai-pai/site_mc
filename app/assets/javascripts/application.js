@@ -162,4 +162,7 @@ $(document).ready(function(){
         };
     });
     $("#result_info_pat_0").change(function() { if ($(this).is(":checked")) { $(".container-info-reason").slideDown(); }; });
+
+    $("#manual-link").click(function() { $(".manual").toggle('slow'); });
+    $("#close-manual-button").click(function() { $(".manual").hide(); });
 });

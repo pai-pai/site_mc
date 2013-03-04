@@ -9,3 +9,8 @@ select, textarea { width: 100%; }
 .underliner { border-bottom: 1px solid #ddd; }
 .buttons-group { border: none; } 
 .error-label { color: #b94a48; }
+#manual-link span {
+    color: #0088cc;
+    border-bottom: 1px dashed #0088cc;
+    cursor: pointer;
+}
