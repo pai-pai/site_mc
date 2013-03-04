@@ -42,6 +42,10 @@ $(document).ready(function(){
                 if ($("#result_emk_term_0").is(":checked")) { $(".container-mis").slideDown(); };
                 if ($("#result_mis_inet_0").is(":checked")) { $(".container-emk-reason").slideDown(); };
                 if ($("#result_register_0").is(":checked")) { $(".container-register-reason").slideDown(); };
+                if ($("#result_register_1").is(":checked")) { $(".container-register-details").slideDown(); };
+                if ($("#result_doc_reg_0").is(":checked")) { $(".container-doc-reason").slideDown(); };
+                if ($("#result_used_infomat_0").is(":checked")) { $(".container-infomat-reason").slideDown(); };
+                if ($("#result_info_pat_0").is(":checked")) { $(".container-info-reason").slideDown(); };
 
                 $(".field_with_errors").parent().children().each(function() { if ($(this).hasClass("head-label")) { $(this).addClass("error-label") }; });
             }

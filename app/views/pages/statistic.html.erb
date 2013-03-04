@@ -96,7 +96,7 @@
                                 <% end %>
                             </td>
                             <td>
-                                <% if org.results.last.comments %>
+                                <% if not org.results.last.comments.blank? %>
                                     <%= t('shared.pages.statistic.table.read') %>
                                 <% else %>
                                     —
