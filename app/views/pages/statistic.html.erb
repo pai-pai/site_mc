@@ -33,7 +33,9 @@
                             <td colspan="9" class="center-middle"><%= t('shared.pages.statistic.table.none') %></td>
                         <% else %>
                             <td><%= org.term %></td>
+
                             <td><%= org.results.last.used_term %></td>
+
                             <td>
                                 <% if org.results.last.emk_term==1 %>
                                     <%= t('shared.pages.statistic.table.yep') %>
@@ -41,17 +43,17 @@
                                     <%= t('shared.pages.statistic.table.nope') %>
                                 <% end %>
                             </td>
-                            <td>
-                                <% if org.results.last.mis_inet==1 %>
-                                    <%= t('shared.pages.statistic.table.yep') %>
-                                <% elsif org.results.last.mis_inet==0 %>
-                                    <%= t('shared.pages.statistic.table.nope') %>
-                                <% else %>
-                                    —
-                                <% end %>
-                            </td>
-                            <td>
-                                <% if org.register==1 %>
+
+                            <% if org.results.last.mis_inet==1 %>
+                                <td><%= t('shared.pages.statistic.table.yep') %></td>
+                            <% elsif org.results.last.mis_inet==0 %>
+                                <td><%= t('shared.pages.statistic.table.nope') %></td>
+                            <% else %>
+                                <td class="center-middle"></td>
+                            <% end %>
+
+                            <% if org.register==1 %>
+                                <td>
                                     <% if org.results.last.register==1 %>
                                         <%= t('shared.pages.statistic.table.register_feb') %><br />
                                         <%=t 'shared.pages.statistic.table.through_reg', :reg => "#{org.results.last.records_reg}" %><br />
@@ -60,48 +62,49 @@
                                    <% elsif org.results.last.register==0 %>
                                         <%= t('shared.pages.statistic.table.nope') %>
                                     <% end %>
-                                <% else %>
-                                    —
-                                <% end %>
-                            </td>
-                            <td>
-                                <% if org.results.last.doc_reg==1 %>
-                                    <%= t('shared.pages.statistic.table.yep') %>
-                                <% elsif org.results.last.doc_reg==0 %>
-                                    <%= t('shared.pages.statistic.table.nope') %>
-                                <% else %>
-                                    —
-                                <% end %>
-                            </td>
-                            <td>
-                                <% if org.infomat==1 %>
+                                </td>
+                            <% else %>
+                                <td class="center-middle"></td>
+                            <% end %>
+
+                            <% if org.results.last.doc_reg==1 %>
+                                <td><%= t('shared.pages.statistic.table.yep') %></td>
+                            <% elsif org.results.last.doc_reg==0 %>
+                                <td><%= t('shared.pages.statistic.table.nope') %></td>
+                            <% else %>
+                                <td class="center-middle"></td>
+                            <% end %>
+
+                            <% if org.infomat==1 %>
+                                <td>
                                     <% if org.results.last.used_infomat==1 %>
                                         <%= t('shared.pages.statistic.table.yep') %>
                                     <% elsif org.results.last.used_infomat==0 %>
                                         <%= t('shared.pages.statistic.table.nope') %>
                                     <% end %>
-                                <% else %>
-                                    —
-                                <% end %>
-                            </td>
-                            <td>
-                                <% if org.register==1 %>
+                                </td>
+                            <% else %>
+                                <td class="center-middle"></td>
+                            <% end %>
+                            
+                            <% if org.register==1 %>
+                                <td>
                                     <% if org.results.last.info_pat==1 %>
                                         <%= t('shared.pages.statistic.table.yep') %>
                                     <% elsif org.results.last.info_pat==0 %>
                                         <%= t('shared.pages.statistic.table.nope') %>
                                     <% end %>
-                                <% else %>
-                                    —
-                                <% end %>
-                            </td>
-                            <td>
-                                <% if not org.results.last.comments.blank? %>
-                                    <%= t('shared.pages.statistic.table.read') %>
-                                <% else %>
-                                    —
-                                <% end %>
-                            </td>
+                                </td>
+                            <% else %>
+                                <td class="center-middle"></td>
+                            <% end %>
+                            
+                            <% if not org.results.last.comments.blank? %>
+                                <td><%= t('shared.pages.statistic.table.read') %></td>
+                            <% else %>
+                                <td class="center-middle"></td>
+                            <% end %>
+
                         <% end %>
                     </tr>
                 <% end %>

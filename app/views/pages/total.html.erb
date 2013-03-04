@@ -1,36 +1,13 @@
 <div class="container-fluid">
     <%= render "header" %>
-    <table class="table table-bordered">
-        <tbody>
-            <tr>
-                <th width="3%" rowspan="2"><%= t('shared.pages.statistic.table.numb_html') %></th>
-                <th width="37%" rowspan="2"><%= t('shared.pages.statistic.table.name') %></th>
-                <th width="20%" colspan="2"><%= t('shared.pages.statistic.table.terms') %></th>
-                <th rowspan="2"><%= t('shared.pages.statistic.table.comments') %></th>
-            </tr>
-            <tr>
-                <th width="10%"><%= t('shared.pages.statistic.table.term_real') %></th>
-                <th><%= t('shared.pages.statistic.table.term_used') %></th>
-            </tr>
-            <% @orgs.each do |org| %>
-                <tr>
-                    <td><%= org.id %></td>
-                    <td>
-                        <% if not org.results.blank? %>
-                            <%= link_to org.name, org %>
-                        <% else %>
-                            <%= org.name %>
-                        <% end %>
-                    </td>
-                    <% if org.results.blank? %>
-                        <td colspan="3" class="center-middle"><%= t('shared.pages.statistic.table.none') %></td>
-                    <% else %>
-                        <td><%= org.term %></td>
-                        <td><%= org.results.last.used_term %></td>
-                        <td><%= org.results.last.used_term_reason %></td>
-                    <% end %>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+    <div>
+        <%=t 'shared.pages.statistic.total_text_html', :term_pmz => "#{Org.sum(:term)}",
+                                                       :term_used => "#{}",
+                                                       :orgs_emk => "#{}",
+                                                       :org_emk_proc => "#{}",
+                                                       :orgs_inet => "#{}",
+                                                       :orgs_inet_proc => "#{}",
+                                                       :orgs_emk_none => "#{}",
+                                                       :orgs_emk_none_proc => "" %>
+    </div>
 </div>

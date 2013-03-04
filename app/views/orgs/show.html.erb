@@ -1,2 +1,72 @@
-<h1>Orgs#show</h1>
-<p>Find me in app/views/orgs/show.html.erb</p>
+<div class="container-fluid">
+    <h3><%= @org.name %></h3>
+    <div class="group">
+        <h4><%= t('shared.result.term.header') %></h4>
+        <div class="container-fluid">
+            <p><%= t('shared.pages.org.term_pmz') %><strong><%= @org.term %></strong><br />
+            <%= t('shared.pages.org.term_used') %><strong><%= @result.used_term %></strong></p>
+            <% if @org.term > @result.used_term %>
+                <dl>
+                    <dt><%= t('shared.pages.org.reason') %></dt>
+                    <dd><%= @result.used_term_reason %></dd>
+                </dl>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="group">
+        <h4><%= t('shared.result.emk.header') %></h4>
+        <div class="container-fluid">
+            <% if @result.emk_term == 1 %>
+                <p><%= t('shared.pages.org.emk_term') %></p>
+            <% elsif @result.mis_inet == 1 %>
+                <p><%= t('shared.pages.org.emk_inet') %></p>
+            <% else %>
+                <dl>
+                    <dt><%= t('shared.pages.org.emk_reason_html') %></dt>
+                    <dd><%= @result.mis_emk_reason %></dd>
+                </dl>
+            <% end %>
+        </div>
+    </div>
+
+    <% if @org.register == 1 %>
+        <div class="group">
+            <h4><%= t('shared.result.register.header') %></h4>
+            <div class="container-fluid">
+                <% if @result.register == 1 %>
+                    <p><%=t 'shared.pages.org.reg_html', :reg => "#{@result.records_reg}", :infomat => "#{@result.records_infomat}", :inet => "#{@result.record_inet}" %></p>
+                <% else %>
+                    <dl>
+                        <dt><%= t('shared.pages.org.reg_reason_html') %></dt>
+                        <dd><%= @result.register_reason %></dd>
+                    </dl>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+
+    <div class="group">
+        <h4><%= t('shared.result.doc.header') %></h4>
+    </div>
+
+    <% if @org.infomat == 1 %>
+        <div class="group">
+            <h4><%= t('shared.result.infomat.header') %></h4>
+        </div>
+    <% end %>
+
+    <% if @org.register == 1 %>
+        <div class="group">
+            <h4><%= t('shared.result.info.header') %></h4>
+        </div>
+    <% end %>
+    
+    <div class="group">
+        <h4><%= t('shared.result.comments') %></h4>
+    </div>
+
+    <div class="group">
+        <h4><%= t('shared.result.performer.header') %></h4>
+    </div>
+</div>
