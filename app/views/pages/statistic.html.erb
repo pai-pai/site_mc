@@ -1,6 +1,32 @@
-<div class="container-fluid">
+<div class="container-fluid fixed-row">
     <%= render "header" %>
-        <table class="table table-bordered">
+    <div class="rad">
+        <table class="table header-table">
+        <tbody>
+            <tr>
+                <th width="3%" rowspan="2"><%= t('shared.pages.statistic.table.numb_html') %></th>
+                <th width="16%" rowspan="2"><%= t('shared.pages.statistic.table.name') %></th>
+                <th width="12%" colspan="2"><%= t('shared.pages.statistic.table.terms') %></th>
+                <th width="12%" colspan="2"><%= t('shared.pages.statistic.table.emk') %></th>
+                <th width="13%" rowspan="2"><%= t('shared.pages.statistic.table.register') %></th>
+                <th width="7%" rowspan="2"><%= t('shared.pages.statistic.table.doc_reg') %></th>
+                <th width="12%" rowspan="2"><%= t('shared.pages.statistic.table.infomat_html') %></th>
+                <th width="10%" rowspan="2"><%= t('shared.pages.statistic.table.info_stand') %></th>
+                <th rowspan="2"><%= t('shared.pages.statistic.table.comments') %></th>
+            </tr>
+            <tr>
+                <th width="7%"><%= t('shared.pages.statistic.table.term_real') %></th>
+                <th width="5%"><%= t('shared.pages.statistic.table.term_used') %></th>
+                <th><%= t('shared.pages.statistic.table.emk_term') %></th>
+                <th><%= t('shared.pages.statistic.table.emk_inet') %></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="container-fluid not-fixed-row">
+        <%= render "header" %>
+        <table class="table table-bordered body-table">
             <tbody>
                 <tr>
                     <th width="3%" rowspan="2"><%= t('shared.pages.statistic.table.numb_html') %></th>
@@ -14,8 +40,8 @@
                     <th rowspan="2"><%= t('shared.pages.statistic.table.comments') %></th>
                 </tr>
                 <tr>
-                    <th><%= t('shared.pages.statistic.table.term_real') %></th>
-                    <th><%= t('shared.pages.statistic.table.term_used') %></th>
+                    <th width="7%"><%= t('shared.pages.statistic.table.term_real') %></th>
+                    <th width="5%"><%= t('shared.pages.statistic.table.term_used') %></th>
                     <th><%= t('shared.pages.statistic.table.emk_term') %></th>
                     <th><%= t('shared.pages.statistic.table.emk_inet') %></th>
                 </tr>
