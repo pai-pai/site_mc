@@ -1,5 +1,8 @@
 <div class="container-fluid">
     <h3><%= @org.name %></h3>
+    <div align="right">
+        <strong><%= t('shared.pages.org.fill_date') %></strong><%= l @result.created_at.localtime, :format => :short_date %>
+    </div>
     <div class="group">
         <h4><%= t('shared.result.term.header') %></h4>
         <div class="container-fluid">
