@@ -16,6 +16,7 @@ SiteMc::Application.routes.draw do
     get "pages/stat_infomat"
     get "pages/stat_infostand"
     get "pages/comments"
+    get "pages/get_comments"
 
     match "success" => "pages#success"
     match "statistic" => "pages#statistic"

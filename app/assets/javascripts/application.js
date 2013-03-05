@@ -176,5 +176,16 @@ $(document).ready(function(){
         function() { $(this).siblings(".detail").fadeOut('fast'); }
     );
 
-    $("#close-modal").click(function() { $("#modalComments").modal('hide'); });
+    $("a#modal-sender").click(function() {
+        var url_path = '/pages/get_comments?id=' + $(this).parent().siblings("#org_number").text();
+        $.ajax({
+            url: url_path,
+            dataType: "text",
+            success: function(data) { dataPage = data; $("#modalComments div").html(data); }
+        }).done(function() {
+            console.log($("#modalComments div").html());
+            $("#modalComments").modal('show'); 
+        });
+    });
+    $("#close-modal").click(function() { $("#modalComments").modal('hide'); }); 
 });

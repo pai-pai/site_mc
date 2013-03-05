@@ -31,6 +31,11 @@ class PagesController < ApplicationController
     def comments
     end
 
+    def get_comments
+        val = Org.find(params[:id])
+        render :text => "<h4>#{val.name}</h4><p>#{val.results.last.comments}</p>"
+    end
+
     private
         def find_orgs
             @orgs = Org.all

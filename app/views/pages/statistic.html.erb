@@ -47,7 +47,7 @@
                 </tr>
                 <% @orgs.each do |org| %>
                     <tr>
-                        <td><%= org.id %></td>
+                        <td id="org_number"><%= org.id %></td>
                         <td>
                             <% if not org.results.blank? %>
                                 <%= link_to org.name, org %>
@@ -143,12 +143,10 @@
                             
                             <% if not org.results.last.comments.blank? %>
                                 <td>
-                                    <a href="#modalComments" role="button" class="btn btn-info" data-toggle="modal"><%= t('shared.pages.statistic.table.read') %></a>
+                                    <a id="modal-sender" role="button" class="btn btn-info" data-toggle="modal"><%= t('shared.pages.statistic.table.read') %></a>
                                     <div id="modalComments" class="modal hide fade">
                                         <button type="button" class="close" data-dismiss="alert" id="close-modal">×</button>
                                         <div>
-                                            <h4><%= org.name %></h4>
-                                            <%= org.results.last.comments %>
                                         </div>
                                     </div>
                                 </td>
