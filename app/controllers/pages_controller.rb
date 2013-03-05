@@ -34,5 +34,6 @@ class PagesController < ApplicationController
     private
         def find_orgs
             @orgs = Org.all
+            @count = Result.count('org_id', :distinct => true)
         end
 end

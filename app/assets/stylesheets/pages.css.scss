@@ -43,3 +43,25 @@ table.header-table th {
     background-color: white;
 }
 .group { border-bottom: 1px solid #dddddd; }
+.sender {
+    color: #0088cc;
+    border-bottom: 1px dashed #0088cc;
+    cursor: pointer;
+}
+.detail {
+    position: absolute;
+    max-width: 60%;
+    background: #fff8dc;
+    border: 1px solid #e0dcbf;
+    padding: 0.8em;
+    color: #444444;
+}
+#modalComments {
+    background: #fff8dc;
+    border: 1px solid #e0dcbf;
+    padding: 0.8em 1.8em 1.8em 1.8em;
+    color: #444444;
+    border-radius: 0;
+    div { padding-top: 1em; }
+}
+a[data-toggle] { font-size: 1em; }

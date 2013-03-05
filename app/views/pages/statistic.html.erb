@@ -1,6 +1,5 @@
 <div class="container-fluid fixed-row">
     <%= render "header" %>
-    <p><%= Time.now %></p>
     <div class="rad">
         <table class="table header-table">
         <tbody>
@@ -61,7 +60,14 @@
                         <% else %>
                             <td><%= org.term %></td>
 
-                            <td><%= org.results.last.used_term %></td>
+                            <td>
+                                <% if org.term > org.results.last.used_term %>
+                                    <span class="sender"><%= org.results.last.used_term %></span>
+                                    <div class="hidden-start detail"><%= org.results.last.used_term_reason %></div>
+                                <% else %>
+                                    <%= org.results.last.used_term %>
+                                <% end %>
+                            </td>
 
                             <td>
                                 <% if org.results.last.emk_term==1 %>
@@ -74,7 +80,10 @@
                             <% if org.results.last.mis_inet==1 %>
                                 <td><%= t('shared.pages.statistic.table.yep') %></td>
                             <% elsif org.results.last.mis_inet==0 %>
-                                <td><%= t('shared.pages.statistic.table.nope') %></td>
+                                <td>
+                                    <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                    <div class="hidden-start detail"><%= org.results.last.mis_emk_reason %></div>
+                                </td>
                             <% else %>
                                 <td class="center-middle"></td>
                             <% end %>
@@ -87,7 +96,8 @@
                                         <%=t 'shared.pages.statistic.table.through_inf',  :info => "#{org.results.last.records_infomat}" %><br />
                                         <%=t 'shared.pages.statistic.table.through_inet', :inet => "#{org.results.last.record_inet}" %>
                                    <% elsif org.results.last.register==0 %>
-                                        <%= t('shared.pages.statistic.table.nope') %>
+                                        <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                        <div class="hidden-start detail"><%= org.results.last.register_reason %></div>
                                     <% end %>
                                 </td>
                             <% else %>
@@ -97,7 +107,10 @@
                             <% if org.results.last.doc_reg==1 %>
                                 <td><%= t('shared.pages.statistic.table.yep') %></td>
                             <% elsif org.results.last.doc_reg==0 %>
-                                <td><%= t('shared.pages.statistic.table.nope') %></td>
+                                <td>
+                                    <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                    <div class="hidden-start detail"><%= org.results.last.doc_reg_reason %></div>
+                                </td>
                             <% else %>
                                 <td class="center-middle"></td>
                             <% end %>
@@ -107,7 +120,8 @@
                                     <% if org.results.last.used_infomat==1 %>
                                         <%= t('shared.pages.statistic.table.yep') %>
                                     <% elsif org.results.last.used_infomat==0 %>
-                                        <%= t('shared.pages.statistic.table.nope') %>
+                                        <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                        <div class="hidden-start detail"><%= org.results.last.used_infomat_reason %></div>
                                     <% end %>
                                 </td>
                             <% else %>
@@ -119,7 +133,8 @@
                                     <% if org.results.last.info_pat==1 %>
                                         <%= t('shared.pages.statistic.table.yep') %>
                                     <% elsif org.results.last.info_pat==0 %>
-                                        <%= t('shared.pages.statistic.table.nope') %>
+                                        <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                        <div class="hidden-start detail"><%= org.results.last.info_pat_reason %></div>
                                     <% end %>
                                 </td>
                             <% else %>
@@ -127,7 +142,16 @@
                             <% end %>
                             
                             <% if not org.results.last.comments.blank? %>
-                                <td><%= t('shared.pages.statistic.table.read') %></td>
+                                <td>
+                                    <a href="#modalComments" role="button" class="btn btn-info" data-toggle="modal"><%= t('shared.pages.statistic.table.read') %></a>
+                                    <div id="modalComments" class="modal hide fade">
+                                        <button type="button" class="close" data-dismiss="alert" id="close-modal">×</button>
+                                        <div>
+                                            <h4><%= org.name %></h4>
+                                            <%= org.results.last.comments %>
+                                        </div>
+                                    </div>
+                                </td>
                             <% else %>
                                 <td class="center-middle"></td>
                             <% end %>

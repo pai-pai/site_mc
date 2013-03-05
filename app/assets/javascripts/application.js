@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//= require bootstrap-modal
 
 $(document).ready(function(){
     var url_path = '/results/get_terminals?org_id=' + $("#result_org_id").val();
@@ -169,4 +170,11 @@ $(document).ready(function(){
 
     $("#manual-link").click(function() { $(".manual").toggle('slow'); });
     $("#close-manual-button").click(function() { $(".manual").hide(); });
+
+    $(".sender").hover(
+        function() { $(this).siblings(".detail").fadeIn('fast'); }, 
+        function() { $(this).siblings(".detail").fadeOut('fast'); }
+    );
+
+    $("#close-modal").click(function() { $("#modalComments").modal('hide'); });
 });
