@@ -1,17 +1,22 @@
 <?xml version="1.0"?>
-<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
-  xmlns:o="urn:schemas-microsoft-com:office:office"
-  xmlns:x="urn:schemas-microsoft-com:office:excel"
-  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
-  xmlns:html="http://www.w3.org/TR/REC-html40">
-  <Worksheet ss:Name="Sheet1">
-    <Table>
-      <Row>
-        <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
-        <Cell><Data ss:Type="String">Release Date</Data></Cell>
-        <Cell><Data ss:Type="String">Price</Data></Cell>
-      </Row>
-    </Table>
-  </Worksheet>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook
+   xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+   xmlns:o="urn:schemas-microsoft-com:office:office"
+   xmlns:x="urn:schemas-microsoft-com:office:excel"
+   xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+   xmlns:html="http://www.w3.org/TR/REC-html40">
+    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
+        <Table>
+            <Row>
+                <Cell ss:MergeDown="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
+            </Row>
+            <Row>
+                <Cell><Data ss:Type="String">Some</Data></Cell>
+                <Cell><Data ss:Type="String">Thing</Data></Cell>
+            </Row>
+        </Table>
+    </Worksheet>
 </Workbook>
