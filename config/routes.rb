@@ -29,4 +29,5 @@ SiteMc::Application.routes.draw do
     match "infomats" => "pages#stat_infomat"
     match "info-stand" => "pages#stat_infostand", :as => :infostand
     match "comments" => "pages#comments"
+    match "print-records" => "pages#print", :as => :print_records
 end
