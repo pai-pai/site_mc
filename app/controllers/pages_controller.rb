@@ -9,8 +9,7 @@ class PagesController < ApplicationController
     def statistic
         respond_to do |format|
             format.html
-            format.csv { render text: Org.to_csv }
-            format.xls #{ send_data Org.to_csv(col_sep: "\t") }
+            format.xls
         end
     end
 

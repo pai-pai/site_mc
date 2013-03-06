@@ -1,0 +1,11 @@
+                        <Cell><Data ss:Type="String"><%#= org.results.last.emk_term %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.mis_inet %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.mis_emk_reason %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.register %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.register_reason %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.doc_reg %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.doc_reg_reason %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.used_infomat %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.used_infomat_reason %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.info_pat if not org.results.last.info_pat.blank? %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%#= org.results.last.info_pat_reason %></Data></Cell>
