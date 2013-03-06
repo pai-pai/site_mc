@@ -10,13 +10,81 @@
         <Table>
             <Row>
                 <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
-                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
-                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_reason') %></Data></Cell>
+                <Cell ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.register') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.doc_reg') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.infomat') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.info_stand') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.comments') %></Data></Cell>
             </Row>
             <Row>
-                <Cell><Data ss:Type="String">Some</Data></Cell>
-                <Cell><Data ss:Type="String">Thing</Data></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_real') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_used') %></Data></Cell>
+                <Cell></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk_term') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk_inet') %></Data></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
             </Row>
+            <% @orgs.each do |org| %>
+                <Row>
+                    <Cell><Data ss:Type="String"><%= org.id %></Data></Cell>
+                    <Cell><Data ss:Type="String"><%= org.name %></Data></Cell>
+                    <% if org.results.last.blank? %>
+                        <Cell ss:MergeAcross="14"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+                    <% else %>
+                        <Cell><Data ss:Type="String"><%= org.term %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%= org.results.last.used_term %></Data></Cell>
+                        <Cell><Data ss:Type="String"><%= org.results.last.used_term_reason if not org.results.last.used_term_reason.blank? %></Data></Cell>
+                        <Cell>
+                            <Data ss:Type="String">
+                                <% if org.results.last.emk_term==1 %>
+                                    <%= t('shared.pages.statistic.table.yep') %>
+                                <% elsif org.results.last.emk_term==0 %>
+                                    <%= t('shared.pages.statistic.table.nope') %>
+                                <% end %>
+                            </Data>
+                        </Cell>
+                        <Cell>
+                            <Data ss:Type="String">
+                                <% if org.results.last.mis_inet==1 %>
+                                    <%= t('shared.pages.statistic.table.yep') %>
+                                <% elsif org.results.last.mis_inet==0 %>
+                                    <%= t('shared.pages.statistic.table.nope') %>
+                                <% end %>
+                            </Data>
+                        </Cell>
+                        <Cell><Data ss:Type="String"><%= org.results.las.mis_emk_reason if not org.results.last.mis_emk_reason.blank? %></Data></Cell>
+                        <Cell></Cell>
+                        <Cell></Cell>
+                        <Cell></Cell>
+                        <Cell></Cell>
+                        <Cell></Cell>
+                        <Cell></Cell>
+                        <Cell></Cell>
+                        <Cell></Cell>
+                        <Cell></Cell>
+                    <% end %>
+                </Row>
+            <% end %>
         </Table>
     </Worksheet>
 </Workbook>
