@@ -1,6 +1,6 @@
 class ResultsController < ApplicationController
     def index
-        @results = Result.all
+        @results = Result.order("id ASC").all
     end
 
     def new
