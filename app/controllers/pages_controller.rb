@@ -1,10 +1,17 @@
 class PagesController < ApplicationController
+    require "csv"
+
     before_filter :find_orgs
 
     def success
     end
 
     def statistic
+        respond_to do |format|
+            format.html
+            format.csv { render text: Org.to_csv }
+            format.xls #{ send_data Org.to_csv(col_sep: "\t") }
+        end
     end
 
     def total

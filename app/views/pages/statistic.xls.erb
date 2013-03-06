@@ -1,0 +1,18 @@
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Terminals</th>
+        <th>Infomat</th>
+        <th>Register</th>
+    </tr>
+    <% @orgs.each do |org| %>
+        <tr>
+            <td><%= org.id %></td>
+            <td><%= org.name %></td>
+            <td><%= org.term %></td>
+            <td><%= org.infomat %></td>
+            <td><%= org.register %></td>
+        </tr>
+    <% end %>
+</table>
