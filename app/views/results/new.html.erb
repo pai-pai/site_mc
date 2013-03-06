@@ -20,7 +20,7 @@
 
     <div class="control-group">
         <%= label_tag 'org-name', t('shared.result.org'), { :class => "head-label" } %><br />
-        <%= f.collection_select :org_id, Org.all, :id, :name, { :include_blank => true }, :autofocus => true %>
+        <%= f.collection_select :org_id, Org.order("id ASC").all, :id, :name, { :include_blank => true }, :autofocus => true %>
     </div>
 
     <div class="control-group underliner">
