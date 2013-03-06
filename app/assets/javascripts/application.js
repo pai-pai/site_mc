@@ -188,4 +188,5 @@ $(document).ready(function(){
         });
     });
     $("#close-modal").click(function() { $("#modalComments").modal('hide'); }); 
+    $("#modalComments").on('hidden', function() { $("#modalComments div").html(); });
 });
