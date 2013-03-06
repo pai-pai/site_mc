@@ -4,70 +4,10 @@
     xmlns:x="urn:schemas-microsoft-com:office:excel"
     xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
     xmlns:html="http://www.w3.org/TR/REC-html40">
-    <Worksheet ss:Name="<%= t('shared.pages.excel.sheet_01') %>">
+    <Worksheet ss:Name="<%= t('shared.pages.excel.sheetsvod') %>">
         <Table>
             <Row>
-                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb_html') %></Data></Cell>
-                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
-                <Cell><Data ss:Type="String"></Data></Cell>
-                <Cell><Data ss:Type="String"></Data></Cell>
-                <Cell><Data ss:Type="String">Reason</Data></Cell>
-                <Cell><Data ss:Type="String"></Data></Cell>
-                <Cell><Data ss:Type="String"></Data></Cell>
-                <Cell><Data ss:Type="String">Reason</Data></Cell>
-                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.register') %></Data></Cell>
-                <Cell><Data ss:Type="String">Reason</Data></Cell>
-                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.doc_reg') %></Data></Cell>
-                <Cell><Data ss:Type="String">Reason</Data></Cell>
-                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.infomat_html') %></Data></Cell>
-                <Cell><Data ss:Type="String">Reason</Data></Cell>
-                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.info_stand') %></Data></Cell>
-                <Cell><Data ss:Type="String">Reason</Data></Cell>
+                <Cell><Data ss:Type="String"><%=t 'shared.pages.statistic.table.numb_html' %></Data></Cell>
             </Row>
-            <% @orgs.each do |org| %>
-                <Row>
-                <Cell><Data ss:Type="String"><%= org.id %></Data></Cell>
-                
-                <Cell><Data ss:Type="String"><%= org.name %></Data></Cell>
-                
-                <% if org.results.blank? %>
-                    <Cell MergeAcross="14"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
-                <% else %>
-                    <Cell><Data ss:Type="String"><%= org.term %></Data></Cell>
-                    <Cell><Data ss:Type="String"><%= org.results.last.used_term %></Data></Cell>
-                    <Cell><Data ss:Type="String"><%= org.results.last.used_term_reason %></Data></Cell>
-                    <Cell><Data ss:Type="String">
-                        <% if org.results.last.emk_term==1 %>
-                            <%= t('shared.pages.statistic.table.yep') %>
-                        <% elsif org.results.last.emk_term==0 %>
-                            <%= t('shared.pages.statistic.table.nope') %>
-                        <% end %>
-                    </Data></Cell>
-                    <% if org.results.last.mis_inet==1 %>
-                        <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.yep') %></Data></Cell>
-                    <% elsif org.results.last.mis_inet==0 %>
-                        <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope') %></Data></Cell>
-                    <% else %>
-                        <Cell></Cell>
-                    <% end %>
-                    <Cell><Data ss:Type="String"><%= org.results.last.mis_emk_reason %></Data></Cell>
-                    <% if org.register==1 %>
-                        <Cell><Data ss:Type="String">
-                            <% if org.results.last.register==1 %>
-                                <%= t('shared.pages.statistic.table.register_feb') %>'\n'
-                                <%=t 'shared.pages.statistic.table.through_reg', :reg => "#{org.results.last.records_reg}" %>'\n'
-                                <%=t 'shared.pages.statistic.table.through_inf',  :info => "#{org.results.last.records_infomat}" %>'\n'
-                                <%=t 'shared.pages.statistic.table.through_inet', :inet => "#{org.results.last.record_inet}" %>
-                           <% elsif org.results.last.register==0 %>
-                                <%= t('shared.pages.statistic.table.nope') %>
-                            <% end %>
-                            </Data></Cell>
-                    <% else %>
-                        <Cell></Cell>
-                    <% end %>
-                    <Cell><Data ss:Type="String"><%= org.results.last.register_reason %></Data></Cell>
-                <% end %>
-                </Row>
-                <% end %>
         </Table>
 </Workbook>
