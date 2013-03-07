@@ -12,6 +12,9 @@
             <Row>
                 <Cell><Data ss:Type="String"><%= org.id %></Data></Cell>
                 <Cell><Data ss:Type="String"><%= org.name %></Data></Cell>
+                <% if org.results.blank? %>
+                <Cell ss:MergeAcross="5"></Cell>
+                <% end %>
             </Row>
         <% end %>
         </Table>
