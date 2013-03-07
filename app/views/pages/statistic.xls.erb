@@ -46,14 +46,26 @@
             </Row>
             <% @orgs.each do |org| %>
                 <Row>
-                    <Cell><Data ss:Type="String"><%= org.id %></Data></Cell>
-                    <Cell><Data ss:Type="String"><%= org.name %></Data></Cell>
+                    <Cell>
+                        <Data ss:Type="String"><%= org.id %></Data>
+                    </Cell>
+                    <Cell>
+                        <Data ss:Type="String"><%= org.name %></Data>
+                    </Cell>
                     <% if org.results.last.blank? %>
-                        <Cell ss:MergeAcross="14"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+                        <Cell ss:MergeAcross="14">
+                            <Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data>
+                        </Cell>
                     <% else %>
-                        <Cell><Data ss:Type="String"><%= org.term %></Data></Cell>
-                        <Cell><Data ss:Type="String"><%= org.results.last.used_term %></Data></Cell>
-                        <Cell><Data ss:Type="String"><%= org.results.last.used_term_reason if not org.results.last.used_term_reason.blank? %></Data></Cell>
+                        <Cell>
+                            <Data ss:Type="String"><%= org.term %></Data>
+                        </Cell>
+                        <Cell>
+                            <Data ss:Type="String"><%= org.results.last.used_term %></Data>
+                        </Cell>
+                        <Cell>
+                            <Data ss:Type="String"><%= org.results.last.used_term_reason if not org.results.last.used_term_reason.blank? %></Data>
+                        </Cell>
                     <% end %>
                 </Row>
             <% end %>
