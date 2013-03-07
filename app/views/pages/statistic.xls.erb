@@ -54,12 +54,8 @@
                         <Cell><Data ss:Type="String"><%= org.term %></Data></Cell>
                         <Cell><Data ss:Type="String"><%= org.results.last.used_term %></Data></Cell>
                         <Cell><Data ss:Type="String"><%= org.results.last.used_term_reason if not org.results.last.used_term_reason.blank? %></Data></Cell>
-                        <Cell>
-                            <Data ss:Type="String"><% if org.results.last.emk_term==1 %><%= t('shared.pages.statistic.table.yep') %><% elsif org.results.last.emk_term==0 %><%= t('shared.pages.statistic.table.nope') %><% end %></Data>
-                        </Cell>
-                        <Cell>
-                            <Data ss:Type="String"><% if org.results.last.mis_inet==1 %><%= t('shared.pages.statistic.table.yep') %><% elsif org.results.last.mis_inet==0 %><%= t('shared.pages.statistic.table.nope') %><% end %></Data>
-                        </Cell>
+                        <Cell><Data ss:Type="String"><% if org.results.last.emk_term==1 %><%= t('shared.pages.statistic.table.yep') %><% elsif org.results.last.emk_term==0 %><%= t('shared.pages.statistic.table.nope') %><% end %></Data></Cell>
+                        <Cell><Data ss:Type="String"><% if org.results.last.mis_inet==1 %><%= t('shared.pages.statistic.table.yep') %><% elsif org.results.last.mis_inet==0 %><%= t('shared.pages.statistic.table.nope') %><% end %></Data></Cell>
                         <Cell></Cell>
                         <Cell></Cell>
                         <Cell></Cell>
