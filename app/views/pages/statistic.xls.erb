@@ -54,7 +54,6 @@
                         <Cell><Data ss:Type="String"><%= org.term %></Data></Cell>
                         <Cell><Data ss:Type="String"><%= org.results.last.used_term %></Data></Cell>
                         <Cell><Data ss:Type="String"><%= org.results.last.used_term_reason if not org.results.last.used_term_reason.blank? %></Data></Cell>
-                        <Cell><Data ss:Type="String"><%= org.results.last.emk_term==1 ? t('shared.pages.statistic.table.yep') : org.results.last.emk_term==0 ? t('shared.pages.statistic.table.nope') : org.name %></Data></Cell>
                     <% end %>
                 </Row>
             <% end %>
