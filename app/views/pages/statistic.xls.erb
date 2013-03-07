@@ -12,9 +12,13 @@
             <Row>
                 <Cell><Data ss:Type="String"><%= org.id %></Data></Cell>
                 <Cell><Data ss:Type="String"><%= org.name %></Data></Cell>
-                <% if org.results.blank? %>
-                <Cell ss:MergeAcross="5"></Cell>
-                <% end %>
+            <% if org.results.blank? %>
+                <Cell ss:MergeAcross="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+            <% else %>
+                <Cell><Data ss:Type="String"><%= org.term %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= org.results.last.used_term %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= org.results.last.used_term_reason %></Data></Cell>
+            <% end %>
             </Row>
         <% end %>
         </Table>
