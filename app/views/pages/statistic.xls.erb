@@ -8,6 +8,13 @@
    xmlns:html="http://www.w3.org/TR/REC-html40">
     <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
         <Table>
+            <Row>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
+                <Cell></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.results.reason') %></Data></Cell>
+            </Row>
         <% @orgs.each do |org| %>
             <Row>
                 <Cell><Data ss:Type="String"><%= org.id %></Data></Cell>
