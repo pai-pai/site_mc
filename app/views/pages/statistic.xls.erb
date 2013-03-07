@@ -11,6 +11,7 @@
         <% @orgs.each do |org| %>
             <Row>
                 <Cell><Data ss:Type="String"><%= org.id %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= org.name %></Data></Cell>
             </Row>
         <% end %>
         </Table>
