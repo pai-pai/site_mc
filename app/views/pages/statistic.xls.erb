@@ -9,11 +9,13 @@
     <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
         <Table>
             <Row>
-                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
                 <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
                 <Cell ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+            </Row>
+            <Row>
                 <Cell></Cell>
-                <Cell><Data ss:Type="String"><%= t('shared.results.reason') %></Data></Cell>
             </Row>
         <% @orgs.each do |org| %>
             <Row>
