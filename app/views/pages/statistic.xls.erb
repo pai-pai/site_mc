@@ -1,64 +1,49 @@
 <?xml version="1.0"?>
 <?mso-application progid="Excel.Sheet"?>
-<ss:Workbook
+<Workbook
    xmlns="urn:schemas-microsoft-com:office:spreadsheet"
    xmlns:o="urn:schemas-microsoft-com:office:office"
    xmlns:x="urn:schemas-microsoft-com:office:excel"
    xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
    xmlns:html="http://www.w3.org/TR/REC-html40">
-    <ss:Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
-        <ss:Table>
-            <ss:Row>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeAcross="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.term_reason') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeAcross="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.result.reason') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.register') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.result.reason') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.doc_reg') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.result.reason') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.infomat') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.result.reason') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.info_stand') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.result.reason') %></ss:Data></ss:Cell>
-                <ss:Cell ss:MergeDown="1"><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.comments') %></ss:Data></ss:Cell>
-            </ss:Row>
-            <ss:Row>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.term_real') %></ss:Data></ss:Cell>
-                <ss:Cell><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.term_used') %></ss:Data></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.emk_term') %></ss:Data></ss:Cell>
-                <ss:Cell><ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.emk_inet') %></ss:Data></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-                <ss:Cell></ss:Cell>
-            </ss:Row>
-            <% @orgs.each do |org| %>
-                <ss:Row>
-                    <ss:Cell>
-                        <ss:Data ss:Type="String"><%= org.id %></ss:Data>
-                    </ss:Cell>
-                    <ss:Cell>
-                        <ss:Data ss:Type="String"><%= org.name %></ss:Data>
-                    </ss:Cell>
-                    <% if org.results.last.blank? %>
-                        <Cell ss:MergeAcross="14">
-                            <ss:Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></ss:Data>
-                        </ss:Cell>
-                    <% end %>
-                </ss:Row>
-            <% end %>
-        </ss:Table>
-    </ss:Worksheet>
-</ss:Workbook>
+    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
+        <Table>
+            <Row>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_reason') %></Data></Cell>
+                <Cell ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.register') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.doc_reg') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.infomat') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.info_stand') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+                <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.comments') %></Data></Cell>
+            </Row>
+            <Row>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_real') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_used') %></Data></Cell>
+                <Cell></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk_term') %></Data></Cell>
+                <Cell><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk_inet') %></Data></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+                <Cell></Cell>
+            </Row>
+        </Table>
+    </Worksheet>
+</Workbook>
