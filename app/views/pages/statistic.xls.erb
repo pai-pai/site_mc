@@ -8,6 +8,11 @@
    xmlns:html="http://www.w3.org/TR/REC-html40">
     <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
         <Table>
+        <% @orgs.each do |org| %>
+            <Row>
+                <Cell><Data ss:Type="String"><%= org.id %></Data></Cell>
+            </Row>
+        <% end %>
         </Table>
     </Worksheet>
 </Workbook>
