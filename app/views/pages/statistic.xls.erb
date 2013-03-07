@@ -19,12 +19,12 @@
             </Borders>
         </Style>
         <Style ss:ID="th1">
-            <Alignment ss:Vertical="Center"/>
+            <Alignment ss:Vertical="Center" ss:WrapText="1"/>
             <Font ss:Bold="1"/>
         </Style>
     </Styles>
     <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
-        <Table ss:StyleID="t1">
+        <Table>
             <Row ss:StyleID="th1">
                 <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
                 <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
