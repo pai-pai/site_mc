@@ -18,29 +18,49 @@
                 <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
             </Borders>
         </Style>
+        <Style ss:ID="t2">
+            <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+            <Borders>
+                <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+            </Borders>
+        </Style>
         <Style ss:ID="th1">
-            <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+            <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+            <Borders>
+                <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+                <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+            </Borders>
             <Font ss:Bold="1"/>
         </Style>
     </Styles>
     <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
         <Table>
-            <Row ss:StyleID="th1">
-                <Cell ss:StyleID="t1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
-                <Cell ss:StyleID="t1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
-                <Cell ss:StyleID="t1" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
-                <Cell ss:StyleID="t1" ss:Index="5" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
+            <Column ss:AutoFitWidth="0" ss:Width="4.40" />
+            <Column ss:AutoFitWidth="0" ss:Width="40" />
+            <Column ss:AutoFitWidth="0" ss:Width="11" />
+            <Column ss:AutoFitWidth="0" ss:Width="11" />
+            <Column ss:AutoFitWidth="0" ss:Width="50" />
+            <Row>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="5" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
             </Row>
-            <Row ss:StyleID="th1">
-                <Cell ss:StyleID="t1" ss:Index="3"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_real') %></Data></Cell>
-                <Cell ss:StyleID="t1" ss:Index="4"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_used') %></Data></Cell>
+            <Row>
+                <Cell ss:StyleID="th1" ss:Index="3"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_real') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="4"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_used') %></Data></Cell>
             </Row>
         <% @orgs.each do |org| %>
             <Row>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.id %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
             <% if org.results.blank? %>
-                <Cell ss:StyleID="t1" ss:MergeAcross="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+                <Cell ss:StyleID="t2" ss:MergeAcross="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
             <% else %>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.term %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.used_term %></Data></Cell>
