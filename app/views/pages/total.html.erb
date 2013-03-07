@@ -1,13 +1,9 @@
 <div class="container-fluid">
-    <%= render "header" %>
-    <div>
-        <%=t 'shared.pages.statistic.total_text_html', :term_pmz => "#{Org.sum(:term)}",
-                                                       :term_used => "#{}",
-                                                       :orgs_emk => "#{}",
-                                                       :org_emk_proc => "#{}",
-                                                       :orgs_inet => "#{}",
-                                                       :orgs_inet_proc => "#{}",
-                                                       :orgs_emk_none => "#{}",
-                                                       :orgs_emk_none_proc => "" %>
-    </div>
+    <ul class="unstyled">
+        <% @orgs.each do |org| %>
+            <% if org.results.blank? %>
+                <li><%= org.id %>. <%= org.name %></li>
+            <% end %>
+        <% end %>
+    </ul>
 </div>
