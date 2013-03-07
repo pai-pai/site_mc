@@ -8,7 +8,9 @@
    xmlns:html="http://www.w3.org/TR/REC-html40">
     <Styles>
         <Style ss:ID="Default">
-            <Alignment ss:WrapText="1"/>
+            <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+        </Style>
+        <Style ss:ID="t1">
             <Borders>
                 <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
                 <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
@@ -16,16 +18,20 @@
                 <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
             </Borders>
         </Style>
+        <Style ss:ID="th1">
+            <Alignment ss:Vertical="Center"/>
+            <Font ss:Bold="1"/>
+        </Style>
     </Styles>
     <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
-        <Table>
-            <Row>
+        <Table ss:StyleID="t1">
+            <Row ss:StyleID="th1">
                 <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
                 <Cell ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
                 <Cell ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
                 <Cell ss:Index="5" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
             </Row>
-            <Row>
+            <Row ss:StyleID="th1">
                 <Cell ss:Index="3"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_real') %></Data></Cell>
                 <Cell ss:Index="4"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_used') %></Data></Cell>
             </Row>
