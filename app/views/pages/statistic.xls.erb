@@ -91,15 +91,30 @@
         <Table>
             <Column ss:AutoFitWidth="0" ss:Width="27" />
             <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Column ss:AutoFitWidth="0" ss:Width="61.5" />
+            <Column ss:AutoFitWidth="0" ss:Width="61.5" />
+            <Column ss:AutoFitWidth="0" ss:Width="240" />
             <Row>
                 <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
                 <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeAcross="1"></Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="5" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
             </Row>
-            <Row />
+            <Row>
+                <Cell ss:StyleID="th1" ss:Index="3"><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk_term') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="4"><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk_inet') %></Data></Cell>
+            </Row>
         <% @orgs.each do |org| %>
             <Row>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            <% if org.results.blank? %>
+                <Cell ss:StyleID="t2" ss:MergeAcross="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.emk_term==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.mis_inet==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.mis_emk_reason %></Data></Cell>
+            <% end %>
             </Row>
         <% end %>
         </Table>
