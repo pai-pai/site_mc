@@ -97,7 +97,7 @@
             <Row>
                 <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
                 <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:MergeAcross="1"></Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></Data></Cell>
                 <Cell ss:StyleID="th1" ss:Index="5" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
             </Row>
             <Row>
@@ -110,6 +110,10 @@
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
             <% if org.results.blank? %>
                 <Cell ss:StyleID="t2" ss:MergeAcross="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.emk_term==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.mis_inet==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.mis_emk_reason %></Data></Cell>
             <% end %>
             </Row>
         <% end %>
