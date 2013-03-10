@@ -110,10 +110,6 @@
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
             <% if org.results.blank? %>
                 <Cell ss:StyleID="t2" ss:MergeAcross="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
-            <% else %>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.emk_term %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.mis_inet %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.mis_emk_reason %></Data></Cell>
             <% end %>
             </Row>
         <% end %>
