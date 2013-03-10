@@ -128,7 +128,7 @@
             <Row>
                 <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
                 <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
-                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.register') %></Data></Cell>
                 <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
             </Row>
         <% @orgs.each do |org| %>
@@ -138,7 +138,7 @@
             <% if org.results.blank? %>
                 <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
             <% else %>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><% if org.results.last.register==1 %><%= t('shared.pages.statistic.table.register_feb') %>"&#10;"<%=t 'shared.pages.statistic.table.through_reg', :reg => "#{org.results.last.records_reg}" %>"&#10;"<%=t 'shared.pages.statistic.table.through_inf',  :info => "#{org.results.last.records_infomat}" %>&#10;<%=t 'shared.pages.statistic.table.through_inet', :inet => "#{org.results.last.record_inet}" %><% else %><%= t('shared.pages.statistic.table.nope') %><% end %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><% if org.results.last.register==1 %><%= t('shared.pages.statistic.table.register_feb') %>&#10;<%=t 'shared.pages.statistic.table.through_reg', :reg => "#{org.results.last.records_reg}" %>&#10;<%=t 'shared.pages.statistic.table.through_inf',  :info => "#{org.results.last.records_infomat}" %>&#10;<%=t 'shared.pages.statistic.table.through_inet', :inet => "#{org.results.last.record_inet}" %><% else %><%= t('shared.pages.statistic.table.nope') %><% end %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.register_reason %></Data></Cell>
             <% end %>
             </Row>
@@ -149,15 +149,24 @@
         <Table>
             <Column ss:AutoFitWidth="0" ss:Width="27" />
             <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Column ss:AutoFitWidth="0" ss:Width="61.5" />
+            <Column ss:AutoFitWidth="0" ss:Width="240" />
             <Row>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.doc_reg') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
             </Row>
-            <Row />
         <% @orgs.each do |org| %>
             <Row>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            <% if org.results.blank? %>
+                <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.doc_reg==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.doc_reg_reason %></Data></Cell>
+            <% end %>
             </Row>
         <% end %>
         </Table>
@@ -166,15 +175,24 @@
         <Table>
             <Column ss:AutoFitWidth="0" ss:Width="27" />
             <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Column ss:AutoFitWidth="0" ss:Width="105" />
+            <Column ss:AutoFitWidth="0" ss:Width="240" />
             <Row>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.infomat') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
             </Row>
-            <Row />
         <% @orgs.each do |org| %>
             <Row>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            <% if org.results.blank? %>
+                <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.used_infomat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.used_infomat_reason %></Data></Cell>
+            <% end %>
             </Row>
         <% end %>
         </Table>
@@ -183,15 +201,24 @@
         <Table>
             <Column ss:AutoFitWidth="0" ss:Width="27" />
             <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Column ss:AutoFitWidth="0" ss:Width="97.5" />
+            <Column ss:AutoFitWidth="0" ss:Width="240" />
             <Row>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.info_stand') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
             </Row>
-            <Row />
         <% @orgs.each do |org| %>
             <Row>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            <% if org.results.blank? %>
+                <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.info_pat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.info_pat_reason %></Data></Cell>
+            <% end %>
             </Row>
         <% end %>
         </Table>
@@ -200,15 +227,22 @@
         <Table>
             <Column ss:AutoFitWidth="0" ss:Width="27" />
             <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Column ss:AutoFitWidth="0" ss:Width="240" />
             <Row>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.comments') %></Data></Cell>
             </Row>
             <Row />
         <% @orgs.each do |org| %>
             <Row>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            <% if org.results.blank? %>
+                <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.comments %></Data></Cell>
+            <% end %>
             </Row>
         <% end %>
         </Table>
