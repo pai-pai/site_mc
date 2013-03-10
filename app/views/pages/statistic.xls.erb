@@ -123,15 +123,24 @@
         <Table>
             <Column ss:AutoFitWidth="0" ss:Width="27" />
             <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Column ss:AutoFitWidth="0" ss:Width="139.5" />
+            <Column ss:AutoFitWidth="0" ss:Width="240" />
             <Row>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></Data></Cell>
+                <Cell ss:StyleID="th1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
             </Row>
-            <Row />
         <% @orgs.each do |org| %>
             <Row>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            <% if org.results.blank? %>
+                <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><% if org.results.last.register==1 %><%= t('shared.pages.statistic.table.register_feb') %><br /><%=t 'shared.pages.statistic.table.through_reg', :reg => "#{org.results.last.records_reg}" %><br /><%=t 'shared.pages.statistic.table.through_inf',  :info => "#{org.results.last.records_infomat}" %><br /><%=t 'shared.pages.statistic.table.through_inet', :inet => "#{org.results.last.record_inet}" %><% else %><%= t('shared.pages.statistic.table.nope') %><% end %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.register_reason %></Data></Cell>
+            <% end %>
             </Row>
         <% end %>
         </Table>
