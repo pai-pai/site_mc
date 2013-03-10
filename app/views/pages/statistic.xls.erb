@@ -38,7 +38,23 @@
             <Font ss:Bold="1"/>
         </Style>
     </Styles>
-    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>" />
+    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetsvod') %>">
+        <Table>
+            <Column ss:AutoFitWidth="0" ss:Width="27" />
+            <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Row>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+            </Row>
+            <Row />
+        <% @orgs.each do |org| %>
+            <Row>
+                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            </Row>
+        <% end %>
+        </Table>
+    </Worksheet>
     <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.sheetterm') %>">
         <Table>
             <Column ss:AutoFitWidth="0" ss:Width="27" />
@@ -67,6 +83,108 @@
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.results.last.used_term %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.used_term_reason %></Data></Cell>
             <% end %>
+            </Row>
+        <% end %>
+        </Table>
+    </Worksheet>
+    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.emk') %>">
+        <Table>
+            <Column ss:AutoFitWidth="0" ss:Width="27" />
+            <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Row>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+            </Row>
+            <Row />
+        <% @orgs.each do |org| %>
+            <Row>
+                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            </Row>
+        <% end %>
+        </Table>
+    </Worksheet>
+    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.reg') %>">
+        <Table>
+            <Column ss:AutoFitWidth="0" ss:Width="27" />
+            <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Row>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+            </Row>
+            <Row />
+        <% @orgs.each do |org| %>
+            <Row>
+                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            </Row>
+        <% end %>
+        </Table>
+    </Worksheet>
+    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.doc') %>">
+        <Table>
+            <Column ss:AutoFitWidth="0" ss:Width="27" />
+            <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Row>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+            </Row>
+            <Row />
+        <% @orgs.each do |org| %>
+            <Row>
+                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            </Row>
+        <% end %>
+        </Table>
+    </Worksheet>
+    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.infomat') %>">
+        <Table>
+            <Column ss:AutoFitWidth="0" ss:Width="27" />
+            <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Row>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+            </Row>
+            <Row />
+        <% @orgs.each do |org| %>
+            <Row>
+                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            </Row>
+        <% end %>
+        </Table>
+    </Worksheet>
+    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.stand') %>">
+        <Table>
+            <Column ss:AutoFitWidth="0" ss:Width="27" />
+            <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Row>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+            </Row>
+            <Row />
+        <% @orgs.each do |org| %>
+            <Row>
+                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            </Row>
+        <% end %>
+        </Table>
+    </Worksheet>
+    <Worksheet ss:Name="<%= t('shared.pages.statistic.excel.comments') %>">
+        <Table>
+            <Column ss:AutoFitWidth="0" ss:Width="27" />
+            <Column ss:AutoFitWidth="0" ss:Width="225" />
+            <Row>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+            </Row>
+            <Row />
+        <% @orgs.each do |org| %>
+            <Row>
+                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
             </Row>
         <% end %>
         </Table>
