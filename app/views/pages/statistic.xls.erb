@@ -84,6 +84,37 @@
             <Row>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+            <% if org.results.blank? %>
+                <Cell ss:StyleID="t2" ss:MergeAcross="14"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.term %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.results.last.used_term %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.used_term_reason %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.emk_term==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.mis_inet==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.mis_emk_reason %></Data></Cell>
+            <% if org.register==0 %>
+                <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><% if org.results.last.register==1 %><%= t('shared.pages.statistic.table.register_feb') %>&#10;<%=t 'shared.pages.statistic.table.through_reg', :reg => "#{org.results.last.records_reg}" %>&#10;<%=t 'shared.pages.statistic.table.through_inf',  :info => "#{org.results.last.records_infomat}" %>&#10;<%=t 'shared.pages.statistic.table.through_inet', :inet => "#{org.results.last.record_inet}" %><% else %><%= t('shared.pages.statistic.table.nope') %><% end %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.register_reason %></Data></Cell>
+            <% end %>
+                <Cell ss:Index="11"ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.doc_reg==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.doc_reg_reason %></Data></Cell>
+            <% if org.infomat==0 %>
+                <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
+            <% else %>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.used_infomat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.used_infomat_reason %></Data></Cell>
+            <% end %>
+            <% if org.register==0 %>
+                <Cell ss:Index="15" ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
+            <% else %>
+                <Cell ss:Index="15" ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.info_pat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.info_pat_reason %></Data></Cell>
+            <% end %>
+                <Cell ss:Index="17" ss:StyleID="t1"><Data ss:Type="String"><%= org.results.last.comments %></Data></Cell>
+            <% end %>
             </Row>
         <% end %>
         </Table>
