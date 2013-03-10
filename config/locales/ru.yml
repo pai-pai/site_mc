@@ -356,7 +356,7 @@ ru:
                     info_stand: Информационный стенд
                     comments: Комментарии учреждения
                     read: Читать комментарии
-                    nope_pmz: Не предусмотрено ПМЗ
+                    nope_pmz: не предусмотрено ПМЗ
                 excel:
                     link: ! "Экспорт в Excel"
                     sheetsvod: Свод
