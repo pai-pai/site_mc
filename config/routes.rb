@@ -20,7 +20,7 @@ SiteMc::Application.routes.draw do
     get "pages/print"
 
     match "success" => "pages#success"
-    match "statistic" => "pages#statistic"
+    match "statistic-miac" => "pages#statistic"
     match "total" => "pages#total"
     match "terminals" => "pages#stat_terminals"
     match "emk" => "pages#stat_emk"
