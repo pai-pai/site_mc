@@ -1,4 +1,6 @@
 class ResultsController < ApplicationController
+    before_filter :start_date
+
     def index
         @results = Result.order("id ASC").all
     end
@@ -27,5 +29,14 @@ class ResultsController < ApplicationController
         render :partial => "about_org", :locals => { :term_count => val.term,
                                                      :infomat_count => val.infomat,
                                                      :register_count => val.register }
+    end
+
+    def start_date
+        date = Time.now
+        if date.wday >= 2
+            @start = date - (86400 * (date.wday - 2))
+        else
+            @start = date - (86400 * (5 + date.wday))
+        end
     end
 end

@@ -1,5 +1,5 @@
 class Result < ActiveRecord::Base
-    attr_accessible :org_id, :comments, :doc_reg, :doc_reg_reason, :emk_term, :fio, :info_pat, :info_pat_reason, :mis_emk_reason, :mis_inet, :phone, :record_inet, :records_infomat, :records_reg, :register, :register_reason, :used_infomat, :used_infomat_reason, :used_term, :used_term_reason
+    attr_accessible :org_id, :comments, :doc_reg, :doc_reg_reason, :emk_term, :fio, :info_pat, :info_pat_reason, :mis_emk_reason, :mis_inet, :phone, :record_inet, :records_infomat, :records_reg, :register, :register_reason, :used_infomat, :used_infomat_reason, :used_term, :used_term_reason, :start_date
 
     belongs_to :org
 
@@ -13,8 +13,8 @@ class Result < ActiveRecord::Base
 
     validates :register, :presence => :true, :if => Proc.new { |a| Org.find(a.org_id).register == 1 }
     validates :register_reason, :presence => :true, :if => Proc.new { |a| a.register == 0 }
-    validates :record_inet, :records_infomat, :records_reg, :presence => :true, :if => Proc.new { |a| a.register == 1 }
-    validates :record_inet, :records_infomat, :records_reg, :numericality => { :only_integer => true }, :if => Proc.new { |a| a.register == 1 }
+    validates :record_inet, :presence => :true, :if => Proc.new { |a| a.register == 1 }
+    validates :record_inet, :numericality => { :only_integer => true }, :if => Proc.new { |a| a.register == 1 }
 
     validates :doc_reg_reason, :presence => :true, :if => Proc.new { |a| a.doc_reg == 0 }
 
