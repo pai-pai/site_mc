@@ -327,7 +327,7 @@ ru:
             statistic:
                 printrecords: Печать всех заполненных форм
                 printrecords_html: ! '<i class="icon-print"></i>'
-                count_forms: ! 'Количество учреждений, заполнивших форму: '
+                count_forms: ! 'Заполнивших форму: '
                 title: Статистика
                 org_list: Список учреждений
                 table:

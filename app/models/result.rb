@@ -37,7 +37,11 @@ class Result < ActiveRecord::Base
         end
     end
 
-    def this_date_forms(this_date)
-        lambda.where([ "start_date = ?", this_date ]).all
+    def self.this_date_forms(this_date)
+        self.find(:all, :conditions => [ "start_date = ?", this_date ])
+    end
+
+    def self.this_date_forms_count(this_date)
+        self.count(:all, :conditions => [ "start_date = ?", this_date ], :distinct => :org_id)
     end
 end

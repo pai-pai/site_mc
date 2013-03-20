@@ -17,127 +17,143 @@
             <tr>
                 <th width="7%"><%= t('shared.pages.statistic.table.term_real') %></th>
                 <th width="5%"><%= t('shared.pages.statistic.table.term_used') %></th>
-                <th><%= t('shared.pages.statistic.table.emk_term') %></th>
+                <th width="6%"><%= t('shared.pages.statistic.table.emk_term') %></th>
                 <th><%= t('shared.pages.statistic.table.emk_inet') %></th>
             </tr>
             <% @dates.each do |date| %>
-                <tr>
-                    <td colspan="10"><strong><%= date.start_date %></strong></td>
+                <tr class="head-row <%= "active" if @active_date == date.start_date %>">
+                    <td colspan="2">
+                        <strong><%= t('shared.pages.statistic.count_forms') %></strong><%= Result.this_date_forms_count(date.start_date) %>
+                    </td>
+                    <td colspan="8" class="center">
+                        <h4><%= date.start_date.strftime("%d.%m.%Y") %></h4>
+                    </td>
                     <td>
                         <div style="float: right;">
-                            <%= link_to t('shared.pages.statistic.printrecords_html'), :controller => "pages", :action => "print", :date => date.start_date %>
+                            <ul class="inline">
+                                <li><i class="icon-file"></i></li>
+                                <li><%= link_to t('shared.pages.statistic.printrecords_html'), :controller => "pages", :action => "print", :date => date.start_date %></li>
+                                <li class="toggler"><i class="icon-chevron-up"></i></li>
                         </div>
                     </td>
                 </tr>
-                <% @orgs.each do |org| %>
-                    <tr>
-                        <td><%= org.id %></td>
-                        <% if org.this_date_form(date.start_date) %>
-                            <!-- Organization name has link to this date report if it's exist -->
-                            <td><%= link_to org.name, org.this_date_form(date.start_date) %></td>
-                            
-                            <!-- Count of planned terminal stations -->
-                            <td><%= org.term %></td>
+                <tr class="body-row">
+                    <td colspan="11">
+                        <table class="table header-table">
+                            <tbody>
+                            <% @orgs.each do |org| %>
+                                <tr>
+                                    <td width="3%" class="org_num"><%= org.id %></td>
+                                    <% if org.this_date_form(date.start_date) %>
+                                        <!-- Organization name has link to this date report if it's exist -->
+                                        <td width="16%"><%= link_to org.name, org.this_date_form(date.start_date) %></td>
+                                        
+                                        <!-- Count of planned terminal stations -->
+                                        <td width="7%"><%= org.term %></td>
 
-                            <!-- Count of used terminal stations -->
-                            <td>
-                                <% if org.term > org.this_date_form(date.start_date).used_term %>
-                                    <span class="sender"><%= org.this_date_form(date.start_date).used_term %></span>
-                                    <div class="hidden-start detail"><%= org.this_date_form(date.start_date).used_term_reason %></div>
-                                <% else %>
-                                    <%= org.this_date_form(date.start_date).used_term %>
-                                <% end %>
-                            </td>
+                                        <!-- Count of used terminal stations -->
+                                        <td width="5%">
+                                            <% if org.term > org.this_date_form(date.start_date).used_term %>
+                                                <span class="sender"><%= org.this_date_form(date.start_date).used_term %></span>
+                                                <div class="hidden-start detail"><%= org.this_date_form(date.start_date).used_term_reason %></div>
+                                            <% else %>
+                                                <%= org.this_date_form(date.start_date).used_term %>
+                                            <% end %>
+                                        </td>
 
-                            <!-- Electronic Medical Records (EMR) handled through terminal stations -->
-                            <td>
-                                <% if org.this_date_form(date.start_date).emk_term==1 %>
-                                    <%= t('shared.pages.statistic.table.yep') %>
-                                <% elsif org.this_date_form(date.start_date).emk_term==0 %>
-                                    <%= t('shared.pages.statistic.table.nope') %>
-                                <% end %>
-                            </td>
+                                        <!-- Electronic Medical Records (EMR) handled through terminal stations -->
+                                        <td width="6%">
+                                            <% if org.this_date_form(date.start_date).emk_term==1 %>
+                                                <%= t('shared.pages.statistic.table.yep') %>
+                                            <% elsif org.this_date_form(date.start_date).emk_term==0 %>
+                                                <%= t('shared.pages.statistic.table.nope') %>
+                                            <% end %>
+                                        </td>
 
-                            <!-- EMR handled through internet -->
-                            <% if org.this_date_form(date.start_date).mis_inet==1 %>
-                                <td><%= t('shared.pages.statistic.table.yep') %></td>
-                            <% elsif org.this_date_form(date.start_date).mis_inet==0 %>
-                                <td>
-                                    <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
-                                    <div class="hidden-start detail"><%= org.this_date_form(date.start_date).mis_emk_reason %></div>
-                                </td>
-                            <% else %>
-                                <td class="center-middle"></td>
-                            <% end %>
+                                        <!-- EMR handled through internet -->
+                                        <% if org.this_date_form(date.start_date).mis_inet==1 %>
+                                            <td width="6%"><%= t('shared.pages.statistic.table.yep') %></td>
+                                        <% elsif org.this_date_form(date.start_date).mis_inet==0 %>
+                                            <td width="6%">
+                                                <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                                <div class="hidden-start detail"><%= org.this_date_form(date.start_date).mis_emk_reason %></div>
+                                            </td>
+                                        <% else %>
+                                            <td width="6%" class="center-middle"></td>
+                                        <% end %>
 
-                            <!-- Recording to see a doctor -->
-                            <% if org.register==1 %>
-                                <td>
-                                    <% if org.this_date_form(date.start_date).register==1 %>
-                                        <%= org.this_date_form(date.start_date).record_inet %>
-                                    <% elsif org.this_date_form(date.start_date).register==0 %>
-                                        <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
-                                        <div class="hidden-start detail"><%= org.this_date_form(date.start_date).register_reason %></div>
+                                        <!-- Recording to see a doctor -->
+                                        <% if org.register==1 %>
+                                            <td width="13%">
+                                                <% if org.this_date_form(date.start_date).register==1 %>
+                                                    <%= org.this_date_form(date.start_date).record_inet %>
+                                                <% elsif org.this_date_form(date.start_date).register==0 %>
+                                                    <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                                    <div class="hidden-start detail"><%= org.this_date_form(date.start_date).register_reason %></div>
+                                                <% end %>
+                                            </td>
+                                        <% else %>
+                                            <td width="13%" class="center-middle"></td>
+                                        <% end %>
+
+                                        <!-- Recording "doctor-to-doctor" -->
+                                        <% if org.this_date_form(date.start_date).doc_reg==1 %>
+                                            <td width="7%"><%= t('shared.pages.statistic.table.yep') %></td>
+                                        <% elsif org.this_date_form(date.start_date).doc_reg==0 %>
+                                            <td width="7%">
+                                                <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                                <div class="hidden-start detail"><%= org.this_date_form(date.start_date).doc_reg_reason %></div>
+                                            </td>
+                                        <% else %>
+                                            <td width="7%" class="center-middle"></td>
+                                        <% end %>
+
+                                        <!-- An infomat is used -->
+                                        <% if org.infomat==1 %>
+                                            <td width="10%">
+                                                <% if org.this_date_form(date.start_date).used_infomat==1 %>
+                                                    <%= t('shared.pages.statistic.table.yep') %>
+                                                <% elsif org.this_date_form(date.start_date).used_infomat==0 %>
+                                                    <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                                    <div class="hidden-start detail"><%= org.this_date_form(date.start_date).used_infomat_reason %></div>
+                                                <% end %>
+                                            </td>
+                                        <% else %>
+                                            <td width="10%" class="center-middle"></td>
+                                        <% end %>
+
+                                        <!-- There is an information stand -->
+                                        <% if org.register==1 %>
+                                            <td width="12%">
+                                                <% if org.this_date_form(date.start_date).info_pat==1 %>
+                                                    <%= t('shared.pages.statistic.table.yep') %>
+                                                <% elsif org.this_date_form(date.start_date).info_pat==0 %>
+                                                    <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
+                                                    <div class="hidden-start detail"><%= org.this_date_form(date.start_date).info_pat_reason %></div>
+                                                <% end %>
+                                            </td>
+                                        <% else %>
+                                            <td width="12%" class="center-middle"></td>
+                                        <% end %>
+                                        
+                                        <!-- There is a comment -->
+                                        <% if not org.this_date_form(date.start_date).comments.blank? %>
+                                            <td>
+                                                <a id="modal-sender" role="button" class="btn btn-info" data-toggle="modal"><%= t('shared.pages.statistic.table.read') %></a>
+                                            </td>
+                                        <% else %>
+                                            <td class="center-middle"></td>
+                                        <% end %>
+                                    <% else %>
+                                        <td width="16%"><%= org.name %></td>
+                                        <td colspan="9" class="center-middle"><%= t('shared.pages.statistic.table.none') %></td>
                                     <% end %>
-                                </td>
-                            <% else %>
-                                <td class="center-middle"></td>
+                                </tr>
                             <% end %>
-
-                            <!-- Recording "doctor-to-doctor" -->
-                            <% if org.this_date_form(date.start_date).doc_reg==1 %>
-                                <td><%= t('shared.pages.statistic.table.yep') %></td>
-                            <% elsif org.this_date_form(date.start_date).doc_reg==0 %>
-                                <td>
-                                    <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
-                                    <div class="hidden-start detail"><%= org.this_date_form(date.start_date).doc_reg_reason %></div>
-                                </td>
-                            <% else %>
-                                <td class="center-middle"></td>
-                            <% end %>
-
-                            <!-- An infomat is used -->
-                            <% if org.infomat==1 %>
-                                <td>
-                                    <% if org.this_date_form(date.start_date).used_infomat==1 %>
-                                        <%= t('shared.pages.statistic.table.yep') %>
-                                    <% elsif org.this_date_form(date.start_date).used_infomat==0 %>
-                                        <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
-                                        <div class="hidden-start detail"><%= org.this_date_form(date.start_date).used_infomat_reason %></div>
-                                    <% end %>
-                                </td>
-                            <% else %>
-                                <td class="center-middle"></td>
-                            <% end %>
-
-                            <!-- There is an information stand -->
-                            <% if org.register==1 %>
-                                <td>
-                                    <% if org.this_date_form(date.start_date).info_pat==1 %>
-                                        <%= t('shared.pages.statistic.table.yep') %>
-                                    <% elsif org.this_date_form(date.start_date).info_pat==0 %>
-                                        <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
-                                        <div class="hidden-start detail"><%= org.this_date_form(date.start_date).info_pat_reason %></div>
-                                    <% end %>
-                                </td>
-                            <% else %>
-                                <td class="center-middle"></td>
-                            <% end %>
-                            
-                            <!-- There is a comments -->
-                            <% if not org.this_date_form(date.start_date).comments.blank? %>
-                                <td>
-                                    <a id="modal-sender" role="button" class="btn btn-info" data-toggle="modal"><%= t('shared.pages.statistic.table.read') %></a>
-                                </td>
-                            <% else %>
-                                <td class="center-middle"></td>
-                            <% end %>
-                        <% else %>
-                            <td><%= org.name %></td>
-                            <td colspan="9">:(</td>
-                        <% end %>
-                    </tr>
-                <% end %>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
             <% end %>
         </tbody>
     </table>
