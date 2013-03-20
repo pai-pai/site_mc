@@ -1,118 +1,116 @@
-<% @orgs.each do |org| %>
-    <% if not org.results.blank? %>
-        <div class="container-fluid printable">
-            <h3><%= org.name %></h3>
-            <div align="right">
-                <strong><%= t('shared.pages.org.fill_date') %></strong><%= l org.results.last.created_at.localtime, :format => :short_date %>
-            </div>
-            <div class="group">
-                <h4><%= t('shared.result.term.header') %></h4>
-                <div class="container-fluid">
-                    <p><%= t('shared.pages.org.term_pmz') %><strong><%= org.term %></strong><br />
-                    <%= t('shared.pages.org.term_used') %><strong><%= org.results.last.used_term %></strong></p>
-                    <% if org.term > org.results.last.used_term %>
-                        <dl>
-                            <dt><%= t('shared.pages.org.reason') %></dt>
-                            <dd><%= org.results.last.used_term_reason %></dd>
-                        </dl>
-                    <% end %>
-                </div>
-            </div>
-
-            <div class="group">
-                <h4><%= t('shared.result.emk.header') %></h4>
-                <div class="container-fluid">
-                    <% if org.results.last.emk_term == 1 %>
-                        <p><%= t('shared.pages.org.emk_term') %></p>
-                    <% elsif org.results.last.mis_inet == 1 %>
-                        <p><%= t('shared.pages.org.emk_inet') %></p>
-                    <% else %>
-                        <dl>
-                            <dt><%= t('shared.pages.org.emk_reason_html') %></dt>
-                            <dd><%= org.results.last.mis_emk_reason %></dd>
-                        </dl>
-                    <% end %>
-                </div>
-            </div>
-
-            <% if org.register == 1 %>
-                <div class="group">
-                    <h4><%= t('shared.result.register.header') %></h4>
-                    <div class="container-fluid">
-                        <% if org.results.last.register == 1 %>
-                            <p><%=t 'shared.pages.org.reg_html', :reg => "#{org.results.last.records_reg}", :infomat => "#{org.results.last.records_infomat}", :inet => "#{org.results.last.record_inet}" %></p>
-                        <% else %>
-                            <dl>
-                                <dt><%= t('shared.pages.org.reg_reason_html') %></dt>
-                                <dd><%= org.results.last.register_reason %></dd>
-                            </dl>
-                        <% end %>
-                    </div>
-                </div>
-            <% end %>
-
-            <div class="group">
-                <h4><%= t('shared.result.doc.header') %></h4>
-                <div class="container-fluid">
-                    <% if org.results.last.doc_reg == 1 %>
-                        <p><%= t('shared.pages.org.doc') %></p>
-                    <% else %>
-                        <dl>
-                            <dt><%= t('shared.pages.org.doc_reason_html') %></dt>
-                            <dd><%= org.results.last.doc_reg_reason %></dd>
-                        </dl>
-                    <% end %>
-                </div>
-            </div>
-
-            <% if org.infomat == 1 %>
-                <div class="group">
-                    <h4><%= t('shared.result.infomat.header') %></h4>
-                    <div class="container-fluid">
-                        <% if org.results.last.used_infomat == 1 %>
-                            <p><%= t('shared.pages.org.infomat') %></p>
-                        <% else %>
-                            <dl>
-                                <dt><%= t('shared.pages.org.infomat_reason_html') %></dt>
-                                <dd><%= org.results.last.used_infomat_reason %></dd>
-                            </dl>
-                        <% end %>
-                    </div>
-                </div>
-            <% end %>
-
-            <% if org.register == 1 %>
-                <div class="group">
-                    <h4><%= t('shared.result.info.header') %></h4>
-                    <div class="container-fluid">
-                        <% if org.results.last.info_pat == 1 %>
-                            <p><%= t('shared.pages.org.info') %></p>
-                        <% else %>
-                            <dl>
-                                <dt><%= t('shared.pages.org.info_reason_html') %></dt>
-                                <dd><%= org.results.last.info_pat_reason %></dd>
-                            </dl>
-                        <% end %>
-                    </div>
-                </div>
-            <% end %>
-            
-            <% if not org.results.last.comments.blank? %>
-                <div class="group">
-                    <h4><%= t('shared.result.comments') %></h4>
-                    <div class="container-fluid">
-                        <%= org.results.last.comments %>
-                    </div>
-                </div>
-            <% end %>
-
-            <div>
-                <h4><%= t('shared.result.performer.header') %></h4>
-                <div class="container-fluid">
-                    <p><strong><%= t('shared.pages.org.fio') %></strong><%= org.results.last.fio %><br />
-                    <strong><%= t('shared.pages.org.phone') %></strong><%= org.results.last.phone %></p>
-                </div>
+<% @results.each do |result| %>
+    <div class="container-fluid printable">
+        <h3><%= Org.find(result.org_id).name %></h3>
+        <div align="right">
+            <strong><%= t('shared.pages.org.fill_date') %></strong><%= l result.created_at.localtime, :format => :short_date %>
+        </div>
+        <div class="group">
+            <h4><%= t('shared.result.term.header') %></h4>
+            <div class="container-fluid">
+                <p><%= t('shared.pages.org.term_pmz') %><strong><%= Org.find(result.org_id).term %></strong><br />
+                <%= t('shared.pages.org.term_used') %><strong><%= result.used_term %></strong></p>
+                <% if Org.find(result.org_id).term > result.used_term %>
+                    <dl>
+                        <dt><%= t('shared.pages.org.reason') %></dt>
+                        <dd><%= result.used_term_reason %></dd>
+                    </dl>
+                <% end %>
             </div>
         </div>
-    <% end %>
+
+        <div class="group">
+            <h4><%= t('shared.result.emk.header') %></h4>
+            <div class="container-fluid">
+                <% if result.emk_term == 1 %>
+                    <p><%= t('shared.pages.org.emk_term') %></p>
+                <% elsif result.mis_inet == 1 %>
+                    <p><%= t('shared.pages.org.emk_inet') %></p>
+                <% else %>
+                    <dl>
+                        <dt><%= t('shared.pages.org.emk_reason_html') %></dt>
+                        <dd><%= result.mis_emk_reason %></dd>
+                    </dl>
+                <% end %>
+            </div>
+        </div>
+
+        <% if Org.find(result.org_id).register == 1 %>
+            <div class="group">
+                <h4><%= t('shared.result.register.header') %></h4>
+                <div class="container-fluid">
+                    <% if result.register == 1 %>
+                        <p><%=t 'shared.pages.org.reg_html', :people => "#{result.record_inet}" %></p>
+                    <% else %>
+                        <dl>
+                            <dt><%= t('shared.pages.org.reg_reason_html') %></dt>
+                            <dd><%= result.register_reason %></dd>
+                        </dl>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+
+        <div class="group">
+            <h4><%= t('shared.result.doc.header') %></h4>
+            <div class="container-fluid">
+                <% if result.doc_reg == 1 %>
+                    <p><%= t('shared.pages.org.doc') %></p>
+                <% else %>
+                    <dl>
+                        <dt><%= t('shared.pages.org.doc_reason_html') %></dt>
+                        <dd><%= result.doc_reg_reason %></dd>
+                    </dl>
+                <% end %>
+            </div>
+        </div>
+
+        <% if Org.find(result.org_id).infomat == 1 %>
+            <div class="group">
+                <h4><%= t('shared.result.infomat.header') %></h4>
+                <div class="container-fluid">
+                    <% if result.used_infomat == 1 %>
+                        <p><%= t('shared.pages.org.infomat') %></p>
+                    <% else %>
+                        <dl>
+                            <dt><%= t('shared.pages.org.infomat_reason_html') %></dt>
+                            <dd><%= result.used_infomat_reason %></dd>
+                        </dl>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+
+        <% if Org.find(result.org_id).register == 1 %>
+            <div class="group">
+                <h4><%= t('shared.result.info.header') %></h4>
+                <div class="container-fluid">
+                    <% if result.info_pat == 1 %>
+                        <p><%= t('shared.pages.org.info') %></p>
+                    <% else %>
+                        <dl>
+                            <dt><%= t('shared.pages.org.info_reason_html') %></dt>
+                            <dd><%= result.info_pat_reason %></dd>
+                        </dl>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+        
+        <% if not result.comments.blank? %>
+            <div class="group">
+                <h4><%= t('shared.result.comments') %></h4>
+                <div class="container-fluid">
+                    <%= result.comments %>
+                </div>
+            </div>
+        <% end %>
+
+        <div>
+            <h4><%= t('shared.result.performer.header') %></h4>
+            <div class="container-fluid">
+                <p><strong><%= t('shared.pages.org.fio') %></strong><%= result.fio %><br />
+                <strong><%= t('shared.pages.org.phone') %></strong><%= result.phone %></p>
+            </div>
+        </div>
+    </div>
 <% end %>

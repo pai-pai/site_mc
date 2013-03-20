@@ -77,7 +77,7 @@
         </div>
 
         <div class="container-register-details hidden-start">
-            <%= label_tag 'register-details', t('shared.result.register.details', :start_date => "#{@start.strftime('%d.%m.%Y')}") %><br />
+            <%= label_tag 'register-details', t('shared.result.register.details', :start_date => "#{@start.strftime('%d.%m.%Y')}"), { :class => "head-label" } %><br />
             <%= f.text_field :record_inet %>
         </div>
     </div>
@@ -131,11 +131,11 @@
 
     <div class="control-group">
         <h4><%= t('shared.result.performer.header') %></h4>
-        <div class="group">
+        <div>
             <%= label_tag 'fio', t('shared.result.performer.fio'), { :class => "head-label" } %><br />
             <%= f.text_field :fio %>
         </div>
-        <div class="group">
+        <div>
             <%= label_tag 'phone', t('shared.result.performer.phone'), { :class => "head-label" } %><br />
             <%= f.text_field :phone %>
         </div>

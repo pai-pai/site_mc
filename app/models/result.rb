@@ -36,4 +36,8 @@ class Result < ActiveRecord::Base
             return false
         end
     end
+
+    def this_date_forms(this_date)
+        lambda.where([ "start_date = ?", this_date ]).all
+    end
 end

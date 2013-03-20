@@ -4,6 +4,6 @@ class OrgsController < ApplicationController
 
     def show
         @org = Org.find(params[:id])
-        @result = @org.results.last
+        @result = @org.results.find(params[:result_id])
     end
 end

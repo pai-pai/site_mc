@@ -189,4 +189,28 @@ $(document).ready(function(){
     });
     $("#close-modal").click(function() { $("#modalComments").modal('hide'); }); 
     $("#modalComments").on('hidden', function() { $("#modalComments div").html(); });
+
+    $('#period_start_date').change(function() {
+    var url_path = '/pages/get_start_val?start_date=' + $("#period_start_date").val();
+        if ($("#period_start_date").val()!='') {
+            $.ajax({
+                url: url_path,
+                dataType: "text",
+                success: function(data) { 
+                    $("#summary-table").html(data); 
+                    $("a#modal-sender").click(function() {
+                        var url_path = '/pages/get_comments?id=' + $(this).parent().siblings("#org_number").text() + '&date=' + $("#period_start_date").val();
+                        $.ajax({
+                            url: url_path,
+                            dataType: "text",
+                            success: function(data) { dataPage = data; $("#modalComments div").html(data); }
+                        }).done(function() {
+                            console.log($("#modalComments div").html());
+                            $("#modalComments").modal('show'); 
+                        });
+                    });
+                }
+            });
+        };
+    });
 });

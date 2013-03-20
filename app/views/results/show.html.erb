@@ -1,2 +1,114 @@
-<h1>Results#show</h1>
-<p>Find me in app/views/results/show.html.erb</p>
+<div class="container-fluid">
+    <h3><%= @org.name %></h3>
+    <div align="right">
+        <strong><%= t('shared.pages.org.fill_date') %></strong><%= l @result.created_at.localtime, :format => :short_date %>
+    </div>
+    <div class="group">
+        <h4><%= t('shared.result.term.header') %></h4>
+        <div class="container-fluid">
+            <p><%= t('shared.pages.org.term_pmz') %><strong><%= @org.term %></strong><br />
+            <%= t('shared.pages.org.term_used') %><strong><%= @result.used_term %></strong></p>
+            <% if @org.term > @result.used_term %>
+                <dl>
+                    <dt><%= t('shared.pages.org.reason') %></dt>
+                    <dd><%= @result.used_term_reason %></dd>
+                </dl>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="group">
+        <h4><%= t('shared.result.emk.header') %></h4>
+        <div class="container-fluid">
+            <% if @result.emk_term == 1 %>
+                <p><%= t('shared.pages.org.emk_term') %></p>
+            <% elsif @result.mis_inet == 1 %>
+                <p><%= t('shared.pages.org.emk_inet') %></p>
+            <% else %>
+                <dl>
+                    <dt><%= t('shared.pages.org.emk_reason_html') %></dt>
+                    <dd><%= @result.mis_emk_reason %></dd>
+                </dl>
+            <% end %>
+        </div>
+    </div>
+
+    <% if @org.register == 1 %>
+        <div class="group">
+            <h4><%= t('shared.result.register.header') %></h4>
+            <div class="container-fluid">
+                <% if @result.register == 1 %>
+                    <p><%=t 'shared.pages.org.reg_html', :reg => "#{@result.records_reg}", :infomat => "#{@result.records_infomat}", :inet => "#{@result.record_inet}" %></p>
+                <% else %>
+                    <dl>
+                        <dt><%= t('shared.pages.org.reg_reason_html') %></dt>
+                        <dd><%= @result.register_reason %></dd>
+                    </dl>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+
+    <div class="group">
+        <h4><%= t('shared.result.doc.header') %></h4>
+        <div class="container-fluid">
+            <% if @result.doc_reg == 1 %>
+                <p><%= t('shared.pages.org.doc') %></p>
+            <% else %>
+                <dl>
+                    <dt><%= t('shared.pages.org.doc_reason_html') %></dt>
+                    <dd><%= @result.doc_reg_reason %></dd>
+                </dl>
+            <% end %>
+        </div>
+    </div>
+
+    <% if @org.infomat == 1 %>
+        <div class="group">
+            <h4><%= t('shared.result.infomat.header') %></h4>
+            <div class="container-fluid">
+                <% if @result.used_infomat == 1 %>
+                    <p><%= t('shared.pages.org.infomat') %></p>
+                <% else %>
+                    <dl>
+                        <dt><%= t('shared.pages.org.infomat_reason_html') %></dt>
+                        <dd><%= @result.used_infomat_reason %></dd>
+                    </dl>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+
+    <% if @org.register == 1 %>
+        <div class="group">
+            <h4><%= t('shared.result.info.header') %></h4>
+            <div class="container-fluid">
+                <% if @result.info_pat == 1 %>
+                    <p><%= t('shared.pages.org.info') %></p>
+                <% else %>
+                    <dl>
+                        <dt><%= t('shared.pages.org.info_reason_html') %></dt>
+                        <dd><%= @result.info_pat_reason %></dd>
+                    </dl>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+    
+    <% if not @result.comments.blank? %>
+        <div class="group">
+            <h4><%= t('shared.result.comments') %></h4>
+            <div class="container-fluid">
+                <%= @result.comments %>
+            </div>
+        </div>
+    <% end %>
+
+    <div>
+        <h4><%= t('shared.result.performer.header') %></h4>
+        <div class="container-fluid">
+            <p><strong><%= t('shared.pages.org.fio') %></strong><%= @result.fio %><br />
+            <strong><%= t('shared.pages.org.phone') %></strong><%= @result.phone %></p>
+        </div>
+    </div>
+</div>

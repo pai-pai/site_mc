@@ -22,6 +22,7 @@ class ResultsController < ApplicationController
 
     def show
         @result = Result.find(params[:id])
+        @org = Org.find(@result.org_id)
     end
 
     def get_terminals
@@ -33,7 +34,7 @@ class ResultsController < ApplicationController
 
     def start_date
         date = Time.now
-        if date.wday >= 2
+        if date.wday >= 1
             @start = date - (86400 * (date.wday - 2))
         else
             @start = date - (86400 * (5 + date.wday))
