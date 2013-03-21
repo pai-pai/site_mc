@@ -59,9 +59,11 @@ table.table.body-table {
     border-radius: 4px 4px 0 0; 
     border: 1px solid #dddddd;
 }*/
-.fixed-row { 
+#head-wrapper { 
     position: fixed; 
     background-color: white;
+    padding-right: 1em;
+    table th { padding: 5px; }
 }
 .group { border-bottom: 1px solid #dddddd; }
 .sender {
@@ -90,3 +92,4 @@ a[data-toggle] { font-size: 1em; }
 .hidden-start { display: none; }
 #period_start_date { width: auto; }
 .toggler i { cursor: pointer; }
+#wrapper { padding: 0 1em 1em; }

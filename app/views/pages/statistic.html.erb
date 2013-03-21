@@ -1,25 +1,31 @@
-<div class="container-fluid">
-    <%= render "header" %>
-    <div class="rad">
-        <table class="table header-table">
+<div id="wrapper">
+<div id="head-wrapper">
+    <h3><%= t('shared.pages.statistic.title') %></h3>
+    <table class="table header-table">
         <tbody>
             <tr>
                 <th width="3%" rowspan="2"><%= t('shared.pages.statistic.table.numb_html') %></th>
                 <th width="16%" rowspan="2"><%= t('shared.pages.statistic.table.name') %></th>
-                <th width="12%" colspan="2"><%= t('shared.pages.statistic.table.terms') %></th>
+                <th colspan="2"><%= t('shared.pages.statistic.table.terms') %></th>
                 <th width="12%" colspan="2"><%= t('shared.pages.statistic.table.emk') %></th>
                 <th width="13%" rowspan="2"><%= t('shared.pages.statistic.table.register') %></th>
-                <th width="7%" rowspan="2"><%= t('shared.pages.statistic.table.doc_reg') %></th>
-                <th width="12%" rowspan="2"><%= t('shared.pages.statistic.table.infomat_html') %></th>
+                <th width="8%" rowspan="2"><%= t('shared.pages.statistic.table.doc_reg') %></th>
+                <th width="11%" rowspan="2"><%= t('shared.pages.statistic.table.infomat_html') %></th>
                 <th width="10%" rowspan="2"><%= t('shared.pages.statistic.table.info_stand') %></th>
                 <th rowspan="2"><%= t('shared.pages.statistic.table.comments') %></th>
             </tr>
             <tr>
                 <th width="7%"><%= t('shared.pages.statistic.table.term_real') %></th>
-                <th width="5%"><%= t('shared.pages.statistic.table.term_used') %></th>
+                <th width="7%"><%= t('shared.pages.statistic.table.term_used') %></th>
                 <th width="6%"><%= t('shared.pages.statistic.table.emk_term') %></th>
                 <th><%= t('shared.pages.statistic.table.emk_inet') %></th>
             </tr>
+        </tbody>
+    </table>
+</div>
+<div id="body-wrapper">
+    <table class="table header-table">
+        <tbody>
             <% @dates.each do |date| %>
                 <tr class="head-row <%= "active" if @active_date == date.start_date %>">
                     <td colspan="2" width="19%">
@@ -53,7 +59,7 @@
                                             <td width="7%"><%= org.term %></td>
 
                                             <!-- Count of used terminal stations -->
-                                            <td width="5%">
+                                            <td width="7%">
                                                 <% if org.term > org.this_date_form(date.start_date).used_term %>
                                                     <span class="sender"><%= org.this_date_form(date.start_date).used_term %></span>
                                                     <div class="hidden-start detail"><%= org.this_date_form(date.start_date).used_term_reason %></div>
@@ -99,19 +105,19 @@
 
                                             <!-- Recording "doctor-to-doctor" -->
                                             <% if org.this_date_form(date.start_date).doc_reg==1 %>
-                                                <td width="7%"><%= t('shared.pages.statistic.table.yep') %></td>
+                                                <td width="8%"><%= t('shared.pages.statistic.table.yep') %></td>
                                             <% elsif org.this_date_form(date.start_date).doc_reg==0 %>
-                                                <td width="7%">
+                                                <td width="8%">
                                                     <span class="sender"><%= t('shared.pages.statistic.table.nope') %></span>
                                                     <div class="hidden-start detail"><%= org.this_date_form(date.start_date).doc_reg_reason %></div>
                                                 </td>
                                             <% else %>
-                                                <td width="7%" class="center-middle"></td>
+                                                <td width="8%" class="center-middle"></td>
                                             <% end %>
 
                                             <!-- An infomat is used -->
                                             <% if org.infomat==1 %>
-                                                <td width="10%">
+                                                <td width="11%">
                                                     <% if org.this_date_form(date.start_date).used_infomat==1 %>
                                                         <%= t('shared.pages.statistic.table.yep') %>
                                                     <% elsif org.this_date_form(date.start_date).used_infomat==0 %>
@@ -120,12 +126,12 @@
                                                     <% end %>
                                                 </td>
                                             <% else %>
-                                                <td width="10%" class="center-middle"></td>
+                                                <td width="11%" class="center-middle"></td>
                                             <% end %>
 
                                             <!-- There is an information stand -->
                                             <% if org.register==1 %>
-                                                <td width="12%">
+                                                <td width="10%">
                                                     <% if org.this_date_form(date.start_date).info_pat==1 %>
                                                         <%= t('shared.pages.statistic.table.yep') %>
                                                     <% elsif org.this_date_form(date.start_date).info_pat==0 %>
@@ -134,7 +140,7 @@
                                                     <% end %>
                                                 </td>
                                             <% else %>
-                                                <td width="12%" class="center-middle"></td>
+                                                <td width="10%" class="center-middle"></td>
                                             <% end %>
                                             
                                             <!-- There is a comment -->
@@ -160,6 +166,8 @@
         </tbody>
     </table>
 </div>
+</div>
+
 <div id="modalComments" class="modal hide fade">
     <button type="button" class="close" data-dismiss="alert" id="close-modal">×</button>
     <div></div>

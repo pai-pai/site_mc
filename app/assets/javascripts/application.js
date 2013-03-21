@@ -209,4 +209,10 @@ $(document).ready(function(){
             });
         });
     });
+
+    $("#body-wrapper").css('padding-top', $("#head-wrapper").height());
+
+    $(window).resize(function() {
+        $("#body-wrapper").css('padding-top', $("#head-wrapper").height());
+    });
 });
