@@ -27,7 +27,7 @@ class PagesController < ApplicationController
     end
 
     def print
-        @results = Result.order("org_id ASC").where([ "start_date = ?", params[:date] ])
+        @results = Result.find_by_sql "SELECT * FROM results r WHERE r.start_date='#{params[:date]}' and r.created_at=(SELECT max(r2.created_at) FROM results r2 WHERE r.org_id=r2.org_id) ORDER BY org_id"
     end
 
     def get_comments
