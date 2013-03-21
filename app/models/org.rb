@@ -6,7 +6,7 @@ class Org < ActiveRecord::Base
     has_many :results, :dependent => :destroy
 
     def this_date_form(this_date)
-        Result.where({ :start_date => this_date }).find_by_org_id(self.id)
+        Result.where({ :start_date => this_date }).find(:last, :conditions => [ "org_id = ?", self.id ])
     end
 
     def self.to_csv(options = {})
