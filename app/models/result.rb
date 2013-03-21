@@ -42,6 +42,6 @@ class Result < ActiveRecord::Base
     end
 
     def self.this_date_forms_count(this_date)
-        self.count(:all, :conditions => [ "start_date = ?", this_date ], :distinct => :org_id)
+        self.count(:org_id, :conditions => [ "start_date = ?", this_date ], :distinct => true)
     end
 end
