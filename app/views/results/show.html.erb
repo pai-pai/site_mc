@@ -38,7 +38,7 @@
             <h4><%= t('shared.result.register.header') %></h4>
             <div class="container-fluid">
                 <% if @result.register == 1 %>
-                    <p><%=t 'shared.pages.org.reg_html', :reg => "#{@result.records_reg}", :infomat => "#{@result.records_infomat}", :inet => "#{@result.record_inet}" %></p>
+                    <p><%=t 'shared.pages.org.reg_html', :people => "#{@result.record_inet}" %></p>
                 <% else %>
                     <dl>
                         <dt><%= t('shared.pages.org.reg_reason_html') %></dt>

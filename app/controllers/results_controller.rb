@@ -22,7 +22,7 @@ class ResultsController < ApplicationController
 
     def show
         @result = Result.find(params[:id])
-        @org = Org.find(@result.org_id)
+        @org = Org.find(:last, :conditions => [ "id = ?", @result.org_id ])
     end
 
     def get_terminals
