@@ -190,8 +190,23 @@ $(document).ready(function(){
     $("#close-modal").click(function() { $("#modalComments").modal('hide'); }); 
     $("#modalComments").on('hidden', function() { $("#modalComments div").html(); });
 
+    $(".head-row").each(function() {
+        if (!$(this).hasClass('active')) {
+            $(this).next().find(".wrapper").slideUp();
+            $(this).find(".toggler").html('<i class="icon-chevron-down"></i>');
+        };
 
-    if (($(".head-row").hasClass('active'))) {
-        $(this).next().addClass('hello');
-    };
+        var activetoggler;
+        $(this).find(".toggler").click(function() { 
+            activetoggler = $(this)
+            $(this).parents("tr").next().find(".wrapper").toggle(0);
+            $(this).parents("tr").next().find(".wrapper").each(function() {
+                if ($(this).is(":hidden")) {
+                    activetoggler.html('<i class="icon-chevron-down"></i>');
+                } else {
+                    activetoggler.html('<i class="icon-chevron-up"></i>');
+                };
+            });
+        });
+    });
 });
