@@ -22,7 +22,7 @@
             </tr>
             <% @dates.each do |date| %>
                 <tr class="head-row <%= "active" if @active_date == date.start_date %>">
-                    <td colspan="2">
+                    <td colspan="2" width="19%">
                         <strong><%= t('shared.pages.statistic.count_forms') %></strong><%= Result.this_date_forms_count(date.start_date) %>
                     </td>
                     <td colspan="8" class="center">
@@ -31,7 +31,7 @@
                     <td>
                         <div style="float: right;">
                             <ul class="inline">
-                                <li><i class="icon-file"></i></li>
+                                <li><%= link_to t('shared.pages.statistic.excel_html'), :controller => "pages", :action => "date_report", :date => date.start_date, :format => :xls %></li>
                                 <li><%= link_to t('shared.pages.statistic.printrecords_html'), :controller => "pages", :action => "print", :date => date.start_date %></li>
                                 <li class="toggler"><i class="icon-chevron-up"></i></li>
                         </div>

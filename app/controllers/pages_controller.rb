@@ -13,10 +13,10 @@ class PagesController < ApplicationController
         end
     end
 
-    def statistic_for_day
-        @orgs = Org.order("id ASC").all
-        @count = Result.this_date_forms(params[:date]).count('org_id', :distinct => true)
-        @start_dates = Result.find(:all, :group => 'start_date')
+    def date_report
+        @orgs = Org.order("id").all
+        @date = params[:date]
+        @count = Result.count('org_id', :conditions => [ "start_date = ?", params[:date] ], :distinct => true)
         respond_to do |format|
             format.html
             format.xls

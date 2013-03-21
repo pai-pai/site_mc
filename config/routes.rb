@@ -8,6 +8,7 @@ SiteMc::Application.routes.draw do
 
     get "pages/success"
     get "pages/statistic"
+    get "pages/date_report"
     get "pages/total"
     get "pages/get_comments"
     get "pages/print"
