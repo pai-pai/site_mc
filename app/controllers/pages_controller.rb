@@ -42,10 +42,11 @@ class PagesController < ApplicationController
     private
         def find_orgs
             @orgs = Org.order("id ASC").all
-            @dates = Result.find(:all, :conditions => [ "start_date >= ? AND start_date < ?", Time.new(Time.now.year, Time.now.month, 1), Time.new(Time.now.year, Time.now.month + 1, 1) ], :group => 'start_date')
-            @dates_to_select = Result.find(:all, :group => 'start_date')
+            @dates = Result.select("DISTINCT start_date").where([ "start_date >= ? AND start_date < ?", Time.new(Time.now.year, Time.now.month, 1), Time.new(Time.now.year, Time.now.month + 1, 1) ])
+            #@dates = Result.find(:all, :conditions => [ "start_date >= ? AND start_date < ?", Time.new(Time.now.year, Time.now.month, 1), Time.new(Time.now.year, Time.now.month + 1, 1) ], :group => 'start_date')
+            @dates_to_select = Result.select("DISTINCT start_date")
             Time.now.wday >= 1 ? @active_date = (Time.now - (86400 * (Time.now.wday - 2))).to_date : @active_date = (Time.now - (86400 * (5 + Time.now.wday))).to_date
-            @grouped = Result.all.group_by { |res| @dates }
+            #@grouped = Result.all.group_by { |res| @dates }
             @count = Result.count('org_id', :distinct => true)
         end
 end
