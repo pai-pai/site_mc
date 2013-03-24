@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-//= require bootstrap-modal
+//= require bootstrap
 
 $(document).ready(function(){
     var url_path = '/results/get_terminals?org_id=' + $("#result_org_id").val();
@@ -215,4 +215,6 @@ $(document).ready(function(){
     $(window).resize(function() {
         $("#body-wrapper").css('padding-top', $("#head-wrapper").height());
     });
+
+    $("#date-tooltip").tooltip();
 });

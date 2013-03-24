@@ -1,5 +1,5 @@
 <div class="container">
-<p align="right"><%=t 'shared.result.date_html', :start_date => "#{@start.strftime('%d.%m.%Y')}" %></p>
+    <p align="right"><%=t 'shared.result.date_html', :start_date => "#{@start.strftime('%d.%m.%Y')}" %></p>
 <h3 align="center"><%= t('shared.result.title_html') %></h3>
 <%= form_for(@result) do |f| %>
     <% if not @result.errors.blank? %>

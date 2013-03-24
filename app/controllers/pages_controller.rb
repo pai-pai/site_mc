@@ -28,6 +28,7 @@ class PagesController < ApplicationController
 
     def print
         @results = Result.find_by_sql "SELECT * FROM results r WHERE r.start_date='#{params[:date]}' and r.created_at=(SELECT max(r2.created_at) FROM results r2 WHERE r.org_id=r2.org_id) ORDER BY org_id"
+        @title = I18n.t("shared.pages.title_print") + params[:date]
     end
 
     def get_comments
@@ -46,5 +47,6 @@ class PagesController < ApplicationController
             @dates_to_select = Result.select("DISTINCT start_date")
             Time.now.wday >= 1 ? @active_date = (Time.now - (86400 * (Time.now.wday - 2))).to_date : @active_date = (Time.now - (86400 * (5 + Time.now.wday))).to_date
             @count = Result.count('org_id', :distinct => true)
+            @title = I18n.t("shared.pages.title")
         end
 end

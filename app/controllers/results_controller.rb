@@ -1,5 +1,5 @@
 class ResultsController < ApplicationController
-    before_filter :start_date
+    before_filter :start_date, :title
 
     def index
         @results = Result.order("id ASC").all
@@ -39,5 +39,9 @@ class ResultsController < ApplicationController
         else
             @start = date - (86400 * (5 + date.wday))
         end
+    end
+
+    def title
+        @title = I18n.t("shared.result.title") + @start.strftime("%d.%m.%Y")
     end
 end

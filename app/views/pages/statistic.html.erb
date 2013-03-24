@@ -37,8 +37,8 @@
                     <td>
                         <div style="float: right;">
                             <ul class="inline">
-                                <li><%= link_to t('shared.pages.statistic.excel_html'), :controller => "pages", :action => "date_report", :date => date.start_date, :format => :xls %></li>
-                                <li><%= link_to t('shared.pages.statistic.printrecords_html'), :controller => "pages", :action => "print", :date => date.start_date %></li>
+                                <li><%= link_to t('shared.pages.statistic.excel_html'), { :controller => "pages", :action => "date_report", :date => date.start_date, :format => :xls }, { :title => t("shared.pages.statistic.excel.link") } %></li>
+                                <li><%= link_to t('shared.pages.statistic.printrecords_html'), { :controller => "pages", :action => "print", :date => date.start_date }, { :title => t('shared.pages.statistic.printrecords') } %></li>
                                 <li class="toggler"><i class="icon-chevron-up"></i></li>
                         </div>
                     </td>
