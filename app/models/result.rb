@@ -44,4 +44,8 @@ class Result < ActiveRecord::Base
     def self.this_date_forms_count(this_date)
         self.count(:org_id, :conditions => [ "start_date = ?", this_date ], :distinct => true)
     end
+
+    def self.get_form_with_phone(id)
+        self.find(:last, :conditions => [ "fio <> '' AND org_id = ?", id ])
+    end
 end

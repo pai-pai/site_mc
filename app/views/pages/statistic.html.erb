@@ -29,7 +29,7 @@
             <% @dates.each do |date| %>
                 <tr class="head-row <%= "active" if @active_date == date.start_date %>">
                     <td colspan="2" width="19%">
-                        <strong><%= t('shared.pages.statistic.count_forms') %></strong><%= Result.this_date_forms_count(date.start_date) %>
+                        <strong><%= t('shared.pages.statistic.count_forms') %></strong><%= Result.this_date_forms_count(date.start_date) %> <%= link_to t('shared.pages.not_provided_html'), { :controller => "pages", :action => "total", :date => date.start_date }, { :title => t('shared.pages.not_provided') } %>
                     </td>
                     <td colspan="8" class="center">
                         <h4><%= date.start_date.strftime("%d.%m.%Y") %></h4>

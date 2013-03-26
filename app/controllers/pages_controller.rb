@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
     require "csv"
 
-    before_filter :find_orgs, :only => [:statistic, :total]
+    before_filter :find_orgs, :only => [:statistic]
 
     def success
     end
@@ -24,6 +24,10 @@ class PagesController < ApplicationController
     end
 
     def total
+        @title = I18n.t("shared.pages.title_total") + params[:date]
+        @filled = Result.find_by_sql "SELECT DISTINCT org_id FROM results r WHERE r.start_date = '#{params[:date]}' ORDER BY r.org_id"
+        @filled = @filled.collect { |res| res.org_id }
+        @orgs = Org.find(:all, :conditions => [ "id NOT IN (?)", @filled])
     end
 
     def print

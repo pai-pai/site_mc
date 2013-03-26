@@ -1,9 +1,13 @@
 <div class="container-fluid">
-    <ul class="unstyled">
+    <h3><%= @title %></h3>
+    <ol class="big-line-height">
         <% @orgs.each do |org| %>
-            <% if org.results.blank? %>
-                <li><%= org.id %>. <%= org.name %></li>
-            <% end %>
+            <li>
+                <%= org.name %><br />
+                <% if Result.get_form_with_phone(org.id) %>
+                    <strong><%= t('shared.pages.phone') %>:</strong> <%= Result.get_form_with_phone(org.id).phone %> (<%= Result.get_form_with_phone(org.id).fio %>)
+                <% end %>
+            </li>
         <% end %>
-    </ul>
+    </ol>
 </div>
