@@ -95,3 +95,9 @@ a[data-toggle] { font-size: 1em; }
 #wrapper { padding: 0 1em 1em; }
 #date-tooltip { border-bottom: 1px dashed #444444; cursor: pointer; }
 .big-line-height li { padding-bottom: 0.85em; }
+.report-date-picker { 
+    float: right;
+    padding-top: 10px;
+    &.nav { margin-bottom: 0; }
+    ul { padding-left: 10px; }
+}

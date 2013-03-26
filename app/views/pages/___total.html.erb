@@ -1,9 +1,0 @@
-<div class="container-fluid">
-    <ul class="unstyled">
-        <% @orgs.each do |org| %>
-            <% if org.results.blank? %>
-                <li><%= org.id %>. <%= org.name %></li>
-            <% end %>
-        <% end %>
-    </ul>
-</div>

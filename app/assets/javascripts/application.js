@@ -15,6 +15,7 @@
 //= require_tree .
 //= require bootstrap-modal
 //= require bootstrap-tooltip
+//= require bootstrap-dropdown
 
 $(document).ready(function(){
     var url_path = '/results/get_terminals?org_id=' + $("#result_org_id").val();
