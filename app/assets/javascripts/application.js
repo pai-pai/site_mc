@@ -13,7 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-//= require bootstrap
+//= require bootstrap-modal
+//= require bootstrap-tooltip
 
 $(document).ready(function(){
     var url_path = '/results/get_terminals?org_id=' + $("#result_org_id").val();
