@@ -1,8 +1,18 @@
 <div class="container-fluid">
-    <div class="top-padding" align="right">
-        <%= link_to t('shared.pages.root_path'), :root %>
-    </div>
-    <div class="top-center">
-        <h3 align="center"><%= t('shared.pages.success') %></h3>
-    </div>
+    <% if @active_result %>
+        <div class="top-padding" align="right">
+            <ul class="inline">
+                <li><%= link_to t('shared.pages.show_form'), result_path(:id => @active_result) %></li>
+                <li><%= link_to t('shared.pages.root_path'), :root %></li>
+            </ul>
+        </div>
+        <div class="top-center">
+            <h3 align="center"><%= t('shared.pages.success') %></h3>
+        </div>
+    <% else %>
+        <div class="top-center">
+            <h3 align="center">Success? I don't think so ;)</h3>
+            <p align="center">May be you're doing something wrong?</p>
+        </div>
+    <% end %>
 </div>

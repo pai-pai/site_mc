@@ -4,6 +4,8 @@ class PagesController < ApplicationController
     before_filter :find_orgs, :only => [:statistic]
 
     def success
+        @active_result = session[:active_result]
+        reset_session
     end
 
     def statistic

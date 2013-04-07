@@ -12,6 +12,7 @@ class ResultsController < ApplicationController
     def create
         @result = Result.new(params[:result])
         if @result.save
+            session[:active_result] = @result.id
             redirect_to success_path
         elsif params[:cancel_button]
             redirect_to root_path
