@@ -259,7 +259,8 @@ ru:
             truncate: "..."
     shared:
         result:
-            title: ! 'Информация для проверки хода ПМЗ на '
+            title: ! 'Информация для проверки хода ПМЗ'
+            title_on_date: 'Отчет на '
             title_html: Информация для проверки хода выполнения<br />Программы модернизации здравоохранения в части информатизации
             date_html: 'Отчет на <strong id="date-tooltip" data-toggle="tooltip" data-placement="bottom" title="Дата меняется автоматически каждый понедельник в 00:00:00">%{start_date}</strong>' 
             yep: Да
@@ -304,6 +305,13 @@ ru:
         actions:
             save: Отправить
             cancel: Отменить
+        users:
+            common:
+                email: ! 'Email:'
+                password: ! 'Пароль:' 
+            login:
+                title: Вход
+                login: Войти
         pages:
             title: Статистика по проверке хода ПМЗ
             title_print: "Печать заполненных форм за "
@@ -311,7 +319,10 @@ ru:
             title_for_date: "Отчет за "
             show_form: Показать заполненную форму
             root_path: Перезаполнить форму
-            success: Информация успешно отправлена!
+            success: 
+                title: Информация успешно отправлена!
+                its_true: Успешная отправка формы
+                its_false: Huh? O_o?!
             phone: Телефон ответственного
             not_provided_html: ! '<i class="icon-question-sign"></i>'
             not_provided: Просмотр списка должников

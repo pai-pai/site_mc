@@ -1,6 +1,6 @@
 @import "bootstrap";
 
-.top-padding { padding-top: 0.4em; }
+.top-padding { padding: 0 1em; padding-top: 0.4em;}
 .top-center { padding-top: 5em; }
 table.table { font-size: 0.85em; }
 table.table th { 
@@ -49,16 +49,7 @@ table.table.body-table {
     -moz-border-radius-topleft: 0 !important;
     border-top-left-radius: 0 !important;
 }
-/*table.header-table th { 
-    border: 0; 
-    border-left: 1px solid #dddddd;
-}
-.header-table tbody:first-child tr:first-child > th:first-child { border-left: 0; }
-.header-table tbody:first-child tr:first-child { border-bottom: 1px solid #dddddd; }
-.rad { 
-    border-radius: 4px 4px 0 0; 
-    border: 1px solid #dddddd;
-}*/
+
 #head-wrapper { 
     position: fixed; 
     background-color: white;
@@ -92,7 +83,7 @@ a[data-toggle] { font-size: 1em; }
 .hidden-start { display: none; }
 #period_start_date { width: auto; }
 .toggler i { cursor: pointer; }
-#wrapper { padding: 0 1em 1em; }
+#wrapper { padding: 0 1em 1em; background: white; }
 #date-tooltip { border-bottom: 1px dashed #444444; cursor: pointer; }
 .big-line-height li { padding-bottom: 0.85em; }
 .report-date-picker { 
@@ -100,4 +91,8 @@ a[data-toggle] { font-size: 1em; }
     padding-top: 10px;
     &.nav { margin-bottom: 0; }
     ul { padding-left: 10px; }
+}
+.user-info { 
+    background: white; 
+    text-align: right;
 }

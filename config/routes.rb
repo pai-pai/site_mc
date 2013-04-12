@@ -5,6 +5,8 @@ SiteMc::Application.routes.draw do
 
     resources :results, :only => [ :index, :get_terminals, :show, :new, :create ]
     resources :orgs, :only => [ :index, :show ]
+    resources :users
+    resources :sessions, :only => [ :new, :create, :destroy ]
 
     get "pages/success"
     get "pages/statistic"
@@ -16,7 +18,12 @@ SiteMc::Application.routes.draw do
     get "pages/get_start_val"
 
     match "success" => "pages#success"
-    match "statistic-miac" => "pages#statistic"
+    match "statistic" => "pages#statistic"
     match "total" => "pages#total"
     match "print-records" => "pages#print", :as => :print_records
+
+    match "adding-user" => "users#new", :as => :sign_up
+
+    match "login" => "sessions#new"
+    match "logout" => "sessions#destroy", :via => :delete
 end

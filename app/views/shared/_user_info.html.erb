@@ -1,0 +1,3 @@
+<% if !current_user.blank? %>
+    <div class="user-info"><%= current_user.email %> <%= link_to "Sign out", logout_path, :method => "delete" %></div>
+<% end %>

@@ -1,10 +1,12 @@
 class PagesController < ApplicationController
     require "csv"
 
-    before_filter :find_orgs, :only => [:statistic]
+    before_filter :autorization_check, :only => [ :statistic ]
+    before_filter :find_orgs, :only => [ :statistic, :date_report, :print ]
 
     def success
         @active_result = session[:active_result]
+        @active_result ? @title = t("shared.pages.success.its_true") : @title = t("shared.pages.success.its_false")
         reset_session
     end
 

@@ -43,6 +43,6 @@ class ResultsController < ApplicationController
     end
 
     def title
-        @title = I18n.t("shared.result.title") + @start.strftime("%d.%m.%Y")
+        @title = I18n.t("shared.result.title_on_date") + @start.strftime("%d.%m.%Y")
     end
 end

@@ -2,9 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
+.img-container { background: url(crop.png) repeat; position: absolute; height: 100%; width: 100%; }
+.img-form { background: url(crop.png) repeat; }
 
 label, .field_with_errors { display: inline; }
 select, textarea { width: 100%; }
+textarea { padding: 4px 0.6%; width: 98.8%; } 
 .control-group { padding-bottom: 0.4em; }
 .underliner { border-bottom: 1px solid #ddd; }
 .buttons-group { border: none; } 
@@ -15,3 +18,12 @@ select, textarea { width: 100%; }
     cursor: pointer;
 }
 #manual-link { margin-bottom: 0.3em; }
+.bglayout { 
+    padding: 25px; 
+    background: white;
+    margin: 12px auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}

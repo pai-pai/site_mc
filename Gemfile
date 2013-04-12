@@ -5,9 +5,7 @@ gem "rails-i18n"
 gem "jquery-rails"
 gem "therubyracer"
 gem "kaminari"
-gem "devise"
-gem "oauth2"
-gem "cancan"
+gem "bcrypt-ruby", :require => "bcrypt"
 
 group :production do
   gem "pg"
