@@ -1,7 +1,9 @@
 class Org < ActiveRecord::Base
-    attr_accessible :infomat, :name, :register, :term
+    attr_accessible :infomat, :name, :register, :term, :area_id
 
     validates_presence_of :infomat, :name, :register, :term
+
+    belongs_to :area
 
     has_many :results, :dependent => :destroy
 
