@@ -29,6 +29,8 @@ class PagesController < ApplicationController
     end
 
     def total
+        @public = Object.new if params[:type]
+        autorization_check if @public.blank?
         @title = I18n.t("shared.pages.title_total") + params[:date]
         @filled = Result.find_by_sql "SELECT DISTINCT org_id FROM results r WHERE r.start_date = '#{params[:date]}' ORDER BY r.org_id"
         @filled = @filled.collect { |res| res.org_id }

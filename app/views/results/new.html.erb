@@ -1,4 +1,5 @@
 <div class="row img-form">
+    <div align="right" class="container not-filled"><i class="icon-flag"></i> <%= link_to t('shared.pages.not_filled', :this_date => "#{@start.strftime('%d.%m.%Y')}" ), { :controller => "pages", :action => "total", :date => @start.strftime('%Y-%m-%d'), :type => 'public' }, { :title => t('shared.pages.not_provided') } %></div>
     <div class="container bglayout">
         <p align="right"><%=t 'shared.result.date_html', :start_date => "#{@start.strftime('%d.%m.%Y')}" %></p>
         <h3 align="center"><%= t('shared.result.title_html') %></h3>

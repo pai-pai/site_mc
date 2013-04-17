@@ -4,7 +4,7 @@
         <% @orgs.each do |org| %>
             <li>
                 <%= org.name %><br />
-                <% if Result.get_form_with_phone(org.id) %>
+                <% if Result.get_form_with_phone(org.id) && @public.blank? %>
                     <strong><%= t('shared.pages.phone') %>:</strong> <%= Result.get_form_with_phone(org.id).phone %> (<%= Result.get_form_with_phone(org.id).fio %>)
                 <% end %>
             </li>
