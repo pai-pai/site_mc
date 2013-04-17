@@ -2,8 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
-.img-container { background: url(crop.png) repeat; position: absolute; height: 100%; width: 100%; }
-.img-form { background: url(crop.png) repeat; }
+.img-container { 
+    background: url(crop.png) repeat; 
+    position: absolute; 
+    height: 100%; 
+    width: 100%; 
+}
+.img-form { 
+    background: url(crop.png) repeat; 
+    padding: 12px 0;
+    margin-left: 0;
+}
 
 label, .field_with_errors { display: inline; }
 select, textarea { width: 100%; }
@@ -21,9 +30,10 @@ textarea { padding: 4px 0.6%; width: 98.8%; }
 .bglayout { 
     padding: 25px; 
     background: white;
-    margin: 12px auto;
+    margin: 0 auto;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.25);
 }
+input[type="radio"], input[type="checkbox"] { margin: 0; }

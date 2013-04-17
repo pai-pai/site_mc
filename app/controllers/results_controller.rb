@@ -33,6 +33,11 @@ class ResultsController < ApplicationController
                                                      :register_count => val.register }
     end
 
+    def get_last_result
+        result = Result.find(:last, :conditions => [ "org_id = ?", params[:org_id] ])
+        render :json => result
+    end
+
     def start_date
         date = Time.now
         if date.wday >= 1

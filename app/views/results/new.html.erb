@@ -1,155 +1,165 @@
 <div class="row img-form">
-<div class="container bglayout">
-    <p align="right"><%=t 'shared.result.date_html', :start_date => "#{@start.strftime('%d.%m.%Y')}" %></p>
-<h3 align="center"><%= t('shared.result.title_html') %></h3>
-<%= form_for(@result) do |f| %>
-    <% if not @result.errors.blank? %>
-        <div class="alert alert-error">
-            <button type="button" class="close" data-dismiss="alert" id="close-button">×</button>
-            <ul>
-                <% @result.errors.full_messages.each do |msg| %>
-                    <li><%= raw msg %></li>
-                <% end %>
-            </ul>
-        </div>
-    <% end %>
+    <div class="container bglayout">
+        <p align="right"><%=t 'shared.result.date_html', :start_date => "#{@start.strftime('%d.%m.%Y')}" %></p>
+        <h3 align="center"><%= t('shared.result.title_html') %></h3>
+        <%= form_for(@result) do |f| %>
+            <% if not @result.errors.blank? %>
+                <div class="alert alert-error">
+                    <button type="button" class="close" data-dismiss="alert" id="close-button">×</button>
+                    <ul>
+                        <% @result.errors.full_messages.each do |msg| %>
+                            <li><%= raw msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
 
-    <div align="right" id="manual-link"><span><%= t('shared.manualink') %></span></div>
-    <div class="manual alert alert-info hidden-start">
-        <button type="button" class="close" data-dismiss="alert" id="close-manual-button">×</button>
-        <%= t("shared.manual_html") %>
+            <div class="alert alert-block hidden-start no-one-last-result">
+                <button type="button" class="close" data-dismiss="alert" id="close-warning-button">×</button>
+                <%= t('shared.result.no_one_last_result') %>
+            </div>
+
+            <div align="right" id="manual-link"><span><%= t('shared.manualink') %></span></div>
+            <div class="manual alert alert-info hidden-start">
+                <button type="button" class="close" data-dismiss="alert" id="close-manual-button">×</button>
+                <%= t("shared.manual_html") %>
+            </div>
+
+            <div class="control-group">
+                <%= label_tag 'org-name', t('shared.result.org'), { :class => "head-label" } %><br />
+                <%= f.grouped_collection_select(:org_id, Area.order("id").all, :sort_orgs, :name, :id, :name, { :include_blank => true }, :autofocus => true) %>
+            </div>
+
+            <div class="control-group hidden-start fill-form underliner">
+                <%= check_box_tag 'last-result' %>
+                <%= label_tag 'last-result', t('shared.result.last_result') %>
+            </div>
+
+            <div class="control-group underliner">
+                <h4><%= t('shared.result.term.header') %></h4>
+                <div id="about-org"></div>
+                <div class="row-group terms-pmz hidden-start">
+                    <p><%= t('shared.result.term.real') %> <span id="count-of-terms"></span></p>
+                </div>
+                <div class="row-group">
+                    <%= label_tag 'used-term', t('shared.result.term.used'), { :class => "head-label" } %><br />
+                    <%= f.text_field :used_term %>
+                </div>
+
+                <div class="container-term-reason hidden-start">
+                    <%= label_tag 'term-reason', t('shared.result.term.reason'), { :class => "head-label" } %><br />
+                    <%= f.text_area :used_term_reason, :rows => 4 %>
+                </div>
+            </div>
+
+            <div class="control-group underliner">
+                <h4><%= t('shared.result.emk.header') %></h4>
+                <%= label_tag 'emk-used', t('shared.result.emk.used'), { :class => "head-label" } %><br />
+                <%= label_tag 'emk-used-yep', t('shared.result.yep') %>
+                <%= f.radio_button :emk_term, 1 %>
+                <%= label_tag 'emk-used-nope', t('shared.result.nope') %>
+                <%= f.radio_button :emk_term, 0 %>
+
+                <div class="container-mis hidden-start">
+                    <%= label_tag 'mis-used', t('shared.result.emk.mis'), { :class => "head-label" } %><br />
+                    <%= label_tag 'mis-used-yep', t('shared.result.yep') %>
+                    <%= f.radio_button :mis_inet, 1 %>
+                    <%= label_tag 'mis-used-nope', t('shared.result.nope') %>
+                    <%= f.radio_button :mis_inet, 0 %>
+                </div>
+
+                <div class="container-emk-reason hidden-start">
+                    <%= label_tag 'emk-reason', t('shared.result.emk.reason'), { :class => "head-label" } %><br />
+                    <%= f.text_area :mis_emk_reason, :rows => 4 %>
+                </div>
+            </div>
+         
+            <div class="control-group register-group hidden-start underliner">
+                <h4><%= t('shared.result.register.header') %></h4>
+                <%= label_tag 'register-used', t('shared.result.register.used'), { :class => "head-label" } %><br />
+                <%= label_tag 'register-used-yep', t('shared.result.yep') %>
+                <%= f.radio_button :register, 1 %>
+                <%= label_tag 'register-used-nope', t('shared.result.nope') %>
+                <%= f.radio_button :register, 0 %>
+
+                <div class="container-register-reason hidden-start">
+                    <%= label_tag 'register-reason', t('shared.result.register.reason'), { :class => "head-label" } %><br />
+                    <%= f.text_area :register_reason, :rows => 4 %>
+                </div>
+
+                <div class="container-register-details hidden-start">
+                    <%= label_tag 'register-details', t('shared.result.register.details', :start_date => "#{@start.strftime('%d.%m.%Y')}"), { :class => "head-label" } %><br />
+                    <%= f.text_field :record_inet %>
+                </div>
+            </div>
+
+            <div class="control-group underliner">
+                <h4><%= t('shared.result.doc.header') %></h4>
+                <%= label_tag 'doc-used', t('shared.result.doc.used'), { :class => "head-label" } %><br />
+                <%= label_tag 'doc-used-yep', t('shared.result.yep') %>
+                <%= f.radio_button :doc_reg, 1 %>
+                <%= label_tag 'doc-used-nope', t('shared.result.nope') %>
+                <%= f.radio_button :doc_reg, 0 %>
+
+                <div class="container-doc-reason hidden-start">
+                    <%= label_tag 'doc-reason', t('shared.result.doc.reason'), { :class => "head-label" } %><br />
+                    <%= f.text_area :doc_reg_reason, :rows => 4 %>
+                </div>
+            </div>
+
+            <div class="control-group infomat-group hidden-start underliner">
+                <h4><%= t('shared.result.infomat.header') %></h4>
+                <%= label_tag 'infomat-used', t('shared.result.infomat.used'), { :class => "head-label" } %><br />
+                <%= label_tag 'infomat-used-yep', t('shared.result.yep') %>
+                <%= f.radio_button :used_infomat, 1 %>
+                <%= label_tag 'infomat-used-nope', t('shared.result.nope') %>
+                <%= f.radio_button :used_infomat, 0 %>
+
+                <div class="container-infomat-reason hidden-start">
+                    <%= label_tag 'infomat-reason', t('shared.result.infomat.reason'), { :class => "head-label" } %><br />
+                    <%= f.text_area :used_infomat_reason, :rows => 4 %>
+                </div>
+            </div>
+
+            <div class="control-group info-group hidden-start underliner">
+                <h4><%= t('shared.result.info.header') %></h4>
+                <%= label_tag 'info-used', t('shared.result.info.used'), { :class => "head-label" } %><br />
+                <%= label_tag 'info-used-yep', t('shared.result.yep') %>
+                <%= f.radio_button :info_pat, 1 %>
+                <%= label_tag 'info-used-nope', t('shared.result.nope') %>
+                <%= f.radio_button :info_pat, 0 %>
+
+                <div class="container-info-reason hidden-start">
+                    <%= label_tag 'info-reason', t('shared.result.info.reason'), { :class => "head-label" } %><br />
+                    <%= f.text_area :info_pat_reason, :rows => 4 %>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <h4><%= t('shared.result.comments') %></h4>
+                <%= f.text_area :comments, :rows => 10 %>
+            </div>
+
+            <div class="control-group">
+                <h4><%= t('shared.result.performer.header') %></h4>
+                <div>
+                    <%= label_tag 'fio', t('shared.result.performer.fio'), { :class => "head-label" } %><br />
+                    <%= f.text_field :fio %>
+                </div>
+                <div>
+                    <%= label_tag 'phone', t('shared.result.performer.phone'), { :class => "head-label" } %><br />
+                    <%= f.text_field :phone %>
+                </div>
+            </div>
+
+            <%= hidden_field_tag 'result[start_date]', "#{@start}" %>
+
+            <div class="control-group buttons-group hidden-start">
+                <div class="controls">
+                    <%= f.submit t('shared.actions.save'), {:class => "btn-primary btn"} %>
+                    <%= submit_tag t('shared.actions.cancel'), {:name => 'cancel_button', :class => "btn"} %>
+                </div>
+            </div>
+        <% end %>
     </div>
-
-    <div class="control-group">
-        <%= label_tag 'org-name', t('shared.result.org'), { :class => "head-label" } %><br />
-        <%= f.grouped_collection_select(:org_id, Area.order("id").all, :sort_orgs, :name, :id, :name, { :include_blank => true }, :autofocus => true) %>
-    </div>
-
-    <div class="control-group underliner">
-        <h4><%= t('shared.result.term.header') %></h4>
-        <div id="about-org"></div>
-        <div class="row-group terms-pmz hidden-start">
-            <p><%= t('shared.result.term.real') %> <span id="count-of-terms"></span></p>
-        </div>
-        <div class="row-group">
-            <%= label_tag 'used-term', t('shared.result.term.used'), { :class => "head-label" } %><br />
-            <%= f.text_field :used_term %>
-        </div>
-
-        <div class="container-term-reason hidden-start">
-            <%= label_tag 'term-reason', t('shared.result.term.reason'), { :class => "head-label" } %><br />
-            <%= f.text_area :used_term_reason, :rows => 4 %>
-        </div>
-    </div>
-
-    <div class="control-group underliner">
-        <h4><%= t('shared.result.emk.header') %></h4>
-        <%= label_tag 'emk-used', t('shared.result.emk.used'), { :class => "head-label" } %><br />
-        <%= label_tag 'emk-used-yep', t('shared.result.yep') %>
-        <%= f.radio_button :emk_term, 1 %>
-        <%= label_tag 'emk-used-nope', t('shared.result.nope') %>
-        <%= f.radio_button :emk_term, 0 %>
-
-        <div class="container-mis hidden-start">
-            <%= label_tag 'mis-used', t('shared.result.emk.mis'), { :class => "head-label" } %><br />
-            <%= label_tag 'mis-used-yep', t('shared.result.yep') %>
-            <%= f.radio_button :mis_inet, 1 %>
-            <%= label_tag 'mis-used-nope', t('shared.result.nope') %>
-            <%= f.radio_button :mis_inet, 0 %>
-        </div>
-
-        <div class="container-emk-reason hidden-start">
-            <%= label_tag 'emk-reason', t('shared.result.emk.reason'), { :class => "head-label" } %><br />
-            <%= f.text_area :mis_emk_reason, :rows => 4 %>
-        </div>
-    </div>
- 
-    <div class="control-group register-group hidden-start underliner">
-        <h4><%= t('shared.result.register.header') %></h4>
-        <%= label_tag 'register-used', t('shared.result.register.used'), { :class => "head-label" } %><br />
-        <%= label_tag 'register-used-yep', t('shared.result.yep') %>
-        <%= f.radio_button :register, 1 %>
-        <%= label_tag 'register-used-nope', t('shared.result.nope') %>
-        <%= f.radio_button :register, 0 %>
-
-        <div class="container-register-reason hidden-start">
-            <%= label_tag 'register-reason', t('shared.result.register.reason'), { :class => "head-label" } %><br />
-            <%= f.text_area :register_reason, :rows => 4 %>
-        </div>
-
-        <div class="container-register-details hidden-start">
-            <%= label_tag 'register-details', t('shared.result.register.details', :start_date => "#{@start.strftime('%d.%m.%Y')}"), { :class => "head-label" } %><br />
-            <%= f.text_field :record_inet %>
-        </div>
-    </div>
-
-    <div class="control-group underliner">
-        <h4><%= t('shared.result.doc.header') %></h4>
-        <%= label_tag 'doc-used', t('shared.result.doc.used'), { :class => "head-label" } %><br />
-        <%= label_tag 'doc-used-yep', t('shared.result.yep') %>
-        <%= f.radio_button :doc_reg, 1 %>
-        <%= label_tag 'doc-used-nope', t('shared.result.nope') %>
-        <%= f.radio_button :doc_reg, 0 %>
-
-        <div class="container-doc-reason hidden-start">
-            <%= label_tag 'doc-reason', t('shared.result.doc.reason'), { :class => "head-label" } %><br />
-            <%= f.text_area :doc_reg_reason, :rows => 4 %>
-        </div>
-    </div>
-
-    <div class="control-group infomat-group hidden-start underliner">
-        <h4><%= t('shared.result.infomat.header') %></h4>
-        <%= label_tag 'infomat-used', t('shared.result.infomat.used'), { :class => "head-label" } %><br />
-        <%= label_tag 'infomat-used-yep', t('shared.result.yep') %>
-        <%= f.radio_button :used_infomat, 1 %>
-        <%= label_tag 'infomat-used-nope', t('shared.result.nope') %>
-        <%= f.radio_button :used_infomat, 0 %>
-
-        <div class="container-infomat-reason hidden-start">
-            <%= label_tag 'infomat-reason', t('shared.result.infomat.reason'), { :class => "head-label" } %><br />
-            <%= f.text_area :used_infomat_reason, :rows => 4 %>
-        </div>
-    </div>
-
-    <div class="control-group info-group hidden-start underliner">
-        <h4><%= t('shared.result.info.header') %></h4>
-        <%= label_tag 'info-used', t('shared.result.info.used'), { :class => "head-label" } %><br />
-        <%= label_tag 'info-used-yep', t('shared.result.yep') %>
-        <%= f.radio_button :info_pat, 1 %>
-        <%= label_tag 'info-used-nope', t('shared.result.nope') %>
-        <%= f.radio_button :info_pat, 0 %>
-
-        <div class="container-info-reason hidden-start">
-            <%= label_tag 'info-reason', t('shared.result.info.reason'), { :class => "head-label" } %><br />
-            <%= f.text_area :info_pat_reason, :rows => 4 %>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <h4><%= t('shared.result.comments') %></h4>
-        <%= f.text_area :comments, :rows => 10 %>
-    </div>
-
-    <div class="control-group">
-        <h4><%= t('shared.result.performer.header') %></h4>
-        <div>
-            <%= label_tag 'fio', t('shared.result.performer.fio'), { :class => "head-label" } %><br />
-            <%= f.text_field :fio %>
-        </div>
-        <div>
-            <%= label_tag 'phone', t('shared.result.performer.phone'), { :class => "head-label" } %><br />
-            <%= f.text_field :phone %>
-        </div>
-    </div>
-
-    <%= hidden_field_tag 'result[start_date]', "#{@start}" %>
-
-    <div class="control-group buttons-group hidden-start">
-        <div class="controls">
-            <%= f.submit t('shared.actions.save'), {:class => "btn-primary btn"} %>
-            <%= submit_tag t('shared.actions.cancel'), {:name => 'cancel_button', :class => "btn"} %>
-        </div>
-    </div>
-<% end %>
-</div>
 </div>

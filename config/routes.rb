@@ -2,8 +2,9 @@ SiteMc::Application.routes.draw do
     root :to => "results#new"
 
     get "results/get_terminals"
+    get "results/get_last_result"
 
-    resources :results, :only => [ :index, :get_terminals, :show, :new, :create ]
+    resources :results, :only => [ :index, :get_terminals, :get_last_result, :show, :new, :create ]
     resources :orgs, :only => [ :index, :show ]
     resources :users
     resources :sessions, :only => [ :new, :create, :destroy ]
