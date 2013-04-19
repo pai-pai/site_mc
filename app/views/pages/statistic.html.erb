@@ -1,24 +1,11 @@
 <div id="wrapper">
     <div id="head-wrapper">
-        <%= render 'shared/user_info' %>
-        <ul class="nav nav-pills report-date-picker">
-            <li class="dropdown">
-                <a href="" class="dropdown-toggle dropdown-picker" data-toggle="dropdown"><%= t('shared.pages.report_for_date') %> <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <% @grouped_dates.each_key do |group_key| %>
-                        <% if not group_key.blank? %>
-                            <li><strong><%=l @grouped_dates[group_key][0], :format => '%B' %></strong>
-                                <ul class="unstyled">
-                                    <% @grouped_dates[group_key].each do |date| %>
-                                        <li><%= link_to date.strftime('%d.%m.%Y'), :controller => "pages", :action => "date_report", :date => date %></li>
-                                    <% end %>
-                                </ul>
-                            </li>
-                        <% end %>
-                    <% end %>
-                </ul>
-        </ul>
-        <h3><%= t('shared.pages.statistic.title') %></h3>
+        <%= render 'navbar' %>
+         <div class="container-fluid after-nav">
+            <div class="row-fluid">
+                <h3 class="pull-left"><%= t('shared.pages.statistic.title') %></h3>
+            </div>
+        </div>
         <%= render "table_header" %>
     </div>
     <div id="body-wrapper">

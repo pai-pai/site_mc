@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
     require "csv"
 
-    before_filter :autorization_check, :only => [ :statistic ]
-    before_filter :find_orgs, :only => [ :statistic, :date_report, :print ]
+    before_filter :autorization_check, :only => [ :statistic, :dashboard ]
+    before_filter :find_orgs
 
     def success
         @active_result = session[:active_result]
@@ -20,11 +20,13 @@ class PagesController < ApplicationController
     def date_report
         @orgs = Org.order("id").all
         @date = params[:date]
-        @title = I18n.t('shared.pages.title_for_date') + @date
+        @title = I18n.t('shared.pages.title_for_date') + @date.to_date.strftime("%d.%m.%Y")
         @count = Result.count('org_id', :conditions => [ "start_date = ?", params[:date] ], :distinct => true)
         respond_to do |format|
             format.html
-            format.xls
+            format.xls {
+                response.headers['Content-Disposition'] = "attachment; filename=\"Report_info_#{@date.to_date.strftime("%d_%m_%Y")}.xls\""
+            }
         end
     end
 
@@ -49,6 +51,9 @@ class PagesController < ApplicationController
 
     def get_start_val
         render :partial => "table", :locals => { :start_val => params[:start_date] }
+    end
+
+    def dashboard
     end
 
     private

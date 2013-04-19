@@ -365,4 +365,6 @@ $(document).ready(function(){
     });
 
     $("#date-tooltip").tooltip();
+
+    $("#date-dropdown").css( "right", "-" + ($("#date-dropdown").width() - 10) + "px" );
 });

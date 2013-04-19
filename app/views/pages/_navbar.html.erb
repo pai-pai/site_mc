@@ -1,0 +1,28 @@
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <ul class="nav pull-left">
+            <li><%= link_to t('shared.pages.dashboard_root_html'), dashboard_path %></li>
+            <li class="dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown"><%= t('shared.pages.report_for_date') %> <b class="caret"></b></a>
+                <ul class="dropdown-menu" id="date-dropdown">
+                    <% @grouped_dates.each_key do |group_key| %>
+                        <% if not group_key.blank? %>
+                            <li><strong><%=l @grouped_dates[group_key][0], :format => '%B' %></strong>
+                                <ul class="unstyled">
+                                    <% @grouped_dates[group_key].each do |date| %>
+                                        <li><%= link_to date.strftime('%d.%m.%Y'), date_report_path(:date => date) %></li>
+                                    <% end %>
+                                </ul>
+                            </li>
+                        <% end %>
+                    <% end %>
+                </ul>
+            </li>
+            <li><%= link_to t('shared.pages.fillless'), dashboard_path %></li>
+        </ul>
+        <ul class="nav pull-right">
+            <li><span><%= current_user.email %></span></li>
+            <li class="divider-vertical"></li>
+            <li><%= link_to t('shared.users.login.logout'), logout_path, :method => "delete" %></li>
+    </div>
+</div>

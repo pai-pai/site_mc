@@ -1,5 +1,14 @@
 @import "bootstrap";
 
+.after-nav { 
+    margin-top: 40px; 
+    ul { 
+        line-height: 40px; 
+        margin: 10px 0;
+    }
+}
+
+
 .top-padding { padding: 0 1em; padding-top: 0.4em;}
 .top-center { padding-top: 5em; }
 table.table { font-size: 0.85em; }
@@ -96,3 +105,9 @@ a[data-toggle] { font-size: 1em; }
     background: white; 
     text-align: right;
 }
+.navbar li span { float: none;
+    padding: 10px 15px 10px;
+    text-shadow: 0 1px 0 white; 
+    display: block;
+}
+.pull-left ul.dropdown-menu { left: auto; padding: 12px; }

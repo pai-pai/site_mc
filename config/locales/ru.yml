@@ -314,6 +314,7 @@ ru:
             login:
                 title: Вход
                 login: Войти
+                logout: Выйти
         pages:
             title: Статистика по проверке хода ПМЗ
             title_print: "Печать заполненных форм за "
@@ -321,12 +322,14 @@ ru:
             title_for_date: "Отчет за "
             show_form: Показать заполненную форму
             root_path: Перезаполнить форму
+            dashboard_root_html: ! '<i class="icon-home"></i>'
+            fillless: Должники
             success: 
                 title: Информация успешно отправлена!
                 its_true: Успешная отправка формы
                 its_false: Huh? O_o?!
             phone: Телефон ответственного
-            not_provided_html: ! '<i class="icon-question-sign"></i>'
+            not_provided_html: ! '<i class="icon-flag"></i>'
             not_provided: Просмотр списка должников
             not_filled: ! 'Список учреждений, не предоставивших данные на %{this_date}'
             report_for_date: Выберите дату для отображения отчета

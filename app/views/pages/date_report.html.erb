@@ -1,33 +1,17 @@
 <div id="wrapper">
     <div id="head-wrapper">
-        <div class="report-date-picker" style="float: right;">
-            <ul class="inline">
-                <li><%= link_to t('shared.pages.statistic.excel_html'), { :controller => "pages", :action => "date_report", :date => @date, :format => :xls }, { :title => t("shared.pages.statistic.excel.link") } %></li>
-                <li><%= link_to t('shared.pages.statistic.printrecords_html'), { :controller => "pages", :action => "print", :date => @date }, { :title => t('shared.pages.statistic.printrecords') } %></li>
-            </ul>
+        <%= render 'navbar' %>
+        <div class="container-fluid after-nav">
+            <div class="row-fluid">
+                <h3 class="pull-left"><%= @title %></h3>
+                <ul class="inline pull-right">
+                    <li><%= link_to t('shared.pages.not_provided_html'), { :controller => "pages", :action => "total", :date => @date }, { :title => t('shared.pages.not_provided') } %></li>
+                    <li><%= link_to t('shared.pages.statistic.excel_html'), { :controller => "pages", :action => "date_report", :date => @date, :format => :xls }, { :title => t("shared.pages.statistic.excel.link") } %></li>
+                    <li><%= link_to t('shared.pages.statistic.printrecords_html'), { :controller => "pages", :action => "print", :date => @date }, { :title => t('shared.pages.statistic.printrecords') } %></li>
+                </ul>
+            </div>
         </div>
-        <h3><%= @title %></h3>
-        <table class="table header-table">
-            <tbody>
-                <tr>
-                    <th width="3%" rowspan="2"><%= t('shared.pages.statistic.table.numb_html') %></th>
-                    <th width="16%" rowspan="2"><%= t('shared.pages.statistic.table.name') %></th>
-                    <th colspan="2"><%= t('shared.pages.statistic.table.terms') %></th>
-                    <th width="12%" colspan="2"><%= t('shared.pages.statistic.table.emk') %></th>
-                    <th width="13%" rowspan="2"><%= t('shared.pages.statistic.table.register') %></th>
-                    <th width="8%" rowspan="2"><%= t('shared.pages.statistic.table.doc_reg') %></th>
-                    <th width="11%" rowspan="2"><%= t('shared.pages.statistic.table.infomat_html') %></th>
-                    <th width="10%" rowspan="2"><%= t('shared.pages.statistic.table.info_stand') %></th>
-                    <th rowspan="2"><%= t('shared.pages.statistic.table.comments') %></th>
-                </tr>
-                <tr>
-                    <th width="7%"><%= t('shared.pages.statistic.table.term_real') %></th>
-                    <th width="7%"><%= t('shared.pages.statistic.table.term_used') %></th>
-                    <th width="6%"><%= t('shared.pages.statistic.table.emk_term') %></th>
-                    <th><%= t('shared.pages.statistic.table.emk_inet') %></th>
-                </tr>
-            </tbody>
-        </table>
+        <%= render "table_header" %>
     </div>
     <div id="body-wrapper">
         <table class="table header-table">

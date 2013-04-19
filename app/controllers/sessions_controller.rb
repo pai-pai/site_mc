@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
         user = User.find_by_email(params[:session][:email].downcase)
         if user && user.password == params[:session][:password]
             sign_in user
-            redirect_to pages_statistic_path
+            redirect_to pages_dashboard_path
         else
             render "new"
         end

@@ -15,11 +15,14 @@ SiteMc::Application.routes.draw do
     get "pages/total"
     get "pages/get_comments"
     get "pages/print"
+    get "pages/dashboard"
 
     get "pages/get_start_val"
 
     match "success" => "pages#success"
     match "statistic" => "pages#statistic"
+    match "dashboard" => "pages#dashboard"
+    match "dashboard/date_report" => "pages#date_report", :as => :date_report
     match "total" => "pages#total"
     match "print-records" => "pages#print", :as => :print_records
 
