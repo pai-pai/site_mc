@@ -38,57 +38,67 @@ function fillForm() {
                         $("#result_used_term_reason").val( "" )
                     };
                     /*********************************/
-                    if ( data["emk_term"] === 1 ) {
-                        $("#result_emk_term_1").prop( 'checked', true );
-                        isEmkYes();
-                    } else {
-                        $("#result_emk_term_0").prop( 'checked', true );
-                        isEmkNo();
-                        if ( data["mis_inet"] === 1 ) {
-                            $("#result_mis_inet_1").prop( 'checked', true );
-                            isMisYes();
+                    if ( data["emk_term"] ) {
+                        if ( data["emk_term"] === 1 ) {
+                            $("#result_emk_term_1").prop( 'checked', true );
+                            isEmkYes();
                         } else {
-                            $("#result_mis_inet_0").prop( 'checked', true );
-                            isMisNo();
-                            $("#result_mis_emk_reason").val( data["mis_emk_reason"] );
-                        };
-                    };                        
+                            $("#result_emk_term_0").prop( 'checked', true );
+                            isEmkNo();
+                            if ( data["mis_inet"] === 1 ) {
+                                $("#result_mis_inet_1").prop( 'checked', true );
+                                isMisYes();
+                            } else {
+                                $("#result_mis_inet_0").prop( 'checked', true );
+                                isMisNo();
+                                $("#result_mis_emk_reason").val( data["mis_emk_reason"] );
+                            };
+                        }
+                    };                    
                     /********************************/
-                    if ( data["register"] === 1 ) {
-                        $("#result_register_1").prop( 'checked', true );
-                        isRegisterYes();
-                        $("#result_record_inet").val( data["record_inet"] );
-                    } else {
-                        $("#result_register_0").prop( 'checked', true );
-                        isRegisterNo();
-                        $("#result_register_reason").val( data["register_reason"] );
+                    if ( data["register"] ) {
+                        if ( data["register"] === 1 ) {
+                            $("#result_register_1").prop( 'checked', true );
+                            isRegisterYes();
+                            $("#result_record_inet").val( data["record_inet"] );
+                        } else {
+                            $("#result_register_0").prop( 'checked', true );
+                            isRegisterNo();
+                            $("#result_register_reason").val( data["register_reason"] );
+                        }
                     };
                     /*******************************/
-                    if ( data["doc_reg"] === 1 ) {
-                        $("#result_doc_reg_1").prop( 'checked', true );
-                        isDocYes();
-                    } else {
-                        $("#result_doc_reg_0").prop( 'checked', true );
-                        isDocNo();
-                        $("#result_doc_reg_reason").val( data["doc_reg_reason"] );
+                    if ( data["doc_reg"] ) {
+                        if ( data["doc_reg"] === 1 ) {
+                            $("#result_doc_reg_1").prop( 'checked', true );
+                            isDocYes();
+                        } else {
+                            $("#result_doc_reg_0").prop( 'checked', true );
+                            isDocNo();
+                            $("#result_doc_reg_reason").val( data["doc_reg_reason"] );
+                        }
                     };
                     /******************************/
-                    if ( data["used_infomat"] === 1 ) {
-                        $("#result_used_infomat_1").prop( 'checked', true );
-                        isInfomatYes();
-                    } else {
-                        $("#result_used_infomat_0").prop( 'checked', true );
-                        isInfomatNo();
-                        $("#result_used_infomat_reason").val( data["used_infomat_reason"] );
+                    if ( data["used_infomat"] ) {
+                        if ( data["used_infomat"] === 1 ) {
+                            $("#result_used_infomat_1").prop( 'checked', true );
+                            isInfomatYes();
+                        } else {
+                            $("#result_used_infomat_0").prop( 'checked', true );
+                            isInfomatNo();
+                            $("#result_used_infomat_reason").val( data["used_infomat_reason"] );
+                        }
                     };
                     /******************************/
-                    if ( data["info_pat"] === 1 ) {
-                        $("#result_info_pat_1").prop( 'checked', true );
-                        isInfoYes();
-                    } else {
-                        $("#result_info_pat_0").prop( 'checked', true );
-                        isInfoNo();
-                        $("#result_info_pat_reason").val( data["info_pat_reason"] );
+                    if ( data["info_pat"] ) {
+                        if ( data["info_pat"] === 1 ) {
+                            $("#result_info_pat_1").prop( 'checked', true );
+                            isInfoYes();
+                        } else {
+                            $("#result_info_pat_0").prop( 'checked', true );
+                            isInfoNo();
+                            $("#result_info_pat_reason").val( data["info_pat_reason"] );
+                        }
                     };
                     /******************************/
                     if ( data["comments"] ) {
