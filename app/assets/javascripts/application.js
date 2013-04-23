@@ -38,7 +38,7 @@ function fillForm() {
                         $("#result_used_term_reason").val( "" )
                     };
                     /*********************************/
-                    if ( data["emk_term"] ) {
+                    if ( data["emk_term"] === 0 || data["emk_term"] === 1 ) {
                         if ( data["emk_term"] === 1 ) {
                             $("#result_emk_term_1").prop( 'checked', true );
                             isEmkYes();
@@ -56,7 +56,7 @@ function fillForm() {
                         }
                     };                    
                     /********************************/
-                    if ( data["register"] ) {
+                    if ( data["register"] === 0 || data["register"] === 1 ) {
                         if ( data["register"] === 1 ) {
                             $("#result_register_1").prop( 'checked', true );
                             isRegisterYes();
@@ -68,7 +68,7 @@ function fillForm() {
                         }
                     };
                     /*******************************/
-                    if ( data["doc_reg"] ) {
+                    if ( data["doc_reg"] === 0 || data["doc_reg"] === 1 ) {
                         if ( data["doc_reg"] === 1 ) {
                             $("#result_doc_reg_1").prop( 'checked', true );
                             isDocYes();
@@ -79,7 +79,7 @@ function fillForm() {
                         }
                     };
                     /******************************/
-                    if ( data["used_infomat"] ) {
+                    if ( data["used_infomat"] === 0 || data["used_infomat"] === 1 ) {
                         if ( data["used_infomat"] === 1 ) {
                             $("#result_used_infomat_1").prop( 'checked', true );
                             isInfomatYes();
@@ -90,7 +90,7 @@ function fillForm() {
                         }
                     };
                     /******************************/
-                    if ( data["info_pat"] ) {
+                    if ( data["info_pat"] === 0 || data["info_pat"] === 1 ) {
                         if ( data["info_pat"] === 1 ) {
                             $("#result_info_pat_1").prop( 'checked', true );
                             isInfoYes();
