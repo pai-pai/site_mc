@@ -1,14 +1,19 @@
 class Result < ActiveRecord::Base
-    attr_accessible :org_id, :comments, :doc_reg, :doc_reg_reason, :emk_term, :fio, :info_pat, :info_pat_reason, :mis_emk_reason, :mis_inet, :phone, :record_inet, :records_infomat, :records_reg, :register, :register_reason, :used_infomat, :used_infomat_reason, :used_term, :used_term_reason, :start_date
+    attr_accessible :org_id, :comments, :doc_reg, :doc_reg_reason, :emk_term, :fio, :info_pat, :info_pat_reason, :mis_emk_reason, :mis_inet, :phone, :record_inet, :records_infomat, :records_reg, :register, :register_reason, :used_infomat, :used_infomat_reason, :used_term, :used_term_reason, :start_date, :cod_date_term, :workers_term, :workers_term_reason, :mis_inet_reason
 
     belongs_to :org
 
     validates_presence_of :org_id, :used_term, :doc_reg, :fio, :phone
 
     validates :used_term_reason, :presence => :true, :if => :less_term?
+    validates :cod_date_term, :presence => :true, :if => :less_term?
+
+    validates :workers_term, :presence => :true, :if => Proc.new { |a| !a.used_term.blank? && a.used_term > 0 }
+    validates :workers_term_reason, :presence => :true, :if => Proc.new { |a| !a.used_term.blank? && !a.workers_term.blank? && a.used_term > a.workers_term }
 
     validates :emk_term, :presence => :true, :if => Proc.new { |a| Org.find(a.org_id).register == 1 }
     validates :mis_inet, :presence => :true, :if => Proc.new { |a| a.emk_term == 0 }
+    validates :mis_inet_reason, :presence => :true, :if => Proc.new { |a| a.mis_inet == 1 && a.emk_term == 0 }
     validates :mis_emk_reason, :presence => :true, :if => Proc.new { |a| a.mis_inet == 0 && a.emk_term == 0 }
 
     validates :register, :presence => :true, :if => Proc.new { |a| Org.find(a.org_id).register == 1 }
@@ -25,6 +30,7 @@ class Result < ActiveRecord::Base
     validates :info_pat_reason, :presence => :true, :if => Proc.new { |a| a.info_pat == 0 }
 
     validates :used_term, :numericality => { :only_integer => true }
+    validates :workers_term, :numericality => { :only_integer => true }
 
     def less_term?
         plan_term = Org.find(self.org_id).term

@@ -46,10 +46,21 @@
                     <%= label_tag 'used-term', t('shared.result.term.used'), { :class => "head-label" } %><br />
                     <%= f.text_field :used_term %>
                 </div>
-
                 <div class="container-term-reason hidden-start">
-                    <%= label_tag 'term-reason', t('shared.result.term.reason'), { :class => "head-label" } %><br />
+                    <%= label_tag 'term-reason', t('shared.result.term.reason_html'), { :class => "head-label" } %><br />
                     <%= f.text_area :used_term_reason, :rows => 4 %>
+                </div>
+                <div class="container-cod-date hidden-start">
+                    <%= label_tag 'cod_date', t('shared.result.term.date_cod'), { :class => "head-label" } %><br />
+                    <%= f.text_field :cod_date_term %>
+                </div>
+                <div class="container-workers hidden-start">
+                    <%= label_tag 'workers-term', t('shared.result.term.workers_term'), { :class => "head-label" } %><br />
+                    <%= f.text_field :workers_term %>
+                </div>
+                <div class="container-not-workers hidden-start">
+                    <%= label_tag 'not-cod', t('shared.result.term.not_workers_reason_html'), { :class => "head-label" } %><br />
+                    <%= f.text_area :workers_term_reason, :rows => 4 %>
                 </div>
             </div>
 
@@ -67,6 +78,11 @@
                     <%= f.radio_button :mis_inet, 1 %>
                     <%= label_tag 'mis-used-nope', t('shared.result.nope') %>
                     <%= f.radio_button :mis_inet, 0 %>
+                </div>
+
+                <div class="container-mis-inet-reason hidden-start">
+                    <%= label_tag 'mis-inet-reason', t('shared.result.emk.mis_inet_reason'), { :class => "head-label" } %><br />
+                    <%= f.text_area :mis_inet_reason, :rows => 4 %>
                 </div>
 
                 <div class="container-emk-reason hidden-start">

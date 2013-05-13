@@ -37,6 +37,22 @@ function fillForm() {
                     } else {
                         $("#result_used_term_reason").val( "" )
                     };
+                    if ( data["cod_date_term"] ) {
+                        $("#result_cod_date_term").val( data["cod_date_term"] )
+                    } else {
+                        $("#result_cod_date_term").val( "" )
+                    };
+                    if ( data["workers_term"] ) {
+                        $("#result_workers_term").val( data["workers_term"] )
+                    } else {
+                        $("#result_workers_term").val( "" )
+                    };
+                    compareWorkers();
+                    if ( data["workers_term_reason"] ) {
+                        $("#result_workers_term_reason").val( data["workers_term_reason"] )
+                    } else {
+                        $("#result_workers_term_reason").val( "" )
+                    };
                     /*********************************/
                     if ( data["emk_term"] === 0 || data["emk_term"] === 1 ) {
                         if ( data["emk_term"] === 1 ) {
@@ -121,10 +137,31 @@ function fillForm() {
 
 function compareTerms() {
     if (parseInt($("#result_used_term").val()) < parseInt($("#org_term").val())) { 
+        $("#not_cod").html( parseInt($("#org_term").val()) - parseInt($("#result_used_term").val()) );
+        if ( $("#result_workers_term").val() ) { $("#no_workers").html( parseInt($("#result_used_term").val()) - parseInt($("#result_workers_term").val()) ); }
         $(".container-term-reason").slideDown(); 
+        $(".container-cod-date").slideDown();
     } else { 
         $(".container-term-reason").slideUp();
+        $(".container-cod-date").slideUp();
         $("#result_used_term_reason").val('');
+        $("#result_cod_date_term").val('');
+    };
+    if (parseInt($("#result_used_term").val()) > 0) {
+        $(".container-workers").slideDown();
+    } else {
+        $(".container-workers").slideUp();
+        $("#result_workers_term").val('');
+    }
+}
+
+function compareWorkers() {
+    if (parseInt($("#result_used_term").val()) > parseInt($("#result_workers_term").val())) {
+        $("#no_workers").html( parseInt($("#result_used_term").val()) - parseInt($("#result_workers_term").val()) );
+        $(".container-not-workers").slideDown();
+    } else {
+        $(".container-not-workers").slideUp();
+        $("#result_workers_term_reason").val('');
     }
 }
 
@@ -143,10 +180,20 @@ function isMisYes() {
     if ($("#result_mis_inet_1").is(":checked")) { 
         $(".container-emk-reason").slideUp(); 
         $("#result_mis_emk_reason").val('');
+        $(".container-mis-inet-reason").slideDown();
+    } else {
+        $(".container-mis-inet-reason").slideUp();
+        $("#result_mis_inet_reason").val('');
     }
 }
 
-function isMisNo() { if ($("#result_mis_inet_0").is(":checked")) $(".container-emk-reason").slideDown() };
+function isMisNo() { 
+    if ($("#result_mis_inet_0").is(":checked")) {
+        $(".container-emk-reason").slideDown();
+        $(".container-mis-inet-reason").slideUp();
+        $("#result_mis_inet_reason").val('');
+    }
+}
 
 function isRegisterYes() { 
     if ($("#result_register_1").is(":checked")) { 
@@ -236,9 +283,12 @@ $(document).ready(function(){
                 };
                 $(".buttons-group").slideDown();
 
-                if (parseInt($("#result_used_term").val()) < parseInt($("#org_term").val())) { $(".container-term-reason").slideDown(); };
+                //if (parseInt($("#result_used_term").val()) < parseInt($("#org_term").val())) { $(".container-term-reason").slideDown(); };
+                compareTerms();
+                compareWorkers();
                 if ($("#result_emk_term_0").is(":checked")) { $(".container-mis").slideDown(); };
                 if ($("#result_mis_inet_0").is(":checked")) { $(".container-emk-reason").slideDown(); };
+                if ($("#result_mis_inet_1").is(":checked")) { $(".container-mis-inet-reason").slideDown(); };
                 if ($("#result_register_0").is(":checked")) { $(".container-register-reason").slideDown(); };
                 if ($("#result_register_1").is(":checked")) { $(".container-register-details").slideDown(); };
                 if ($("#result_doc_reg_0").is(":checked")) { $(".container-doc-reason").slideDown(); };
@@ -304,6 +354,7 @@ $(document).ready(function(){
     $("#close-button").click(function() { $(".alert-error").hide() });
     
     $("#result_used_term").change(function() { compareTerms() });
+    $("#result_workers_term").change(function() { compareWorkers() });
 
     $("#result_emk_term_1").change(function() { isEmkYes() });
     $("#result_emk_term_0").change(function() { isEmkNo() }); 
