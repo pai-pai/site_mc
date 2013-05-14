@@ -64,7 +64,7 @@
                 <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
                 <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
                 <Cell ss:StyleID="th1" ss:MergeAcross="5"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:Index="9" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.emk') %></Data></Cell>
                 <Cell ss:StyleID="th1" ss:Index="11" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
                 <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.register') %></Data></Cell>
                 <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.result.reason') %></Data></Cell>
@@ -108,7 +108,7 @@
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><% if org.this_date_form(@date).register==1 %><%= org.this_date_form(@date).record_inet %><% else %><%= t('shared.pages.statistic.table.nope') %><% end %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).register_reason %></Data></Cell>
             <% end %>
-                <Cell ss:Index="11" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).doc_reg==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:Index="14" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).doc_reg==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).doc_reg_reason %></Data></Cell>
             <% if org.infomat==0 %>
                 <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
@@ -117,12 +117,12 @@
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).used_infomat_reason %></Data></Cell>
             <% end %>
             <% if org.register==0 %>
-                <Cell ss:Index="15" ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
+                <Cell ss:Index="18" ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
             <% else %>
-                <Cell ss:Index="15" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:Index="18" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat_reason %></Data></Cell>
             <% end %>
-                <Cell ss:Index="17" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).comments %></Data></Cell>
+                <Cell ss:Index="20" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).comments %></Data></Cell>
             <% end %>
             </Row>
         <% end %>
