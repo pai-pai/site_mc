@@ -8,7 +8,7 @@ class Result < ActiveRecord::Base
     validates :used_term_reason, :presence => :true, :if => :less_term?
     validates :cod_date_term, :presence => :true, :if => :less_term?
 
-    validates :workers_term, :presence => :true, :if => Proc.new { |a| !a.used_term.blank? && a.used_term > 0 }
+    validates :workers_term, :numericality => { :only_integer => true }, :presence => :true, :if => Proc.new { |a| !a.used_term.blank? && a.used_term > 0 }
     validates :workers_term_reason, :presence => :true, :if => Proc.new { |a| !a.used_term.blank? && !a.workers_term.blank? && a.used_term > a.workers_term }
 
     validates :emk_term, :presence => :true, :if => Proc.new { |a| Org.find(a.org_id).register == 1 }
@@ -30,7 +30,6 @@ class Result < ActiveRecord::Base
     validates :info_pat_reason, :presence => :true, :if => Proc.new { |a| a.info_pat == 0 }
 
     validates :used_term, :numericality => { :only_integer => true }
-    validates :workers_term, :numericality => { :only_integer => true }
 
     def less_term?
         plan_term = Org.find(self.org_id).term
