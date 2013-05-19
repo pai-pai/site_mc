@@ -52,7 +52,7 @@
                 </div>
                 <div class="container-cod-date hidden-start">
                     <%= label_tag 'cod_date', t('shared.result.term.date_cod'), { :class => "head-label" } %><br />
-                    <%= f.text_field :cod_date_term %>
+                    <%= f.text_field :cod_date_term, :placeholder => t('shared.result.term.date_cod_help') %>
                 </div>
                 <div class="container-workers hidden-start">
                     <%= label_tag 'workers-term', t('shared.result.term.workers_term'), { :class => "head-label" } %><br />

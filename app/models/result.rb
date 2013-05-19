@@ -3,10 +3,14 @@ class Result < ActiveRecord::Base
 
     belongs_to :org
 
+    date_regex = /^(0?[1-9]|[12][0-9]|3[01])[\.](0?[1-9]|1[012])[\.](2013)$/
+
     validates_presence_of :org_id, :used_term, :doc_reg, :fio, :phone
 
     validates :used_term_reason, :presence => :true, :if => :less_term?
     validates :cod_date_term, :presence => :true, :if => :less_term?
+    validates :cod_date_term, :format => { :with => date_regex, :message => ":#{I18n.t("activerecord.attributes.result.cod_date_term_format")}" }, :if => :less_term?
+    validate :not_in_interval, :on => :create, :if => Proc.new { |a| !a.cod_date_term.blank? && date_regex =~ a.cod_date_term }
 
     validates :workers_term, :numericality => { :only_integer => true }, :presence => :true, :if => Proc.new { |a| !a.used_term.blank? && a.used_term > 0 }
     validates :workers_term_reason, :presence => :true, :if => Proc.new { |a| !a.used_term.blank? && !a.workers_term.blank? && a.used_term > a.workers_term }
@@ -39,6 +43,15 @@ class Result < ActiveRecord::Base
             return true
         else
             return false
+        end
+    end
+
+    def not_in_interval
+        date_s = self.cod_date_term.split('.')
+        date_t = Time.new(date_s[2], date_s[1], date_s[0], 00, 00, 0, "+04:00")
+        last_day = Time.new(2013, 12, 31, 00, 00, 0, "+04:00")
+        if date_t <= Time.zone.today || date_t > last_day
+            errors.add(:cod_date_term, ":#{I18n.t("activerecord.attributes.result.cod_date_term_period")}")
         end
     end
 
