@@ -53,6 +53,26 @@ function fillForm() {
                     } else {
                         $("#result_workers_term_reason").val( "" )
                     };
+                    if ( data["addition_volokno"] == 1 ) {
+                        $("#result_addition_volokno").attr( 'checked', true )
+                    } else {
+                        $("#result_addition_volokno").attr( 'checked', false )
+                    };
+                    if ( data["addition_sks"] == 1 ) {
+                        $("#result_addition_sks").attr( 'checked', true )
+                    } else {
+                        $("#result_addition_sks").attr( 'checked', false )
+                    };
+                    if ( data["addition_other"] == 1 ) {
+                        $("#result_addition_other").attr( 'checked', true );
+                        $("#result_addition_other_def").val( data["addition_other_def"] );
+                    } else {
+                        $("#result_addition_other").attr( 'checked', false );
+                        $("#result_addition_other_def").val( "" );
+                    };
+                    isAdditionalCheck();
+                    isVoloknoPick();
+                    isSksPick();
                     /*********************************/
                     if ( data["emk_term"] === 0 || data["emk_term"] === 1 ) {
                         if ( data["emk_term"] === 1 ) {
@@ -141,11 +161,17 @@ function compareTerms() {
         if ( $("#result_workers_term").val() ) { $("#no_workers").html( parseInt($("#result_used_term").val()) - parseInt($("#result_workers_term").val()) ); }
         $(".container-term-reason").slideDown(); 
         $(".container-cod-date").slideDown();
+        $(".container-addition-works").slideDown();
     } else { 
         $(".container-term-reason").slideUp();
         $(".container-cod-date").slideUp();
+        $(".container-addition-works").slideUp()
         $("#result_used_term_reason").val('');
         $("#result_cod_date_term").val('');
+        $("#result_addition_volokno").attr('checked', false);
+        $("#result_addition_sks").attr('checked', false);
+        $("#result_addition_other").attr('checked', false);
+        $("#result_addition_other_def").val('');
     };
     if (parseInt($("#result_used_term").val()) > 0) {
         $(".container-workers").slideDown();
@@ -162,6 +188,49 @@ function compareWorkers() {
     } else {
         $(".container-not-workers").slideUp();
         $("#result_workers_term_reason").val('');
+    }
+}
+
+function isAdditionalCheck() {
+    if ( $("#result_addition_volokno").is(':checked') || $("#result_addition_sks").is(':checked') || $("#result_addition_other").is(':checked') ) {
+        $(".container-term-reason").slideUp();
+        $("#result_used_term_reason").val('');
+    } else {
+        $(".container-term-reason").slideDown();
+        $("#result_addition_other_def").val('');
+    };
+    if ( $("#result_addition_other").is(':checked') ) {
+        $("#result_addition_other_def").slideDown();
+    } else {
+        $("#result_addition_other_def").slideUp();
+    };
+    if ( $("#result_addition_volokno").is(':checked') ) {
+        $(".container-steps-volokno").slideDown();
+    } else {
+        $(".container-steps-volokno").slideUp();
+    };
+    if ( $("#result_addition_sks").is(':checked') ) {
+        $(".container-steps-sks").slideDown();
+    } else {
+        $(".container-steps-sks").slideUp();
+    };
+}
+
+function isVoloknoPick() {
+    if ( $("#result_step_volokno_5").is(":checked") ) {
+        $("#result_step_volokno_other_def").slideDown();
+    } else {
+        $("#result_step_volokno_other_def").slideUp();
+        $("#result_step_volokno_other_def").val('');
+    }
+}
+
+function isSksPick() {
+    if ( $("#result_step_sks_5").is(":checked") ) {
+        $("#result_step_sks_other_def").slideDown();
+    } else {
+        $("#result_step_sks_other_def").slideUp();
+        $("#result_step_sks_other_def").val('');
     }
 }
 
@@ -209,7 +278,7 @@ function isRegisterNo() {
         $(".container-register-details").slideUp();
         $("#result_records_reg").val('');
         $("#result_records_infomat").val('');
-        $("#result_record_inet").val('');
+        $("#result_record_inet").val('');container-addition-works
     } 
 }
 
@@ -286,6 +355,9 @@ $(document).ready(function(){
                 //if (parseInt($("#result_used_term").val()) < parseInt($("#org_term").val())) { $(".container-term-reason").slideDown(); };
                 compareTerms();
                 compareWorkers();
+                isAdditionalCheck();
+                isVoloknoPick();
+                isSksPick();
                 if ($("#result_emk_term_0").is(":checked")) { $(".container-mis").slideDown(); };
                 if ($("#result_mis_inet_0").is(":checked")) { $(".container-emk-reason").slideDown(); };
                 if ($("#result_mis_inet_1").is(":checked")) { $(".container-mis-inet-reason").slideDown(); };
@@ -355,6 +427,11 @@ $(document).ready(function(){
     
     $("#result_used_term").change(function() { compareTerms() });
     $("#result_workers_term").change(function() { compareWorkers() });
+
+    $(".container-addition-works input[type='checkbox']").change(function() { isAdditionalCheck() });
+
+    $(".container-steps-volokno input[type='radio']").change(function() { isVoloknoPick(); });
+    $(".container-steps-sks input[type='radio']").change(function() { isSksPick(); });
 
     $("#result_emk_term_1").change(function() { isEmkYes() });
     $("#result_emk_term_0").change(function() { isEmkNo() }); 

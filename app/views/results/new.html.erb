@@ -46,57 +46,47 @@
                     <%= label_tag 'used-term', t('shared.result.term.used'), { :class => "head-label" } %><br />
                     <%= f.text_field :used_term %>
                 </div>
-                <div class="container-workers hidden-star">
+                <div class="container-workers hidden-start">
                     <%= label_tag 'workers-term', t('shared.result.term.workers_term'), { :class => "head-label" } %><br />
                     <%= f.text_field :workers_term %>
                 </div>
-                <div class="container-not-workers hidden-star">
+                <div class="container-not-workers hidden-start">
                     <%= label_tag 'not-cod', t('shared.result.term.not_workers_reason_html'), { :class => "head-label" } %><br />
                     <%= f.text_area :workers_term_reason, :rows => 4 %>
                 </div>
-                <div class="container-addition-works hidden-star">
+                <div class="container-addition-works hidden-start">
                     <%= label_tag 'addition-works', t('shared.result.term.addition_html'), { :class => "head-label" } %><br />
-                    <%= f.check_box :addition_volokno, 1 %>
+                    <%= f.check_box :addition_volokno %>
                     <%= label_tag 'addition-volokno', t('shared.result.term.addition.volokno') %><br />
-                    <%= f.check_box :addition_sks, 1 %>
+                    <%= f.check_box :addition_sks %>
                     <%= label_tag 'addition-sks', t('shared.result.term.addition.sks') %><br />
-                    <%= f.check_box :addition_other, 1 %>
+                    <%= f.check_box :addition_other %>
                     <%= label_tag 'addition-other', t('shared.result.term.addition.other'), { :class => "head-label" } %><br />
-                    <%= f.text_area :addition_other_def, :rows => 4, { :class => "hidden-star" } %>
+                    <%= f.text_area :addition_other_def, :rows => 4, :class => "hidden-start" %><br />
                 </div>
-                <div class="container-steps-volokno hidden-star">
+                <div class="container-steps-volokno hidden-start">
                     <%= label_tag 'steps-volokno', t('shared.result.term.steps_volokno_html'), { :class => "head-label" } %><br />
-                    <%= label_tag 'step-1', t('shared.result.term.steps.step_1') %>
-                    <%= f.radio_button :step_volokno, 1 %><br />
-                    <%= label_tag 'step-2', t('shared.result.term.steps.step_2') %>
-                    <%= f.radio_button :step_volokno, 2 %><br />
-                    <%= label_tag 'step-3', t('shared.result.term.steps.step_3') %>
-                    <%= f.radio_button :step_volokno, 3 %><br />
-                    <%= label_tag 'step-4', t('shared.result.term.steps.step_4') %>
-                    <%= f.radio_button :step_volokno, 4 %><br />
-                    <%= label_tag 'step-5', t('shared.result.term.steps.step_5') %>
-                    <%= f.radio_button :step_volokno, 5 %><br />
-                    <%= f.text_area :step_volokno_other_def, :rows => 4, { :class => "hidden-star" } %>
+                    <%= f.radio_button :step_volokno, 1 %> <%= label_tag 'step-1', t('shared.result.term.steps.step_1') %><br />
+                    <%= f.radio_button :step_volokno, 2 %> <%= label_tag 'step-2', t('shared.result.term.steps.step_2') %><br />
+                    <%= f.radio_button :step_volokno, 3 %> <%= label_tag 'step-3', t('shared.result.term.steps.step_3') %><br />
+                    <%= f.radio_button :step_volokno, 4 %> <%= label_tag 'step-4', t('shared.result.term.steps.step_4') %><br />
+                    <%= f.radio_button :step_volokno, 5 %> <%= label_tag 'step-5', t('shared.result.term.steps.step_5'), :class => "head-label" %><br />
+                    <%= f.text_area :step_volokno_other_def, :rows => 4, :class => "hidden-start" %><br />
                 </div>
-                <div class="container-steps-sks hidden-star">
+                <div class="container-steps-sks hidden-start">
                     <%= label_tag 'steps-sks', t('shared.result.term.steps_sks_html'), { :class => "head-label" } %><br />
-                    <%= label_tag 'step-1', t('shared.result.term.steps.step_1') %>
-                    <%= f.radio_button :step_sks, 1 %><br />
-                    <%= label_tag 'step-2', t('shared.result.term.steps.step_2') %>
-                    <%= f.radio_button :step_sks, 2 %><br />
-                    <%= label_tag 'step-3', t('shared.result.term.steps.step_3') %>
-                    <%= f.radio_button :step_sks, 3 %><br />
-                    <%= label_tag 'step-4', t('shared.result.term.steps.step_4') %>
-                    <%= f.radio_button :step_sks, 4 %><br />
-                    <%= label_tag 'step-5', t('shared.result.term.steps.step_5') %>
-                    <%= f.radio_button :step_sks, 5 %><br />
-                    <%= f.text_area :step_sks_other_def, :rows => 4, { :class => "hidden-star" } %>
+                    <%= f.radio_button :step_sks, 1 %> <%= label_tag 'step-1', t('shared.result.term.steps.step_1') %><br />
+                    <%= f.radio_button :step_sks, 2 %> <%= label_tag 'step-2', t('shared.result.term.steps.step_2') %><br />
+                    <%= f.radio_button :step_sks, 3 %> <%= label_tag 'step-3', t('shared.result.term.steps.step_3') %><br />
+                    <%= f.radio_button :step_sks, 4 %> <%= label_tag 'step-4', t('shared.result.term.steps.step_4') %><br />
+                    <%= f.radio_button :step_sks, 5 %> <%= label_tag 'step-5', t('shared.result.term.steps.step_5'), :class => "head-label" %><br />
+                    <%= f.text_area :step_sks_other_def, :rows => 4, :class => "hidden-start" %><br />
                 </div>
-                <div class="container-term-reason hidden-star">
+                <div class="container-term-reason hidden-start">
                     <%= label_tag 'term-reason', t('shared.result.term.reason_html'), { :class => "head-label" } %><br />
                     <%= f.text_area :used_term_reason, :rows => 4 %>
                 </div>
-                <div class="container-cod-date hidden-star">
+                <div class="container-cod-date hidden-start">
                     <%= label_tag 'cod_date', t('shared.result.term.date_cod'), { :class => "head-label" } %><br />
                     <%= f.text_field :cod_date_term, :placeholder => t('shared.result.term.date_cod_help') %>
                 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130513191528) do
+ActiveRecord::Schema.define(:version => 20130520151923) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -49,14 +49,22 @@ ActiveRecord::Schema.define(:version => 20130513191528) do
     t.text     "comments"
     t.string   "fio"
     t.string   "phone"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.integer  "org_id"
     t.date     "start_date"
     t.string   "cod_date_term"
     t.integer  "workers_term"
     t.text     "workers_term_reason"
     t.text     "mis_inet_reason"
+    t.integer  "addition_volokno"
+    t.integer  "addition_sks"
+    t.integer  "addition_other"
+    t.text     "addition_other_def"
+    t.integer  "step_volokno"
+    t.text     "step_volokno_other_def"
+    t.integer  "step_sks"
+    t.text     "step_sks_other_def"
   end
 
   create_table "types", :force => true do |t|

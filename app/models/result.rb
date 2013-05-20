@@ -1,5 +1,5 @@
 class Result < ActiveRecord::Base
-    attr_accessible :org_id, :comments, :doc_reg, :doc_reg_reason, :emk_term, :fio, :info_pat, :info_pat_reason, :mis_emk_reason, :mis_inet, :phone, :record_inet, :records_infomat, :records_reg, :register, :register_reason, :used_infomat, :used_infomat_reason, :used_term, :used_term_reason, :start_date, :cod_date_term, :workers_term, :workers_term_reason, :mis_inet_reason
+    attr_accessible :org_id, :comments, :doc_reg, :doc_reg_reason, :emk_term, :fio, :info_pat, :info_pat_reason, :mis_emk_reason, :mis_inet, :phone, :record_inet, :records_infomat, :records_reg, :register, :register_reason, :used_infomat, :used_infomat_reason, :used_term, :used_term_reason, :start_date, :cod_date_term, :workers_term, :workers_term_reason, :mis_inet_reason, :addition_volokno, :addition_sks, :addition_other, :addition_other_def, :step_volokno, :step_volokno_other_def, :step_sks, :step_sks_other_def
 
     belongs_to :org
 
@@ -7,13 +7,22 @@ class Result < ActiveRecord::Base
 
     validates_presence_of :org_id, :used_term, :doc_reg, :fio, :phone
 
-    validates :used_term_reason, :presence => :true, :if => :less_term?
     validates :cod_date_term, :presence => :true, :if => :less_term?
     validates :cod_date_term, :format => { :with => date_regex, :message => ":#{I18n.t("activerecord.attributes.result.cod_date_term_format")}" }, :if => :less_term?
     validate :not_in_interval, :on => :create, :if => Proc.new { |a| !a.cod_date_term.blank? && date_regex =~ a.cod_date_term }
 
     validates :workers_term, :numericality => { :only_integer => true }, :presence => :true, :if => Proc.new { |a| !a.used_term.blank? && a.used_term > 0 }
     validates :workers_term_reason, :presence => :true, :if => Proc.new { |a| !a.used_term.blank? && !a.workers_term.blank? && a.used_term > a.workers_term }
+
+    validates :addition_other_def, :presence => :true, :if => Proc.new { |a| a.addition_other == 1 }
+
+    validates :step_volokno, :presence => :true, :if => Proc.new { |a| a.addition_volokno == 1 }
+    validates :step_sks, :presence => :true, :if => Proc.new { |a| a.addition_sks == 1 }
+
+    validates :step_volokno_other_def, :presence => :true, :if => Proc.new { |a| a.step_volokno == 5 }
+    validates :step_sks_other_def, :presence => :true, :if => Proc.new { |a| a.step_sks == 5 }
+
+    validates :used_term_reason, :presence => :true, :if => Proc.new { |a| a.addition_volokno == 0 && a.addition_sks == 0 && a.addition_other == 0 }
 
     validates :emk_term, :presence => :true, :if => Proc.new { |a| Org.find(a.org_id).register == 1 }
     validates :mis_inet, :presence => :true, :if => Proc.new { |a| a.emk_term == 0 }
