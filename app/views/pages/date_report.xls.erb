@@ -179,38 +179,80 @@
         <Table>
             <Column ss:AutoFitWidth="0" ss:Width="27" />
             <Column ss:AutoFitWidth="0" ss:Width="225" />
-            <Column ss:AutoFitWidth="0" ss:Width="61.5" />
-            <Column ss:AutoFitWidth="0" ss:Width="61.5" />
-            <Column ss:AutoFitWidth="0" ss:Width="240" />
-            <Column ss:AutoFitWidth="0" ss:Width="61.5" />
+	        <Column ss:AutoFitWidth="0" ss:Width="61.5" />
+            <Column ss:AutoFitWidth="0" ss:Width="67.5" />
             <Column ss:AutoFitWidth="0" ss:Width="61.5" />
             <Column ss:AutoFitWidth="0" ss:Width="240" />
+            <Column ss:AutoFitWidth="0" ss:Width="104.25" />
+            <Column ss:AutoFitWidth="0" ss:Width="104.25" />
+            <Column ss:AutoFitWidth="0" ss:Width="104.25" />
+            <Column ss:AutoFitWidth="0" ss:Width="240" />
+            <Column ss:AutoFitWidth="0" ss:Width="61.5" />
             <Row>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:MergeAcross="5"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.numb') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeDown="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.name') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:MergeAcross="8"><Data ss:Type="String"><%= t('shared.pages.statistic.table.terms') %></Data></Cell>
             </Row>
             <Row>
-                <Cell ss:StyleID="th1" ss:Index="3"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_real') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:Index="4"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_used') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:Index="5"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_reason') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:Index="6"><Data ss:Type="String"><%= t('shared.pages.statistic.table.date_cod') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:Index="7"><Data ss:Type="String"><%= t('shared.pages.statistic.table.workers_term') %></Data></Cell>
-                <Cell ss:StyleID="th1" ss:Index="8"><Data ss:Type="String"><%= t('shared.pages.statistic.table.workers_term_reason') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="3" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_real') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="4" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_used') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="5" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.workers_term') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="6" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.workers_term_reason') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="7" ss:MergeAcross="2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.addition') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="10" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.term_reason') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="11" ss:MergeDown="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.date_cod') %></Data></Cell>
+            </Row>
+            <Row>
+                <Cell ss:StyleID="th1" ss:Index="7"><Data ss:Type="String"><%= t('shared.pages.statistic.table.volokno') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="8"><Data ss:Type="String"><%= t('shared.pages.statistic.table.sks') %></Data></Cell>
+                <Cell ss:StyleID="th1" ss:Index="9"><Data ss:Type="String"><%= t('shared.pages.statistic.table.other') %></Data></Cell>
             </Row>
         <% @orgs.each do |org| %>
             <Row>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
             <% if org.this_date_form(@date).blank? %>
-                <Cell ss:StyleID="t2" ss:MergeAcross="5"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
+                <Cell ss:StyleID="t2" ss:MergeAcross="8"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
             <% else %>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.term %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.this_date_form(@date).used_term %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).used_term_reason %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).cod_date_term %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.this_date_form(@date).workers_term %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).workers_term_reason %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String">
+                    <% if org.this_date_form(@date).addition_volokno==1 %>
+                        <% case org.this_date_form(@date).step_volokno %>
+                        <% when 1 %>
+                            <%= t('shared.result.term.steps.step_1') %>
+                        <% when 2 %>
+                            <%= t('shared.result.term.steps.step_2') %>
+                        <% when 3 %>
+                            <%= t('shared.result.term.steps.step_3') %>
+                        <% when 4 %>
+                            <%= t('shared.result.term.steps.step_4') %>
+                        <% when 5 %>
+                            <%= org.this_date_form(@date).step_volokno_other_def %>
+                        <% end %>
+                    <% end %>
+                </Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String">
+                    <% if org.this_date_form(@date).addition_sks==1 %>
+                        <% case org.this_date_form(@date).step_sks %>
+                        <% when 1 %>
+                            <%= t('shared.result.term.steps.step_1') %>
+                        <% when 2 %>
+                            <%= t('shared.result.term.steps.step_2') %>
+                        <% when 3 %>
+                            <%= t('shared.result.term.steps.step_3') %>
+                        <% when 4 %>
+                            <%= t('shared.result.term.steps.step_4') %>
+                        <% when 5 %>
+                            <%= org.this_date_form(@date).step_sks_other_def %>
+                        <% end %>
+                    <% end %>
+                </Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).addition_other_def %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).used_term_reason %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).cod_date_term %></Data></Cell>
             <% end %>
             </Row>
         <% end %>
