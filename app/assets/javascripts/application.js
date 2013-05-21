@@ -196,8 +196,13 @@ function isAdditionalCheck() {
         $(".container-term-reason").slideUp();
         $("#result_used_term_reason").val('');
     } else {
-        $(".container-term-reason").slideDown();
-        $("#result_addition_other_def").val('');
+        if (parseInt($("#result_used_term").val()) < parseInt($("#org_term").val())) { 
+            $(".container-term-reason").slideDown();
+            $("#result_addition_other_def").val('');
+        } else {
+            $(".container-term-reason").slideUp();
+            $("#result_used_term_reason").val('');
+        }
     };
     if ( $("#result_addition_other").is(':checked') ) {
         $("#result_addition_other_def").slideDown();
