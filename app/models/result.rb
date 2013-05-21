@@ -22,7 +22,7 @@ class Result < ActiveRecord::Base
     validates :step_volokno_other_def, :presence => :true, :if => Proc.new { |a| a.step_volokno == 5 }
     validates :step_sks_other_def, :presence => :true, :if => Proc.new { |a| a.step_sks == 5 }
 
-    validates :used_term_reason, :presence => :true, :if => Proc.new { |a| a.addition_volokno == 0 && a.addition_sks == 0 && a.addition_other == 0 }
+    validates :used_term_reason, :presence => :true, :if => Proc.new { |a| a.addition_volokno == 0 && a.addition_sks == 0 && a.addition_other == 0 && a.used_term < Org.find(a.org_id).term }
 
     validates :emk_term, :presence => :true, :if => Proc.new { |a| Org.find(a.org_id).register == 1 }
     validates :mis_inet, :presence => :true, :if => Proc.new { |a| a.emk_term == 0 }
