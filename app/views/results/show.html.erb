@@ -16,7 +16,7 @@
             
             <% if !@result.workers_term.blank? && @result.used_term > @result.workers_term %>
                 <dl>
-                    <dt><%= t('shared.pages.org.term_workers_reason') %></dt>
+                    <dt><%=t 'shared.pages.org.term_workers_reason', :numb => @result.used_term - @result.workers_term %></dt>
                     <dd><%= @result.workers_term_reason %></dd>
                 </dl>
             <% end %>
@@ -25,7 +25,7 @@
                 <dl>
                     <dt><%= t('shared.pages.org.addition_work') %></dt>
                     <dd>
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" width="60%">
                             <tbody>
                                 <% if @result.addition_volokno==1 %>
                                     <tr>
