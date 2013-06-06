@@ -6,9 +6,13 @@
     <div class="group">
         <h4><%= t('shared.result.term.header') %></h4>
         <div class="container-fluid">
-            <p><%= t('shared.pages.org.term_pmz') %><strong><%= @org.term %></strong><br />
-            <%= t('shared.pages.org.term_used') %><strong><%= @result.used_term %></strong><br />
-            <%= t('shared.pages.org.term_workers') %><strong><%= @result.workers_term %></p>
+            <p>
+                <%= t('shared.pages.org.term_pmz') %><strong><%= @org.term %></strong>
+                <br /><%= t('shared.pages.org.term_used') %><strong><%= @result.used_term %></strong>
+                <% if !@result.workers_term.blank? %>
+                    <br /><%= t('shared.pages.org.term_workers') %><strong><%= @result.workers_term %>
+                <% end %>
+            </p>
             
             <% if !@result.workers_term.blank? && @result.used_term > @result.workers_term %>
                 <dl>
@@ -71,13 +75,13 @@
             <% else %>
                 <% if @org.term > @result.used_term %>
                     <dl>
-                        <dt><%= t('shared.pages.org.term_used_reason', :numb => @result.used_term - @org.term) %></dt>
+                        <dt><%= t('shared.pages.org.term_used_reason', :numb => @org.term - @result.used_term) %></dt>
                         <dd><%= @result.used_term_reason %></dd>
                     </dl>
                 <% end %>
             <% end %>
             <% if !@result.cod_date_term.blank? %>
-                <p><%= t('shared.pages.org.term_date_cod', :cod_date => @result.cod_date_term, :numb => @result.used_term - @org.term) %></p>
+                <p><%= t('shared.pages.org.term_date_cod', :cod_date => @result.cod_date_term, :numb => @org.term - @result.used_term) %></p>
             <% end %>
         </div>
     </div>
