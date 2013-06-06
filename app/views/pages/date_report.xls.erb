@@ -177,12 +177,10 @@
             <% end %>
             </Row>
             <% if !org.this_date_form(@date).blank? && !org.this_date_form(@date).comments.blank? && org.this_date_form(@date).comments.size > 1024 %>
-                <% org.this_date_form(@date).comments.scan(/.{1024}/).each do |part| %>
-                    <% if org.this_date_form(@date).comments.scan(/.{1024}/).index(part) != 0 %>
+                <% org.this_date_form(@date).comments.scan(/.{1,1024}/).each do |part| %>
                         <Row>
                             <Cell ss:Index="23" ss:StyleID="t1"><Data ss:Type="String"><%= part %></Data></Cell>
                         </Row>
-                    <% end %>
                 <% end %>
             <% end %>
         <% end %>
