@@ -7,12 +7,77 @@
         <h4><%= t('shared.result.term.header') %></h4>
         <div class="container-fluid">
             <p><%= t('shared.pages.org.term_pmz') %><strong><%= @org.term %></strong><br />
-            <%= t('shared.pages.org.term_used') %><strong><%= @result.used_term %></strong></p>
-            <% if @org.term > @result.used_term %>
+            <%= t('shared.pages.org.term_used') %><strong><%= @result.used_term %></strong><br />
+            <%= t('shared.pages.org.term_workers') %><strong><%= @result.workers_term %></p>
+            
+            <% if !@result.workers_term.blank? && @result.used_term > @result.workers_term %>
                 <dl>
-                    <dt><%= t('shared.pages.org.reason') %></dt>
-                    <dd><%= @result.used_term_reason %></dd>
+                    <dt><%= t('shared.pages.org.term_workers_reason') %></dt>
+                    <dd><%= @result.workers_term_reason %></dd>
                 </dl>
+            <% end %>
+
+            <% if @result.addition_volokno==1 || @result.addition_sks==1 || @result.addition_other==1 %>
+                <dl>
+                    <dt><%= t('shared.pages.org.addition_work') %></dt>
+                    <dd>
+                        <table class="table table-bordered">
+                            <tbody>
+                                <% if @result.addition_volokno==1 %>
+                                    <tr>
+                                        <td><%= t('shared.result.term.addition.volokno') %></td>
+                                        <td>
+                                            <% case @result.step_volokno %>
+                                            <% when 1 %>
+                                                <%= t('shared.result.term.steps.step_1') %>
+                                            <% when 2 %>
+                                                <%= t('shared.result.term.steps.step_2') %>
+                                            <% when 3 %>
+                                                <%= t('shared.result.term.steps.step_3') %>
+                                            <% when 4 %>
+                                                <%= t('shared.result.term.steps.step_4') %>
+                                            <% when 5 %>
+                                                <%= @result.step_volokno_other_def %>
+                                            <% end %>
+                                        </td>
+                                    </tr>
+                                <% elsif @result.addition_sks==1 %>
+                                    <tr>
+                                        <td><%= t('shared.result.term.addition.sks') %></td>
+                                        <td>
+                                            <% case @result.step_sks %>
+                                            <% when 1 %>
+                                                <%= t('shared.result.term.steps.step_1') %>
+                                            <% when 2 %>
+                                                <%= t('shared.result.term.steps.step_2') %>
+                                            <% when 3 %>
+                                                <%= t('shared.result.term.steps.step_3') %>
+                                            <% when 4 %>
+                                                <%= t('shared.result.term.steps.step_4') %>
+                                            <% when 5 %>
+                                                <%= @result.step_sks_other_def %>
+                                            <% end %>
+                                        </td>
+                                    </tr>
+                                <% elsif @result.addition_other==1 %>
+                                    <tr>
+                                        <td colspan="2"><%= @result.addition_other_def %></td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                    </dd>
+                </dl>
+            <% else %>
+                <% if @org.term > @result.used_term %>
+                    <dl>
+                        <dt><%= t('shared.pages.org.term_used_reason', :numb => @result.used_term - @org.term) %></dt>
+                        <dd><%= @result.used_term_reason %></dd>
+                    </dl>
+                <% end %>
+            <% end %>
+            <% if !@result.cod_date_term.blank? %>
+                <p><%= t('shared.pages.org.term_date_cod', :cod_date => @result.cod_date_term, :numb => @result.used_term - @org.term) %></p>
             <% end %>
         </div>
     </div>
@@ -23,7 +88,10 @@
             <% if @result.emk_term == 1 %>
                 <p><%= t('shared.pages.org.emk_term') %></p>
             <% elsif @result.mis_inet == 1 %>
-                <p><%= t('shared.pages.org.emk_inet') %></p>
+                <dl>
+                    <dt><%= t('shared.pages.org.emk_inet') %></dt>
+                    <dd><%= @result.mis_inet_reason %></dd>
+                </dl>
             <% else %>
                 <dl>
                     <dt><%= t('shared.pages.org.emk_reason_html') %></dt>
