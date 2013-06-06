@@ -169,18 +169,9 @@
                 <Cell ss:Index="21" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
                 <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat_reason %></Data></Cell>
             <% end %>
-                <Cell ss:Index="23" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).comments[0..1023] if !org.this_date_form(@date).comments.blank? %></Data></Cell>
+                <Cell ss:Index="23" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).comments %></Data></Cell>
             <% end %>
             </Row>
-            <% if !org.this_date_form(@date).comments.blank? && org.this_date_form(@date).comments.size > 1024 %>
-                <% org.this_date_form(@date).comments.scan(/.{1024}/).each do |part| %>
-                    <% if org.this_date_form(@date).comments.scan(/.{1024}/).index(part) != 0 %>
-                        <Row>
-                            <Cell ss:Index="23" ss:StyleID="t1"><Data ss:Type="String"><%= part %></Data></Cell>
-                        </Row>
-                    <% end %>
-                <% end %>
-            <% end %>
         <% end %>
         </Table>
     </Worksheet>
