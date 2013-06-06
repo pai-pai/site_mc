@@ -171,7 +171,7 @@
         <div class="group">
             <h4><%= t('shared.result.comments') %></h4>
             <div class="container-fluid">
-                <%= @result.comments %>
+                <p><%= raw @result.comments.gsub(/(\r\n)/. '</p><p>') %></p>
             </div>
         </div>
     <% end %>
