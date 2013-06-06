@@ -75,13 +75,13 @@
             <% else %>
                 <% if @org.term > @result.used_term %>
                     <dl>
-                        <dt><%= t('shared.pages.org.term_used_reason', :numb => @org.term - @result.used_term) %></dt>
+                        <dt><%=t 'shared.pages.org.term_used_reason', :numb => @org.term - @result.used_term %></dt>
                         <dd><%= @result.used_term_reason %></dd>
                     </dl>
                 <% end %>
             <% end %>
             <% if !@result.cod_date_term.blank? %>
-                <p><%= t('shared.pages.org.term_date_cod', :cod_date => @result.cod_date_term, :numb => @org.term - @result.used_term) %></p>
+                <p><%=t 'shared.pages.org.term_date_cod', :cod_date => @result.cod_date_term, :numb => @org.term - @result.used_term %></p>
             <% end %>
         </div>
     </div>
