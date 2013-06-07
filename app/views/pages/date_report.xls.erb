@@ -172,7 +172,7 @@
             <% end %>
                 <Cell ss:Index="23" ss:StyleID="t1"><Data ss:Type="String">
                     <% if !org.this_date_form(@date).comments.blank? %>
-                        <%= org.this_date_form(@date).comments[0..1023].lstrip %>
+                        <%= org.this_date_form(@date).comments.scan(/[.\w\W]{1,1024}/)[0].to_s %>
                     <% end %>
                 </Data></Cell>
             <% end %>
