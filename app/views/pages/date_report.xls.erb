@@ -170,11 +170,7 @@
                 <Cell ss:Index="21" ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
                 <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat_reason %></Data></Cell>
             <% end %>
-                <Cell ss:Index="23" ss:StyleID="t1"><Data ss:Type="String">
-                    <% if !org.this_date_form(@date).comments.blank? %>
-                        <%= org.this_date_form(@date).comments.scan(/[.\w\W]{1,1024}/)[0].to_s %>
-                    <% end %>
-                </Data></Cell>
+                <Cell ss:Index="23" ss:StyleID="t1"><Data ss:Type="String"><% if !org.this_date_form(@date).comments.blank? %><%= org.this_date_form(@date).comments[1..1024] %><% end %></Data></Cell>
             <% end %>
             </Row>
             <% if !org.this_date_form(@date).blank? && !org.this_date_form(@date).comments.blank? && org.this_date_form(@date).comments.size > 1024 %>
