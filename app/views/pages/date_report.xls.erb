@@ -101,17 +101,18 @@
                 <Cell ss:StyleID="th1" ss:Index="9"><Data ss:Type="String"><%= t('shared.pages.statistic.table.other') %></Data></Cell>
             </Row>
         <% @orgs.each do |org| %>
+            <% !org.this_date_form(@date).blank? && !org.this_date_form(@date).comments.blank? ? number_merge = org.this_date_form(@date).comments.scan(/[.\w\W]{1,1024}/).count - 1 : number_merge = 0  %>
             <Row>
-                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="Number"><%= org.id %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.name %></Data></Cell>
             <% if org.this_date_form(@date).blank? %>
                 <Cell ss:StyleID="t2" ss:MergeAcross="20"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
             <% else %>
-                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.term %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.this_date_form(@date).used_term %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.this_date_form(@date).workers_term %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).workers_term_reason %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String">
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="Number"><%= org.term %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="Number"><%= org.this_date_form(@date).used_term %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="Number"><%= org.this_date_form(@date).workers_term %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).workers_term_reason %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String">
                     <% if org.this_date_form(@date).addition_volokno==1 %>
                         <% case org.this_date_form(@date).step_volokno %>
                         <% when 1 %>
@@ -127,7 +128,7 @@
                         <% end %>
                     <% end %>
                 </Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String">
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String">
                     <% if org.this_date_form(@date).addition_sks==1 %>
                         <% case org.this_date_form(@date).step_sks %>
                         <% when 1 %>
@@ -143,31 +144,31 @@
                         <% end %>
                     <% end %>
                 </Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).addition_other_def %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).used_term_reason %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).cod_date_term %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).emk_term==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).mis_inet==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).mis_emk_reason %><%= org.this_date_form(@date).mis_inet_reason %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).addition_other_def %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).used_term_reason %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).cod_date_term %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).emk_term==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).mis_inet==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).mis_emk_reason %><%= org.this_date_form(@date).mis_inet_reason %></Data></Cell>
             <% if org.register==0 %>
-                <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
+                <Cell ss:StyleID="t2" ss:MergeDown="<%= number_merge %>" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
             <% else %>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><% if org.this_date_form(@date).register==1 %><%= org.this_date_form(@date).record_inet %><% else %><%= t('shared.pages.statistic.table.nope') %><% end %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).register_reason %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><% if org.this_date_form(@date).register==1 %><%= org.this_date_form(@date).record_inet %><% else %><%= t('shared.pages.statistic.table.nope') %><% end %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).register_reason %></Data></Cell>
             <% end %>
-                <Cell ss:Index="17" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).doc_reg==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).doc_reg_reason %></Data></Cell>
+                <Cell ss:Index="17" ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).doc_reg==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).doc_reg_reason %></Data></Cell>
             <% if org.infomat==0 %>
-                <Cell ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
+                <Cell ss:StyleID="t2" ss:MergeAcross="1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
             <% else %>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).used_infomat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).used_infomat_reason %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).used_infomat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).used_infomat_reason %></Data></Cell>
             <% end %>
             <% if org.register==0 %>
-                <Cell ss:Index="21" ss:StyleID="t2" ss:MergeAcross="1"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
+                <Cell ss:Index="21" ss:StyleID="t2" ss:MergeAcross="1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= t('shared.pages.statistic.table.nope_pmz') %></Data></Cell>
             <% else %>
-                <Cell ss:Index="21" ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat_reason %></Data></Cell>
+                <Cell ss:Index="21" ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat==1 ? t('shared.pages.statistic.table.yep') : t('shared.pages.statistic.table.nope') %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.this_date_form(@date).info_pat_reason %></Data></Cell>
             <% end %>
                 <Cell ss:Index="23" ss:StyleID="t1"><Data ss:Type="String">
                     <% if !org.this_date_form(@date).comments.blank? %>
@@ -177,10 +178,12 @@
             <% end %>
             </Row>
             <% if !org.this_date_form(@date).blank? && !org.this_date_form(@date).comments.blank? && org.this_date_form(@date).comments.size > 1024 %>
-                <% org.this_date_form(@date).comments.scan(/([.\w\W]{1,1024})/).each do |part| %>
+                <% org.this_date_form(@date).comments.scan(/[.\w\W]{1,1024}/).each do |part| %>
+                    <% if org.this_date_form(@date).comments.scan(/[.\w\W]{1,1024}/).index(part) != 0 %>
                         <Row>
                             <Cell ss:Index="23" ss:StyleID="t1"><Data ss:Type="String"><%= part.to_s %></Data></Cell>
                         </Row>
+                    <% end %>
                 <% end %>
             <% end %>
         <% end %>
