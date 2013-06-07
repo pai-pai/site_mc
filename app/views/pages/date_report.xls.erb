@@ -422,13 +422,25 @@
             </Row>
             <Row />
         <% @orgs.each do |org| %>
+            <% !org.this_date_form(@date).blank? && !org.this_date_form(@date).comments.blank? ? number_merge = org.this_date_form(@date).comments.scan(/[.\w\W]{1,1024}/).count - 1 : number_merge = 0  %>
             <Row>
-                <Cell ss:StyleID="t1"><Data ss:Type="Number"><%= org.id %></Data></Cell>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.name %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="Number"><%= org.id %></Data></Cell>
+                <Cell ss:StyleID="t1" ss:MergeDown="<%= number_merge %>"><Data ss:Type="String"><%= org.name %></Data></Cell>
             <% if org.this_date_form(@date).blank? %>
                 <Cell ss:StyleID="t2"><Data ss:Type="String"><%= t('shared.pages.statistic.table.none') %></Data></Cell>
             <% else %>
-                <Cell ss:StyleID="t1"><Data ss:Type="String"><%= org.this_date_form(@date).comments %></Data></Cell>
+                <Cell ss:StyleID="t1"><Data ss:Type="String"><% if !org.this_date_form(@date).comments.blank? %><%= org.this_date_form(@date).comments[0..1024] %><% end %></Data></Cell>
+            <% end %>
+            </Row>
+            <% if !org.this_date_form(@date).blank? && !org.this_date_form(@date).comments.blank? && org.this_date_form(@date).comments.size > 1024 %>
+                <% org.this_date_form(@date).comments.scan(/[.\w\W]{1,1024}/).each do |part| %>
+                    <% if org.this_date_form(@date).comments.scan(/[.\w\W]{1,1024}/).index(part) != 0 %>
+                        <Row>
+                            <Cell ss:Index="3" ss:StyleID="t1"><Data ss:Type="String"><%= part.to_s %></Data></Cell>
+                        </Row>
+                    <% end %>
+                <% end %>
+            <% end %>
             <% end %>
             </Row>
         <% end %>
