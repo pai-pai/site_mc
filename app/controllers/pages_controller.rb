@@ -2,6 +2,8 @@ class PagesController < ApplicationController
     require "csv"
 
     caches_action :dashboard, :layout => false
+    caches_action :statistic, :layout => false
+    caches_action :date_report, :layout => false
 
     before_filter :autorization_check, :only => [ :statistic, :dashboard ]
     before_filter :find_orgs

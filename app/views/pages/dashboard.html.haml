@@ -21,6 +21,8 @@
                 - @grouped_dates[group_key].each do |date|
                   %th
                     = link_to date.strftime('%d.%m.%Y'), date_report_path(:date => date)
+                    %br
+                    (#{Result.this_date_forms_count(date)})
 
           - @orgs.each do |org|
             %tr
