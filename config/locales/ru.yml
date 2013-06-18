@@ -384,6 +384,7 @@ ru:
                 table:
                     yep: да
                     nope: нет
+                    look: смотреть
                     none: форма не заполнена
                     has: есть
                     numb_html: ! '№<br />п/п'

@@ -1,0 +1,36 @@
+= render 'navbar'
+
+.container-fluid
+  .row-fluid
+    .span12
+      %p &nbsp;
+      %p &nbsp;
+      %table{:class => "table table-bordered"}
+        %tbody
+          %tr
+            %th{:rowspan => "2", :width => "3%"}= t('shared.pages.statistic.table.numb_html')
+            %th{:rowspan => "2", :width => "16%"}= t('shared.pages.statistic.table.name')
+            - @grouped_dates.each_key do |group_key|
+              - if !group_key.blank?
+                %th{:colspan => "#{@grouped_dates[group_key].count}"}
+                  =l @grouped_dates[group_key][0], :format => '%B'
+
+          %tr
+            - @grouped_dates.each_key do |group_key|
+              - if !group_key.blank?
+                - @grouped_dates[group_key].each do |date|
+                  %th
+                    = link_to date.strftime('%d.%m.%Y'), date_report_path(:date => date)
+
+          - @orgs.each do |org|
+            %tr
+              %td= org.id
+              %td= org.name
+              - @grouped_dates.each_key do |group_key|
+                - if !group_key.blank?
+                  - @grouped_dates[group_key].each do |date|
+                    - if !org.this_date_form(date).blank?
+                      %td
+                        = link_to "+", org.this_date_form(date)
+                    - else
+                      %td.center-middle
