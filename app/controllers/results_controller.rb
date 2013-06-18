@@ -10,6 +10,7 @@ class ResultsController < ApplicationController
     end
 
     def create
+        expire_action(:controller => "pages", :action => "dashboard")
         @result = Result.new(params[:result])
         if @result.save
             session[:active_result] = @result.id
