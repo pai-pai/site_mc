@@ -59,6 +59,10 @@ class PagesController < ApplicationController
     def dashboard
     end
 
+    def calendar
+      @now = Time.now
+    end
+
     private
         def find_orgs
             @orgs = Org.order("id").all

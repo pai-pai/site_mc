@@ -16,6 +16,8 @@ SiteMc::Application.routes.draw do
     get "pages/get_comments"
     get "pages/print"
     get "pages/dashboard"
+    get "pages/calendar"
+    match "calendar" => "pages#calendar"
 
     get "pages/get_start_val"
 

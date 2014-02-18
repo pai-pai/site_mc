@@ -3,7 +3,7 @@ class Result < ActiveRecord::Base
 
     belongs_to :org
 
-    date_regex = /^(0?[1-9]|[12][0-9]|3[01])[\.](0?[1-9]|1[012])[\.](2013)$/
+    date_regex = /^(0?[1-9]|[12][0-9]|3[01])[\.](0?[1-9]|1[012])[\.](201[2-9])$/
 
     validates_presence_of :org_id, :used_term, :doc_reg, :fio, :phone
 
@@ -58,7 +58,7 @@ class Result < ActiveRecord::Base
     def not_in_interval
         date_s = self.cod_date_term.split('.')
         date_t = Time.new(date_s[2], date_s[1], date_s[0], 00, 00, 0, "+04:00")
-        last_day = Time.new(2013, 12, 31, 00, 00, 0, "+04:00")
+        last_day = Time.new(2015, 12, 31, 00, 00, 0, "+04:00")
         if date_t <= Time.zone.today || date_t > last_day
             errors.add(:cod_date_term, ":#{I18n.t("activerecord.attributes.result.cod_date_term_period")}")
         end

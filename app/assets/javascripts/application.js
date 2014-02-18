@@ -10,8 +10,6 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
 //= require_tree .
 //= require bootstrap-modal
 //= require bootstrap-tooltip
@@ -315,8 +313,17 @@ function isInfoYes() {
 function isInfoNo() { if ($("#result_info_pat_0").is(":checked")) $(".container-info-reason").slideDown() }
 
 
-$(document).ready(function(){
+jQuery(function($) {
     centringLogin();
+
+    console.log($("#result_cod_date_term"));
+
+    $("#result_cod_date_term").datepicker({
+        dateFormat: "dd.mm.yy",
+        firstDay: 1,
+        dayNamesMin: [ "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ],
+        monthNames: [ "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" ]
+    });    
 
     $("#last-result").change(function() { 
         if ($("#last-result").is(":checked")) {
